@@ -6,11 +6,11 @@
 #    By: ajones <ajones@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 00:15:54 by ajones            #+#    #+#              #
-#    Updated: 2022/10/13 00:17:05 by ajones           ###   ########.fr        #
+#    Updated: 2022/10/18 14:44:41 by ajones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS := 
+SRCS := l_main.c l_init.c l_errors.c l_read_input.c
 NAME := lem_in
 FLAGS := -Wall -Werror -Wextra
 SRC_P := ./srcs/
