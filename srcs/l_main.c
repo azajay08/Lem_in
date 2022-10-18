@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/18 14:25:27 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/18 14:37:05 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	main(int ac, char **argv)
 	init_data(&data);
 	
 	
-	// check error inputs and exit properly 
+	// check error inputs and exit properly
+	// can also take the check to another fucntion
 
 	// read input if all is okay
 	some_sorter(&data); // this is just an example
