@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/18 14:30:13 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/18 18:56:09 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_data
 	Functions that parse input
 */
 
-void	get_ant_info(char *line, t_data *data);
-void	get_map_info(char *line, t_data *data);
+int		get_ant_info(char *line, t_data *data);
+int		get_map_info(char *line, t_data *data);
 
 /*
 	Initialize structs
