@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/18 18:56:09 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:36:01 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define GNL_FAIL "File input error\n"  // These are examples
 # define ANT_ERROR "Not a valid number of ants\n"
+# define MAP_ERROR "Not a valid map\n"
 
 # include "../libft/libft.h"
 

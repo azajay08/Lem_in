@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/18 19:23:34 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:53:54 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,17 @@ int	get_ant_info(char *line, t_data *data)
 
 int	get_map_info(char *line, t_data *data)
 {
-	char	*line;
 
 	if (get_next_line(0, &line) != 1)
-		error_exit(GNL_FAIL, data);
+		error_exit(MAP_ERROR, data);
 	while (ft_strchr(line) != ft_strrchr(line))//check if there are two spaces
 	{
 		save_room_info(line, data);	//example
 		ft_strdel(&line);
+		if (ft_strchr(line, '-')
+			get_link_info(line, data);
 		if (get_next_line(0, &line) != 1)
-			return (error_exit(GNL_FAIL, data));
+			error_exit(MAP_ERROR, data);
 		data->nb_rooms++;
 	}
 }
@@ -65,7 +66,6 @@ int	get_map_info(char *line, t_data *data)
 
 int	get_link_info(char *line, t_data *data)
 {
-	char	*line;
 	int		ret;
 
 	ret = 1;
@@ -76,6 +76,6 @@ int	get_link_info(char *line, t_data *data)
 		ret = get_next_line(0, &line);
 	}
 	if (ret != 0)
-		return (error_exit(GNL_FAIL, data));
+		error_exit(GNL_FAIL, data);
 	return (1);
 }

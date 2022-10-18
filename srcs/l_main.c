@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/18 19:14:53 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/10/18 19:34:52 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	some_sorter(t_data *data)
 	char	*line;
 	
 	if (get_next_line(0, &line) != 1)
-		return (error_exit(GNL_FAIL, data));
+		error_exit(GNL_FAIL, data);
 	if (!get_ant_info(line, data))	//We can't use exit so we need to return
 		return (0);
 	if (!get_map_info(line, data))
@@ -37,7 +37,7 @@ int	main(int ac, char **argv)
 	// can also take the check to another fucntion
 
 	// read input if all is okay
-	if (!some_sorter(&data) // this is just an example
+	if (!some_sorter(&data)) // this is just an example
 		return (0);
 
 	return (0);
