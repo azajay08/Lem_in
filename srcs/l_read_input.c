@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/19 17:26:51 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:55:49 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,22 @@ int	get_ant_info(char *line, t_data *data)
 	return (1);
 }
 
-int	get_map_info(char *line, t_data *data)
+int	get_room_info(char *line, t_data *data)
 {
 
-	if (get_next_line(0, &line) != 1)
-		error_exit(MAP_ERROR, data);
+	if (data->start == 1)
+	{
+		deal_with_start();
+		data->start = 0;
+	}
+	else
+		deal_with_rooms(); 
 	while (ft_strchr(line) != ft_strrchr(line))//check if there are two spaces
 	{
 		save_room_info(line, data);	//example
 		ft_strdel(&line);
 		if (ft_strchr(line, '-')
 			get_link_info(line, data);
-		if (get_next_line(0, &line) != 1)
-			error_exit(MAP_ERROR, data);
 		data->nb_rooms++;
 	}
 }

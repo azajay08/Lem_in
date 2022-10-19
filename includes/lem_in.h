@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/19 17:04:45 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/10/19 18:56:38 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ typedef struct s_data
 	int			nb_rooms;
 }				t_data;
 
+typedef struct s_verify
+{
+	int			nb_of_starts;
+	int			nb_of_ends;
+}				t_verify;
 
 /*
 	Functions that parse input
