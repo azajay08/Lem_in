@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/18 19:53:54 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/19 17:04:31 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int	get_ant_info(char *line, t_data *data)
 		error_exit(ANT_ERROR, data);
 		return (0);
 	}
+	data->ants_read == HAS_BEEN_READ;
 	return (1);
 }
 
-int	get_map_info(char *line, t_data *data)
+int	get_room_info(char *line, t_data *data)
 {
 
 	if (get_next_line(0, &line) != 1)
@@ -68,6 +69,7 @@ int	get_link_info(char *line, t_data *data)
 {
 	int		ret;
 
+	data->rooms_read = HAS_BEEN_READ;
 	ret = 1;
 	while (ret == 1)
 	{
