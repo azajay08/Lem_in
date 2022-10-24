@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+         #
+#    By: ajones <ajones@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 00:15:54 by ajones            #+#    #+#              #
-#    Updated: 2022/10/18 19:02:59 by mtissari         ###   ########.fr        #
+#    Updated: 2022/10/24 14:03:18 by ajones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := lem_in
+NAME := lem-in
 
 #FLAGS:
 FLAGS := -Wall -Werror -Wextra
