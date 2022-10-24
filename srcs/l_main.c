@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/19 18:58:51 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:48:33 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,21 @@ int	read_all_data(t_data *data)
 
 int	main(int ac, char **argv)
 {
-	t_data		data;
+	t_data		*data;
 	t_verify	*verify;
 
-	verify = (verify *)malloc(sizeof(t_verify));
+	data = (t_data *)malloc(sizeof(t_data));
+	if (!data)
+		error_handling(DATA_FAIL);
+	verify = (t_verify *)malloc(sizeof(t_verify));
 	if (!verify)
-		return (error_handling(MALLOC_THING));
-	init_data(&data);
+		error_exit(VERIFY_FAIL, data);
+	init_data(data);
 	init_verify(verify);
 	// check error inputs and exit properly
 	// can also take the check to another fucntion
 	// read input if all is okay
-	if (!read_all_data(&data))
+	if (!read_all_data(data))
 		return (0);
 	//do the algorithm here
 	//print the solution here

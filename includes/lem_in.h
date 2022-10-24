@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/19 18:56:38 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:49:03 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define GNL_FAIL	"File input error\n"  // These are examples
 # define ANT_ERROR	"Not a valid number of ants\n"
 # define MAP_ERROR	"Not a valid map\n"
+# define DATA_FAIL "ERROR, malloc of data failed!\n"
+# define VERIFY_FAIL "ERROR, malloc of verify failed!\n"
 
 # define NOT_READ	0
 
@@ -46,11 +48,13 @@ int		get_link_info(char *line, t_data *data);
 */
 
 void	init_data(t_data *data);
+void	init_verify(t_verify *verify);
 
 /*
 	Error management
 */
 
-void	error_exit(char *str, t_data *data);
+void	error_exit(char *error_str, t_data *data);
+void	error_handling(char *error_str);
 
 #endif
