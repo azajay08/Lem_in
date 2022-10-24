@@ -6,7 +6,7 @@
 #    By: ajones <ajones@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 00:15:54 by ajones            #+#    #+#              #
-#    Updated: 2022/10/24 14:03:18 by ajones           ###   ########.fr        #
+#    Updated: 2022/10/25 01:30:35 by ajones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,15 +16,15 @@ NAME := lem-in
 FLAGS := -Wall -Werror -Wextra
 
 #INCLUDES:
-F_INC := -I./includes/
-L_INC := -I./libft/
+LEM_INC := -I./includes/
+LIB_INC := -I./libft/
 LIBFT := libft/libft.a
 LIB := -L./libft/ -lft
 
 #SOURCES:
 SRCS := l_main.c l_init.c l_errors.c l_read_input.c
-SRC_P := ./srcs/
-F_SRC := $(addprefix $(SRC_P), $(SRCS))
+SRCS_PATH := ./srcs/
+SRCS_DIR := $(addprefix $(SRCS_PATH), $(SRCS))
 
 #OBJECTS:
 O_FILES := $(SRCS:%.c=%.o)
@@ -41,7 +41,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(O_PATH) $(O_DIR)
 	@echo ${CYAN}"Making $(@) executable...${RESET}"
-	@gcc $(FLAGS) $(F_INC) $(L_INC) $(O_DIR) $(LIB) -o $(NAME)
+	@gcc $(FLAGS) $(LEM_INC) $(LIB_INC) $(O_DIR) $(LIB) -o $(NAME)
 	@echo ${GREEN}"Executable successfully made${RESET}"
 
 $(LIBFT):
@@ -50,8 +50,8 @@ $(LIBFT):
 $(O_PATH):
 	@mkdir -p $(O_PATH)
 
-$(O_PATH)%.o: $(SRC_P)%.c
-	@gcc -c $(FLAGS) $(F_INC) $(L_INC)  -o $@ $<
+$(O_PATH)%.o: $(SRCS_PATH)%.c
+	@gcc -c $(FLAGS) $(LEM_INC) $(LIB_INC)  -o $@ $<
 
 clean:
 	@echo ${RED}"Removing obj directory...${RESET}"
