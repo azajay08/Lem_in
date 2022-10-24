@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/24 14:48:33 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:15:13 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ int	read_all_data(t_data *data)
 	char	*line;
 	int		ret;
 
+	// I think maybe we need 3 separate functions and not a while loop to read
+	// the input. because we need to find the ant number no matter what
+	// that can be its own function and we can get next line until we only 
+	// find the ant number, if it doesnt or it finds something other than comments
+	// or ant numbers.. ERROR. then the same with the room info. Do a separate
+	// GNL for that. A while loop for everything will throw out a lot of problems
+	// I think - Will change when we are togethet though
 	ret = 1;
 	while (ret == 1)
 	{
@@ -52,6 +59,9 @@ int	main(int ac, char **argv)
 	t_data		*data;
 	t_verify	*verify;
 
+	// these mallocs can be moved to any function. maybe one even in the
+	// next function to save some space. if first one fails, only need
+	// exit, no freeing needed. second would have to free first struct
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		error_handling(DATA_FAIL);
