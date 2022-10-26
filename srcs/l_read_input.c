@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/19 18:55:49 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/10/27 01:15:02 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int	get_ant_info(char *line, t_data *data)
+int	get_ant_info(char *line, t_verify *verify)
 {
 	if (ft_isdigit(line[0])) // more accurate check needed incase of minus
 	{
