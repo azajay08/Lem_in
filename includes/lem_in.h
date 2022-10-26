@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/24 14:49:03 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/27 00:50:58 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,21 @@ typedef struct s_data
 {
 	int			nb_ants;
 	int			nb_rooms;
+	int			valid_map;
 }				t_data;
+
+/*
+	Only using the verify struct for input reading then free it
+	because it wont be needed anymore. any info we need to keep
+	be transfered over to data or any other structs that we have
+*/
 
 typedef struct s_verify
 {
 	int			nb_of_starts;
 	int			nb_of_ends;
+	int			start;
+	int			end;	
 }				t_verify;
 
 /*
@@ -56,5 +65,11 @@ void	init_verify(t_verify *verify);
 
 void	error_exit(char *error_str, t_data *data);
 void	error_handling(char *error_str);
+
+/*
+	Freeing functions
+*/
+
+void	free_verify(t_verify *verify);
 
 #endif

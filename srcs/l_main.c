@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/24 15:15:13 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/27 00:49:38 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,13 @@ void	start_or_end(char *line, t_data *data)
 
 int	read_all_data(t_data *data)
 {
+	t_verify	*verify;
 	char	*line;
-	int		ret;
 
-	// I think maybe we need 3 separate functions and not a while loop to read
-	// the input. because we need to find the ant number no matter what
-	// that can be its own function and we can get next line until we only 
-	// find the ant number, if it doesnt or it finds something other than comments
-	// or ant numbers.. ERROR. then the same with the room info. Do a separate
-	// GNL for that. A while loop for everything will throw out a lot of problems
-	// I think - Will change when we are togethet though
-	ret = 1;
+	verify = (t_verify *)malloc(sizeof(t_verify));
+	if (!verify)
+		error_exit(VERIFY_FAIL, data);
+	init_verify(verify);
 	while (ret == 1)
 	{
 		ret = get_next_line(0, &line);
@@ -52,29 +48,24 @@ int	read_all_data(t_data *data)
 			get_link_info(line, data);
 		ft_strdel(&line);
 	}
+	free_verify(verify);
+	if (!data->valid_map)
+		error_exit(MAP_ERROR, data);
 }
 
 int	main(int ac, char **argv)
 {
 	t_data		*data;
-	t_verify	*verify;
 
-	// these mallocs can be moved to any function. maybe one even in the
-	// next function to save some space. if first one fails, only need
-	// exit, no freeing needed. second would have to free first struct
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		error_handling(DATA_FAIL);
-	verify = (t_verify *)malloc(sizeof(t_verify));
-	if (!verify)
-		error_exit(VERIFY_FAIL, data);
 	init_data(data);
-	init_verify(verify);
+	read_all_data(data);
 	// check error inputs and exit properly
 	// can also take the check to another fucntion
 	// read input if all is okay
-	if (!read_all_data(data))
-		return (0);
+	
 	//do the algorithm here
 	//print the solution here
 	return (0);

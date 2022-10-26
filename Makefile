@@ -6,7 +6,7 @@
 #    By: ajones <ajones@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 00:15:54 by ajones            #+#    #+#              #
-#    Updated: 2022/10/25 01:30:35 by ajones           ###   ########.fr        #
+#    Updated: 2022/10/27 00:43:49 by ajones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT := libft/libft.a
 LIB := -L./libft/ -lft
 
 #SOURCES:
-SRCS := l_main.c l_init.c l_errors.c l_read_input.c
+SRCS := l_main.c l_init.c l_errors.c l_read_input.c l_free.c
 SRCS_PATH := ./srcs/
 SRCS_DIR := $(addprefix $(SRCS_PATH), $(SRCS))
 
