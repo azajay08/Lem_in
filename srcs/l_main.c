@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 01:14:55 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/27 01:22:04 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ int	read_all_data(t_data *data)
 	if (!data->valid_map)
 		error_exit(MAP_ERROR, data);
 }
+
+/*
+	DONT WORRY, I started doing some last night but was tired so doesnt make
+	much sense
+*/
 
 int	main(int ac, char **argv)
 {
