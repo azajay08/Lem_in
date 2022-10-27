@@ -6,28 +6,23 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 01:15:02 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/27 15:34:55 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int	get_ant_info(char *line, t_verify *verify)
+int	comment_start_end(char *line)
 {
-	if (ft_isdigit(line[0])) // more accurate check needed incase of minus
+	if (line[0] == '#')
 	{
-		data->nb_ants = ft_atoi(line);
-		if (data->nb_ants < 1)
-			error_exit(ANT_ERROR, data);
-		ft_strdel(&line);
+		if (ft_strstr(line, "##start")) // might need more accurate libft function
+			return (START);
+		if (ft_strstr(line, "##end")) // same, so that it is only this
+			return (END);
+		return (COMMENT);
 	}
-	else
-	{
-		ft_strdel(&line);
-		error_exit(ANT_ERROR, data);
-		return (0);
-	}
-	return (1);
+	return (0);
 }
 
 int	get_room_info(char *line, t_data *data)
@@ -81,4 +76,28 @@ int	get_link_info(char *line, t_data *data)
 	if (ret != 0)
 		error_exit(GNL_FAIL, data);
 	return (1);
+}
+
+int	read_input(t_verify *verify)
+{
+	char		*line;
+	int			ret;
+
+	line = NULL;
+	get_ant_info(line, verify);
+	while (ret == 1)
+	{
+		ret = get_next_line(0, &line);
+			error_exit(GNL_FAIL, verify);
+		else if (line[0] == '#')
+			comment_found(line, data);
+		else if (rooms)
+			get_room_info(line, data);
+		else if(links)
+			get_link_info(line, data);
+		ft_strdel(&line);
+	}
+	// free_verify(verify);
+	if (!verify->valid_map)
+		error_exit(MAP_ERROR, verify);
 }
