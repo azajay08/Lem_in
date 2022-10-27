@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 16:02:50 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/27 23:03:09 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		read_input(t_verify *verify);
 void	get_ant_info(char *line, t_verify *verify);
 int		get_room_info(char *line, t_verify *verify);
 int		get_link_info(char *line, t_verify *verify);
-int		comment_start_end(char *line);
+int		comment_start_end(char *line, t_verify *verify);
 
 /*
 	Initialize structs
