@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/24 14:49:03 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/27 16:02:50 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # define DATA_FAIL "ERROR, malloc of data failed!\n"
 # define VERIFY_FAIL "ERROR, malloc of verify failed!\n"
 
+# define COMMENT	1
+# define START		2
+# define END		3
 # define NOT_READ	0
 
 # include "../libft/libft.h"
@@ -31,17 +34,21 @@ typedef struct s_data
 
 typedef struct s_verify
 {
-	int			nb_of_starts;
-	int			nb_of_ends;
+	int			valid_map;
+	int			ants;
+	int			start;
+	int			end;	
 }				t_verify;
 
 /*
 	Functions that parse input
 */
 
-int		get_ant_info(char *line, t_data *data);
-int		get_room_info(char *line, t_data *data);
-int		get_link_info(char *line, t_data *data);
+int		read_input(t_verify *verify);
+void	get_ant_info(char *line, t_verify *verify);
+int		get_room_info(char *line, t_verify *verify);
+int		get_link_info(char *line, t_verify *verify);
+int		comment_start_end(char *line);
 
 /*
 	Initialize structs
@@ -54,7 +61,13 @@ void	init_verify(t_verify *verify);
 	Error management
 */
 
-void	error_exit(char *error_str, t_data *data);
+void	error_exit(char *error_str, t_verify *verify);
 void	error_handling(char *error_str);
+
+/*
+	Freeing functions
+*/
+
+void	free_verify(t_verify *verify);
 
 #endif

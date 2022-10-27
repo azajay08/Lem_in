@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   l_init.c                                           :+:      :+:    :+:   */
+/*   l_read_links.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 15:32:53 by ajones           ###   ########.fr       */
+/*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
+/*   Updated: 2022/10/27 16:07:03 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-// file for all the initializing
-
-// void	init_data(t_data *data)
-// {
-// 	data->nb_ants = 0;
-// 	data->nb_rooms = 0;
-// 	data->valid_map = 0;
-// }
-
-void	init_verify(t_verify *verify)
+int	get_link_info(char *line, t_data *data)
 {
-	verify->valid_map = 0;
-	verify->ants = 0;
-	verify->start = 0;
-	verify->end = 0;
+	int		ret;
+
+	ret = 1;
+	while (ret == 1)
+	{
+		save_link_info(line, data);	//example
+		ft_strdel(&line);
+		ret = get_next_line(0, &line);
+	}
+	if (ret != 0)
+		error_exit(GNL_FAIL, data);
+	return (1);
 }
