@@ -40,7 +40,7 @@ void	get_ant_info(char *line, t_verify *verify)
 	{
 		if (get_next_line(0, &line) != 1)
 			error_exit(MAP_ERROR, verify);
-		com_ret = comment_start_end(line);
+		com_ret = comment_start_end(line, verify);
 		if (!com_ret)
 		{
 			if (!check_line_num(line))

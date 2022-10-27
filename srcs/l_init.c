@@ -25,6 +25,15 @@ void	init_verify(t_verify *verify)
 {
 	verify->valid_map = 0;
 	verify->ants = 0;
-	verify->start = 0;
-	verify->end = 0;
+	verify->nb_of_starts = 0;
+	verify->nb_of_ends = 0;
+}
+
+void	init_t_room(t_room *room)
+{
+	room->name = NULL;
+	room->edges = NULL;
+	room->start = 0;
+	room->end = 0;
+	room->next = NULL;
 }

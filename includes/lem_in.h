@@ -36,9 +36,18 @@ typedef struct s_verify
 {
 	int			valid_map;
 	int			ants;
-	int			start;
-	int			end;	
+	int			nb_of_starts;
+	int			nb_of_ends;
 }				t_verify;
+
+typedef struct s_room
+{
+	char			*name;
+	char			*edges;
+	int8_t			start;
+	int8_t			end;
+	struct s_room	*next;
+}					t_room;
 
 /*
 	Functions that parse input
