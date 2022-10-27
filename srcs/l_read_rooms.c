@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   l_main.c                                           :+:      :+:    :+:   */
+/*   l_read_rooms.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:22 by ajones           ###   ########.fr       */
+/*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
+/*   Updated: 2022/10/27 16:05:24 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int	main(int ac, char **argv)
+int	get_room_info(char *line, t_verify *verify)
 {
-	t_verify	*verify;
 
-	verify = (t_verify *)malloc(sizeof(t_verify));
-	if (!verify)
-		error_handling(VERIFY_FAIL);
-	init_verify(verify);
-	read_input(verify);
-	// check error inputs and exit properly
-	// can also take the check to another fucntion
-	// read input if all is okay
-	
-	//do the algorithm here
-	//print the solution here
-	return (0);
+	if (data->start == 1)
+	{
+		deal_with_start();
+		data->start = 0;
+	}
+	else
+		deal_with_rooms(); 
+	while (ft_strchr(line) != ft_strrchr(line))//check if there are two spaces
+	{
+		save_room_info(line, data);	//example
+		ft_strdel(&line);
+		if (ft_strchr(line, '-')
+			get_link_info(line, data);
+		data->nb_rooms++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 16:02:40 by ajones           ###   ########.fr       */
+/*   Updated: 2022/10/27 16:11:19 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ void	get_ant_info(char *line, t_verify *verify)
 			if (!check_line_num(line))
 				error_exit(ANT_ERROR, verify);
 			verify->ants = ft_atoi(line);
+			if (verify->ants == 0)
+				error_exit(ANT_ERROR, verify);
 		}
 		else if (com_ret == START || com_ret == END)
 			error_exit(MAP_ERROR, verify);
 		ft_strdel(&line); //still not sure whether to use this
 	}
-	return (1);
 }
 
 
