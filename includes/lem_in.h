@@ -19,9 +19,11 @@
 # define DATA_FAIL "ERROR, malloc of data failed!\n"
 # define VERIFY_FAIL "ERROR, malloc of verify failed!\n"
 
-# define COMMENT	1
-# define START		2
-# define END		3
+# define OFF		0
+# define ON			1
+# define COMMENT	11
+# define START		12
+# define END		13
 # define NOT_READ	0
 
 # include "../libft/libft.h"
@@ -30,6 +32,8 @@ typedef struct s_data
 {
 	int			nb_ants;
 	int			nb_rooms;
+	t_room		*source;
+	t_room		*sink;
 }				t_data;
 
 typedef struct s_verify
@@ -56,10 +60,11 @@ typedef struct s_room
 	Functions that parse input
 */
 
-int		read_input(t_verify *verify);
+void	read_input(t_data *data);
 void	get_ant_info(char *line, t_verify *verify);
-int		get_room_info(char *line, t_verify *verify);
-int		get_link_info(char *line, t_verify *verify);
+void	read_room_and_link_info(char *line, t_verify *verify, t_data *data);
+t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room);
+int		get_link_info(char *line, t_verify *verify, t_data *data);
 int		comment_start_end(char *line, t_verify *verify);
 
 /*

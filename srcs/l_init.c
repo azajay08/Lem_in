@@ -14,12 +14,13 @@
 
 // file for all the initializing
 
-// void	init_data(t_data *data)
-// {
-// 	data->nb_ants = 0;
-// 	data->nb_rooms = 0;
-// 	data->valid_map = 0;
-// }
+void	init_data(t_data *data)
+{
+	data->nb_ants = 0;
+	data->nb_rooms = 0;
+	data->source = NULL;
+	data->sink = NULL;
+}
 
 void	init_verify(t_verify *verify)
 {

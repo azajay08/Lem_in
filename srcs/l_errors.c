@@ -28,3 +28,9 @@ void	error_handling(char *error_str)
 	ft_putstr(error_str);
 	exit(1);
 }
+
+/*
+	THERE ARE LOTS OF ERROR_HANDLINGS THAT NEEDS CHECKING,
+	WHETHER THEY NEED TO BE ERROR_EXIT !!!!!!!
+	(in the reading functions)
+*/

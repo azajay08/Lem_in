@@ -12,69 +12,84 @@
 
 #include "../includes/lem_in.h"
 
-t_room	*put_start_or_end_in_order(t_room *new_room, t_room *start, t_verify *verify)
+void	arrange_source_or_sink(t_room *new_room, t_data *data, t_verify *verify)
 {
 	t_room	*temp;
 
-	temp = start;
+	temp = data->source;
 	if (verify->start == ON)
 	{
-		new_room->next = start;
-		start = new_room;
+		new_room->next = temp;
+		data->source = new_room;
 		verify->start = OFF;
 	}
 	else if (verify->end == ON)
 	{
-		while (temp->next != NULL)
-			temp = temp->next;
-		temp->next = new_room;
+		data->sink = new_room;
 		verify->end = OFF;
 	}
-	return (start);
 }
+/*
+	When we get a room that is marked with ##start or ##end,
+	this function is called.
+	arrange_source_or_sink puts the ##start-room to the beginning of the list,
+	or just marks the ##end-room for arrange_sink -function
+	to do the work when all rooms have been read.
+*/
 
 t_room	*make_room(char *line, t_verify *verify)
 {
 	t_room	*new_room;
-	char	*temp;
+	char	**temp;
 
 	temp = ft_strsplit(line, ' ');
 	if (!check_if_line_is_digits(temp[1]) || !check_if_line_is_digits(temp[2])
 		|| temp[3])
-		error_handling("Inavlid coordinates");
+		error_handling("Invalid coordinates");
 	new_room = (t_room *)malloc(sizeof(t_room));
 	if (!new_room)
-		error_handling(MALLOC_ERROR);
+		error_handling("MALLOC_ERROR");
 	new_room->name = ft_strdup(temp[0]);
 	//new_room->coord_x = ft_atoi(temp[1]);
 	//new_room->coord_y = ft_atoi(temp[2]);
 	new_room->start = OFF;
 	new_room->end = OFF;
+	new_room->next = NULL;
 	if (verify->start == ON)
 		new_room->start = ON;
 	else if (verify->end == ON)
 		new_room->end = ON;
+	ft_2d_free(temp);
 	return (new_room);
 }
+/*
+	make_room -function verifies the coordinates and
+	allocates memory to the struct.
+	This is where the room-struct is initialized.
+*/
 
-int	get_room_info(char *line, t_verify *verify)
+t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room)
 {
 	t_room	*new_room;
-	t_room	*start;
 
-	if (!ft_strchr(line, ' '))
+	if (!room)
 	{
-		verify->all_rooms_read = HAS_BEEN_READ;
-		return (get_link_info);
+		new_room = make_room(line, verify);
+		data->source = new_room;
 	}
 	else
 	{
 		new_room = make_room(line, verify);
 		if (verify->start == ON || verify->end == ON)
-		{
-			start = put_start_or_end_in_order(new_room, rooms, verify);
-		}
+			arrange_source_or_sink(new_room, data, verify);
 		else
-			rooms->next = new_room;
+		{
+			room->next = new_room;
+			room = room->next;
+		}
 	}
+	return (room);
 }
+/*
+	Here we make the list.
+*/

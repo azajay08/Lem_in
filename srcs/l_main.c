@@ -14,13 +14,13 @@
 
 int	main(int ac, char **argv)
 {
-	t_verify	*verify;
+	t_verify	*data;
 
-	verify = (t_verify *)malloc(sizeof(t_verify));
-	if (!verify)
-		error_handling(VERIFY_FAIL);
-	init_verify(verify);
-	read_input(verify);
+	data = (t_data *)malloc(sizeof(t_data));
+	if (!data)
+		error_handling("MALLOC_FAIL");
+	init_data(data);
+	read_input(data);
 	// check error inputs and exit properly
 	// can also take the check to another fucntion
 	// read input if all is okay
