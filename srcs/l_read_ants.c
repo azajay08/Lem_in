@@ -17,11 +17,13 @@
 	is only numbers
 */
 
-int	check_line_num(char *line)
+int	check_if_line_is_digits(char *line)
 {
 	int	i;
 	
 	i = 0;
+	if (!line)
+		return (0);
 	while (line[i] != '\0')
 	{
 		if (!ft_isdigit(line[i]))
@@ -43,7 +45,7 @@ void	get_ant_info(char *line, t_verify *verify)
 		com_ret = comment_start_end(line, verify);
 		if (!com_ret)
 		{
-			if (!check_line_num(line))
+			if (!check_if_line_is_digits(line))
 				error_exit(ANT_ERROR, verify);
 			verify->ants = ft_atoi(line);
 			if (verify->ants == 0)

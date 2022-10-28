@@ -38,6 +38,9 @@ typedef struct s_verify
 	int			ants;
 	int			nb_of_starts;
 	int			nb_of_ends;
+	int8_t		start;
+	int8_t		end;
+	int8_t		all_rooms_read;
 }				t_verify;
 
 typedef struct s_room
