@@ -1,0 +1,56 @@
+
+To calculate the moves one path takes:
+ants + the rooms between source and sink OR
+ants + the number of edges minus 1
+
+	Example1:
+
+			ANTS: 7
+				source
+				|
+				room1
+				|
+				room2
+				|
+				room3
+				|
+				sink
+
+				There are 3 rooms between the source and the sink, and 7 ants.
+				3 + 7 = 10.
+				Here it takes 10 moves.
+
+				OR
+
+				There are 4 edges(links) and 7 ants.
+				Add them together and substract 1.
+				4 + 7 - 1 = 10.
+				10 moves again.
+
+	Example2:
+
+			ANTS: 12
+				source
+				|
+				room1
+				|
+				room2
+				|
+				room3
+				|
+				room4
+				|
+				room5
+				|
+				sink
+
+				There are 5 rooms between the source and the sink, and 12 ants.
+				5 + 12 = 17.
+				Here it takes 17 moves.
+
+				OR
+
+				There are 6 edges(links) and 12 ants.
+				Add them together and substract 1.
+				6 + 12 - 1 = 17.
+				17 moves again.

@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/01 14:37:30 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:52:08 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	arrange_sink(t_data *data)
 	That is why we have to move the ##end-element when the list is ready.
 */
 
-int	comment_start_end(char *line, t_verify *verify)
+void	comment_found(char *line, t_verify *verify)
 {
 	if (line[0] == '#')
 	{
@@ -66,17 +66,13 @@ int	comment_start_end(char *line, t_verify *verify)
 		{
 			verify->start = ON;
 			verify->nb_of_starts++;
-			return (START);
 		}
 		if (ft_strequ(line, "##end"))
 		{
 			verify->end = ON;
 			verify->nb_of_ends++;
-			return (END);
 		}
-		return (COMMENT);
 	}
-	return (0);
 }
 /*
 	Turns on a switch when ##start or ##end is found.

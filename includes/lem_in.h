@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/01 15:00:46 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:14:41 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,17 @@ typedef struct s_room
 	struct s_room	*next;
 }					t_room;
 
+typedef struct s_path
+{
+	int				present;
+	struct s_path	*previous;
+}					t_pat;
+
 typedef struct s_queue
 {
 	t_room			*next_room;
 	t_room			*cold_rooms;
+	char			*room_queue;
 }					t_queue;
 
 /*

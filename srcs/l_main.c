@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 16:09:22 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/01 15:38:10 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **argv)
 {
-	t_verify	*data;
+	t_data	*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)

@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/01 14:35:27 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:14:48 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	assign_link(char *link_to, t_room *room)
 {
+	if (room->edges)
+		room->edges = ft_strjoin(room->edges, '-');
 	room->edges = ft_strjoin(room->edges, link_to);
 	return (1);
 }

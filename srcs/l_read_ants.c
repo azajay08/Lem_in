@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/01 14:38:07 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/11/01 15:51:58 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@
 	Could maybe add this to libft with a better name, checks whole line
 	is only numbers
 */
+
+int	comment_start_end(char *line)
+{
+	if (line[0] == '#')
+	{
+		if (ft_strequ(line, "##start"))
+			return (START);
+		if (ft_strequ(line, "##end"))
+			return (END);
+		return (COMMENT);
+	}
+	return (0);
+}
 
 int	check_if_line_is_digits(char *line)
 {
@@ -42,7 +55,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 	{
 		if (get_next_line(0, &line) != 1)
 			error_exit(MAP_ERROR, verify);
-		com_ret = comment_start_end(line, verify);
+		com_ret = comment_start_end(line);
 		if (!com_ret)
 		{
 			if (!check_if_line_is_digits(line))
