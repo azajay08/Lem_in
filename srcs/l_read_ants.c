@@ -54,7 +54,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 	while (!verify->ants)
 	{
 		if (get_next_line(0, &line) != 1)
-			error_exit(MAP_ERROR, verify);
+			error_exit(MAP_ERROR, data, verify);
 		com_ret = comment_start_end(line);
 		if (!com_ret)
 		{

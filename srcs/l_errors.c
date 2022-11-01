@@ -12,25 +12,43 @@
 
 #include "../includes/lem_in.h"
 
-void	error_exit(char *error_str, t_verify *verify)
+void	error_exit(char *error_str, t_data *data, t_verify *verify)
 {
 	// str will contain the error message ?
 	// free all that needs freeing or maybe not on an exit ?
+
 	free(verify);
-	
+	free_data(data);
+
 	ft_putstr(error_str);
 
 	exit(1);
 }
 
-void	error_handling(char *error_str)
+/*
+	error_exit is used in reading functions
+	when both data and verify need to be freed.
+*/
+
+
+void	error_exit2(char *error_str, t_data *data)
+{
+	free_data(data);
+	ft_putstr(error_str);
+	exit(1);
+}
+
+/*
+	error_exit2 is used when mallocing verify fails,
+	so only data needs to be freed.
+*/
+
+void	error_nothing_to_be_freed(char *error_str)
 {
 	ft_putstr(error_str);
 	exit(1);
 }
 
 /*
-	THERE ARE LOTS OF ERROR_HANDLINGS THAT NEEDS CHECKING,
-	WHETHER THEY NEED TO BE ERROR_EXIT !!!!!!!
-	(in the reading functions)
+	The name is not final.
 */

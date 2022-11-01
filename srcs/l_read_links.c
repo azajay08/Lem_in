@@ -20,7 +20,7 @@ int	assign_link(char *link_to, t_room *room)
 	return (1);
 }
 
-void	verify_and_assign_names(char *line, t_room *start)
+int	verify_and_assign_names(char *line, t_room *start)
 {
 	char	**temp;
 	t_room	*room;
@@ -32,7 +32,7 @@ void	verify_and_assign_names(char *line, t_room *start)
 	room = start;
 	temp = ft_strsplit(line, '-');
 	if (!temp || (ft_strchr(line, '-') != ft_strrchr(line, '-')))
-		error_handling("Bad link");//also return (NULL);
+		return (0);
 	while (room->next != NULL)
 	{
 		if (ft_strequ(temp[0], room->name))
@@ -43,7 +43,8 @@ void	verify_and_assign_names(char *line, t_room *start)
 	}
 	ft_2d_free(temp);
 	if (counter != 1 || counter2 != 1)
-		error_handling("Bad link");//also return (NULL);
+		return (0);
+	return (1);
 }
 /*
 	Here we have a few verifications.
@@ -75,9 +76,9 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 		if (line[0] == '#')
 			comment_found(line, verify);
 		else if (ft_strchr(line, ' '))
-			error_handling("Room in wrong place", data, verify);
+			error_exit("Room in wrong place", data, verify);
 		else if (!save_link_info(line, start, verify))
-			error_handling("something has gone wrong", data, verify);
+			error_data("bad link", data, verify);
 		ft_strdel(&line);
 	}
 }

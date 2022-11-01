@@ -74,10 +74,10 @@ typedef struct s_queue
 */
 
 void	read_input(t_data *data);
-void	get_ant_info(char *line, t_verify *verify);
+void	get_ant_info(char *line, t_data *data, t_verify *verify);
 void	read_room_and_link_info(char *line, t_verify *verify, t_data *data);
 t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room);
-int		get_link_info(char *line, t_verify *verify, t_data *data);
+void	get_link_info(char *line, t_verify *verify, t_data *data);
 int		comment_start_end(char *line, t_verify *verify);
 int		check_if_line_is_digits(char *line);
 
@@ -87,18 +87,21 @@ int		check_if_line_is_digits(char *line);
 
 void	init_data(t_data *data);
 void	init_verify(t_verify *verify);
+void	init_room(t_room *room);
 
 /*
 	Error management
 */
 
-void	error_exit(char *error_str, t_verify *verify);
-void	error_handling(char *error_str);
+void	error_exit(char *error_str, t_data *data, t_verify *verify);
+void	error_exit2(char *error_str, t_data *data);
+void	error_nothing_to_be_freed(char *error_str);
 
 /*
 	Freeing functions
 */
 
 void	free_verify(t_verify *verify);
+void	free_data(t_data *data);
 
 #endif

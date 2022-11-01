@@ -18,7 +18,7 @@ int	main(int ac, char **argv)
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		error_handling("MALLOC_FAIL");
+		error_nothing_to_be_freed("MALLOC_FAIL");
 	init_data(data);
 	read_input(data);
 	// check error inputs and exit properly

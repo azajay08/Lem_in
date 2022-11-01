@@ -37,7 +37,7 @@ void	arrange_source_or_sink(t_room *new_room, t_data *data, t_verify *verify)
 	to do the work when all rooms have been read.
 */
 
-t_room	*make_room(char *line, t_verify *verify)
+t_room	*make_room(char *line, t_verify *verify, t_data *data)
 {
 	t_room	*new_room;
 	char	**temp;
@@ -45,17 +45,14 @@ t_room	*make_room(char *line, t_verify *verify)
 	temp = ft_strsplit(line, ' ');
 	if (!temp || !check_if_line_is_digits(temp[1])
 		|| !check_if_line_is_digits(temp[2]) || temp[3])
-		error_handling("Invalid coordinates");//Also return (NULL);
+		error_exit("Invalid coordinates", data, verify);//Also return (NULL);
 	new_room = (t_room *)malloc(sizeof(t_room));
 	if (!new_room)
-		error_handling("MALLOC_ERROR");//Also return (NULL);
+		error_exit("MALLOC_ERROR", data, verify);//Also return (NULL);
+	init_room(new_room);
 	new_room->name = ft_strdup(temp[0]);
 	//new_room->coord_x = ft_atoi(temp[1]);
 	//new_room->coord_y = ft_atoi(temp[2]);
-	new_room->start = OFF;
-	new_room->end = OFF;
-	new_room->edges = NULL;
-	new_room->next = NULL;
 	if (verify->start == ON)
 		new_room->start = ON;
 	else if (verify->end == ON)
@@ -75,14 +72,14 @@ t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room)
 
 	if (!room)
 	{
-		new_room = make_room(line, verify);
+		new_room = make_room(line, verify, data);
 		data->source = new_room;
 		if (verify->start == ON || verify->end == ON)
 			arrange_source_or_sink(new_room, data, verify);
 	}
 	else
 	{
-		new_room = make_room(line, verify);
+		new_room = make_room(line, verify, data);
 		if (verify->start == ON || verify->end == ON)
 			arrange_source_or_sink(new_room, data, verify);
 		else
@@ -91,8 +88,6 @@ t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room)
 			room = room->next;
 		}
 	}
-	if (!room)
-		error_handling("something has gone wrong", data, verify);
 	return (room);
 }
 /*

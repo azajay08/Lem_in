@@ -17,16 +17,16 @@ int	verify_all(t_verify *verify, t_data *data)
 	t_room	*temp;
 
 	if (!verify->valid_map)
-		error_handling("Wrong input");
+		error_exit("Wrong input", data, verify);
 	if (verify->nb_of_starts != 1 || verify->nb_of_ends != 1)
-		error_handling("Too many Starts or Ends");
+		error_exit("Too many Starts or Ends", data, verify);
 	if (verify->start == ON || verify->end == ON)
-		error_handling("Start or End not specified");
+		error_exit("Start or End not specified", data, verify);
 	temp = data->source;
 	while (temp->next != NULL)
 	{
 		if (!temp->edges)
-			error_handling("No links in room <temp->name>");//is it invalid?
+			error_exit("No links in room <temp->name>", data, verify);//is it invalid?
 		temp = temp->next;
 	}
 }
@@ -38,19 +38,19 @@ int	verify_all(t_verify *verify, t_data *data)
 ****There must be more checks for the validity...?****
 */
 
-void	arrange_sink(t_data *data)
+void	arrange_sink(t_data *data, t_verify *verify)
 {
 	t_room	*temp;
 
 	if (!data->source)
-		error_handling("No ##start found");
+		error_exit("No ##start found", data, verify);
 	temp = data->source;
 	while (temp->next != NULL)
 		temp = temp->next;
 	if (data->sink)
 		temp->next = data->sink;
 	else
-		error_handling("No ##end found");
+		error_exit("No ##end found", data, verify);
 }
 /*
 	We want to arrange our list in a way that ##start is the starting point,
@@ -89,14 +89,14 @@ void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 		if (line[0] == '#')
 			comment_found(line, verify);
 		else if (line[0] == 'L')
-			error_handling("Invalid room name");
+			error_exit("Invalid room name", data, verify);
 		else if (!ft_strchr(line, ' '))
 			break ;
 		else if (verify->all_rooms_read == NOT_READ)
 			room = get_room_info(line, verify, data, room);
 		ft_strdel(&line);
 	}
-	arrange_sink(data);
+	arrange_sink(data, verify);
 	get_link_info(line, verify, data);
 }
 /*
@@ -112,7 +112,7 @@ void	read_input(t_data *data)
 
 	verify = (t_verify *)malloc(sizeof(t_verify));
 	if (!verify)
-		error_handling("MALLOC FAILED", data);
+		error_exit2("MALLOC FAILED", data);
 	init_verify(verify);
 	line = NULL;
 	get_ant_info(line, data, verify);

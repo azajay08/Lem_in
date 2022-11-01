@@ -16,3 +16,18 @@ void	free_verify(t_verify *verify)
 {
 	
 }
+
+void	free_data(t_data *data)
+{
+	t_room	*temp;
+
+	while (data->source->next != NULL)
+	{
+		temp = data->source;
+		data->source = data->source->next;
+		free (temp);
+	}
+	if (data->sink)
+		free (data->sink);
+	free (data);
+}
