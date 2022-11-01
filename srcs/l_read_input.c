@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 23:01:50 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/01 14:37:30 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,13 @@ void	read_input(t_data *data)
 
 	verify = (t_verify *)malloc(sizeof(t_verify));
 	if (!verify)
-		error_handling("MALLOC FAILED");
+		error_handling("MALLOC FAILED", data);
 	init_verify(verify);
 	line = NULL;
-	get_ant_info(line, verify);
+	get_ant_info(line, data, verify);
 	read_room_and_link_info(line, verify, data);
 	if (!verify_all(verify, data))
-		error_exit(MAP_ERROR, verify);
+		error_exit(MAP_ERROR, data, verify);
 	free_verify(verify);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_rooms.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/30 02:52:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/01 14:28:13 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ t_room	*make_room(char *line, t_verify *verify)
 	char	**temp;
 
 	temp = ft_strsplit(line, ' ');
-	if (!check_if_line_is_digits(temp[1]) || !check_if_line_is_digits(temp[2])
-		|| temp[3])
-		error_handling("Invalid coordinates");
+	if (!temp || !check_if_line_is_digits(temp[1])
+		|| !check_if_line_is_digits(temp[2]) || temp[3])
+		error_handling("Invalid coordinates");//Also return (NULL);
 	new_room = (t_room *)malloc(sizeof(t_room));
 	if (!new_room)
-		error_handling("MALLOC_ERROR");
+		error_handling("MALLOC_ERROR");//Also return (NULL);
 	new_room->name = ft_strdup(temp[0]);
 	//new_room->coord_x = ft_atoi(temp[1]);
 	//new_room->coord_y = ft_atoi(temp[2]);
@@ -88,6 +88,8 @@ t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room)
 			room = room->next;
 		}
 	}
+	if (!room)
+		error_handling("something has gone wrong", data, verify);
 	return (room);
 }
 /*

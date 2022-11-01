@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_links.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 16:07:03 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/01 14:35:27 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	verify_and_assign_names(char *line, t_room *start)
 	room = start;
 	temp = ft_strsplit(line, '-');
 	if (!temp || (ft_strchr(line, '-') != ft_strrchr(line, '-')))
-		error_handling("Bad link");
+		error_handling("Bad link");//also return (NULL);
 	while (room->next != NULL)
 	{
 		if (ft_strequ(temp[0], room->name))
@@ -41,7 +41,7 @@ void	verify_and_assign_names(char *line, t_room *start)
 	}
 	ft_2d_free(temp);
 	if (counter != 1 || counter2 != 1)
-		error_handling("Bad link");
+		error_handling("Bad link");//also return (NULL);
 }
 /*
 	Here we have a few verifications.
@@ -50,9 +50,10 @@ void	verify_and_assign_names(char *line, t_room *start)
 	exactly in the same format. Both must be found.
 */
 
-void	save_link_info(char *line, t_room *start, t_verify *verify)
+int	save_link_info(char *line, t_room *start, t_verify *verify)
 {
-	verify_and_assign_names(line, start);
+	if (!verify_and_assign_names(line, start))
+		return (0);
 	// Do we need to do something else?
 	// It feels like there should be more verifications here...
 	// If not we can go straight to verify_and_assign.
@@ -72,9 +73,9 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 		if (line[0] == '#')
 			comment_found(line, verify);
 		else if (ft_strchr(line, ' '))
-			error_handling("Room in wrong place");
-		else
-			save_link_info(line, start, verify);
+			error_handling("Room in wrong place", data, verify);
+		else if (!save_link_info(line, start, verify))
+			error_handling("something has gone wrong", data, verify);
 		ft_strdel(&line);
 	}
 }

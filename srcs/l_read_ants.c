@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_ants.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 16:30:10 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/01 14:38:07 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int	check_if_line_is_digits(char *line)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!line)
 		return (0);
@@ -33,7 +33,7 @@ int	check_if_line_is_digits(char *line)
 	return (1);
 }
 
-void	get_ant_info(char *line, t_verify *verify)
+void	get_ant_info(char *line, t_data *data, t_verify *verify)
 {
 	int	com_ret;
 
@@ -46,15 +46,16 @@ void	get_ant_info(char *line, t_verify *verify)
 		if (!com_ret)
 		{
 			if (!check_if_line_is_digits(line))
-				error_exit(ANT_ERROR, verify);
+				error_exit(ANT_ERROR, data, verify);
 			verify->ants = ft_atoi(line);
 			if (verify->ants == 0)
-				error_exit(ANT_ERROR, verify);
+				error_exit(ANT_ERROR, data, verify);
 		}
 		else if (com_ret == START || com_ret == END)
-			error_exit(MAP_ERROR, verify);
+			error_exit(MAP_ERROR, data, verify);
 		ft_strdel(&line); //still not sure whether to use this
 	}
+	data->nb_ants = verify->ants;
 }
 
 
