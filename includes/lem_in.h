@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/30 02:52:12 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/01 15:00:46 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ typedef struct s_room
 	int8_t			end;
 	struct s_room	*next;
 }					t_room;
+
+typedef struct s_queue
+{
+	t_room			*next_room;
+	t_room			*cold_rooms;
+}					t_queue;
 
 /*
 	Functions that parse input
