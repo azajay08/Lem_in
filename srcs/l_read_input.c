@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/01 15:52:08 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:32:42 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,15 @@ void	arrange_sink(t_data *data, t_verify *verify)
 
 void	comment_found(char *line, t_verify *verify)
 {
-	if (line[0] == '#')
+	if (ft_strequ(line, "##start"))
 	{
-		if (ft_strequ(line, "##start"))
-		{
-			verify->start = ON;
-			verify->nb_of_starts++;
-		}
-		if (ft_strequ(line, "##end"))
-		{
-			verify->end = ON;
-			verify->nb_of_ends++;
-		}
+		verify->start = ON;
+		verify->nb_of_starts++;
+	}
+	if (ft_strequ(line, "##end"))
+	{
+		verify->end = ON;
+		verify->nb_of_ends++;
 	}
 }
 /*
