@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_ants.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/01 15:51:58 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:10:43 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int	comment_start_end(char *line)
 {
 	if (line[0] == '#')
 	{
-		if (ft_strequ(line, "##start"))
-			return (START);
-		if (ft_strequ(line, "##end"))
-			return (END);
+		if (ft_strequ(line, "##start") || ft_strequ(line, "##end"))
+			return (START_END);
 		return (COMMENT);
 	}
 	return (0);
@@ -64,7 +62,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 			if (verify->ants == 0)
 				error_exit(ANT_ERROR, data, verify);
 		}
-		else if (com_ret == START || com_ret == END)
+		else if (com_ret == START_END)
 			error_exit(MAP_ERROR, data, verify);
 		ft_strdel(&line); //still not sure whether to use this
 	}

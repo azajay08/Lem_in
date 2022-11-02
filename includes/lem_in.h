@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/01 16:14:41 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:10:26 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,11 @@
 
 # define OFF		0
 # define ON			1
-# define COMMENT	11
-# define START		12
-# define END		13
+# define COMMENT	1
+# define START_END	2
 # define NOT_READ	0
 
 # include "../libft/libft.h"
-
-typedef struct s_data
-{
-	int			nb_ants;
-	int			nb_rooms;
-	t_room		*source;
-	t_room		*sink;
-}				t_data;
 
 typedef struct s_verify
 {
@@ -69,6 +60,14 @@ typedef struct s_queue
 	char			*room_queue;
 }					t_queue;
 
+typedef struct s_data
+{
+	int			nb_ants;
+	int			nb_rooms;
+	t_room		*source;
+	t_room		*sink;
+}				t_data;
+
 /*
 	Functions that parse input
 */
@@ -78,7 +77,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify);
 void	read_room_and_link_info(char *line, t_verify *verify, t_data *data);
 t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room);
 void	get_link_info(char *line, t_verify *verify, t_data *data);
-int		comment_start_end(char *line, t_verify *verify);
+int		comment_start_end(char *line);
 int		check_if_line_is_digits(char *line);
 
 /*
