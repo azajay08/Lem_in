@@ -6,16 +6,11 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/02 17:10:43 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/02 17:12:52 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-/*
-	Could maybe add this to libft with a better name, checks whole line
-	is only numbers
-*/
 
 int	comment_start_end(char *line)
 {
@@ -64,31 +59,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 		}
 		else if (com_ret == START_END)
 			error_exit(MAP_ERROR, data, verify);
-		ft_strdel(&line); //still not sure whether to use this
+		ft_strdel(&line);
 	}
 	data->nb_ants = verify->ants;
 }
-
-
-
-
-
-
-
-
-// {
-// 	if (ft_isdigit(line[0]))
-// 	{
-// 		data->nb_ants = ft_atoi(line);
-// 		if (data->nb_ants < 1)
-// 			error_exit(ANT_ERROR, data);
-// 		ft_strdel(&line);
-// 	}
-// 	else
-// 	{
-// 		ft_strdel(&line);
-// 		error_exit(ANT_ERROR, data);
-// 		return (0);
-// 	}
-// 	return (1);
-// }
