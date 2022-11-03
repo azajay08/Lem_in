@@ -21,11 +21,20 @@ void	set_queue(t_room *room, t_queue *queue)
 	{
 		if (ft_strstr(room->edges, temp_room->name))
 		{
-			queue->room_queue = ft_strjoin(queue->room_queue, '-');
 			queue->room_queue = ft_strjoin(queue->room_queue, temp_room->name);
+			queue->room_queue = ft_strjoin(queue->room_queue, '-');
 		}
 		temp_room = temp_room->next;
 	}
+	temp_room = room;
+	while (temp_room->next != NULL)
+	{
+		if (temp_room->name == the first name in the queue)
+			break ;
+		temp_room = temp_room->next;
+	}
+	queue->next_room = temp_room;
+	clean_room_queue(queue); //to get rid of the first room in the queue.
 }
 
 void	bfs(t_data *data)
