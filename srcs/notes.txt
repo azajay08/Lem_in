@@ -98,12 +98,50 @@ if (paths->max == 2)
 		use_shortest_path(data, paths);
 }
 
+Calculating how many ants go to the two paths:
+
+void	use_two_paths(t_data *data, t_path paths)
+{
+	int		ants_in_path1;
+	int		ants_in_path2;
+
+	ants_in_path2 = (data->ants - Diff) / 2;
+	ants_in_path1 = data->ants - ants_in_path2;
+	print_the_solution;
+}
+
+
 ________________________________________________________________________________
 
 
-||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||||||||||||||||||||||| WHEN TO ADD PATH3 |||||||||||||||||||||||||||||||||
 
+The third path is added when the number of ants reaches the equation:
+	Ants = Diff1 + 3 + (Diff2 x 2),
+	Where Diff1 = (Path2->edges - Path1->edges), and
+	Diff2 = (Path3->edges - Path2->edges).
 
+Example1:
+
+			Path1: 8 edges
+			Path2: 13 edges
+			Path3: 14 edges
+			Difference1 = 5 (Path2 - Path1).
+			Difference2 = 1 (Path3 - Path2).
+
+						Number of turns it takes with:
+				ANTS:	USING 2 PATHS:		USING 3 PATHS:
+				7			13					14
+				8			14					14
+				9			14					14
+				10			15					14
+
+		With 10 ants it's better to use 3 paths instead of 2.
+		Now let's check the calculation:
+		Ants = Diff1 + 3 + (Diff2 x 2) =
+		Ants =   5   + 3 + (  1   x 2) =
+		Ants =      8    + (    2    ) =
+		Ants = 10.
 
 
 
