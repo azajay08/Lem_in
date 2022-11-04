@@ -144,4 +144,27 @@ Example1:
 		Ants = 10.
 
 
+________________________________________________________________________________
+
+||| TEMPORARY STUFF HERE!! |||||| |||||||     ||||||||||
+|||||||||||   JUST TO SAVE THE STUFF WE DISCUSSED ABOUT VERIFYING COORDS |||||||
+
+typedef struct s_coords
+{
+	char		*name;
+	int			coord1;
+	int			coord2;
+	t_coords	next;
+}				t_coords;
+
+temp = start_coords;
+while(temp != NULL)
+{
+	if (ft_strequ(coords->name, temp->name) || (coords->coord1 == temp->coord1 && coords->coord2 == temp->coord2))
+		error;
+	temp = temp->next;
+}
+temp->next = coords;
+
+________________________________________________________________________________
 
