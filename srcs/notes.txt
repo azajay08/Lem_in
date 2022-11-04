@@ -1,3 +1,6 @@
+________________________________________________________________________________
+
+||||||||||||||||||||||||| CALCULATING TURNS FOR 1 PATH |||||||||||||||||||||||||
 
 To calculate the moves one path takes:
 ants + the rooms between source and sink OR
@@ -54,3 +57,53 @@ ants + the number of edges minus 1
 				Add them together and substract 1.
 				6 + 12 - 1 = 17.
 				17 moves again.
+
+________________________________________________________________________________
+
+
+|||||||||||||||||||||||||||||| MAXIMUM PATHS = 2 |||||||||||||||||||||||||||||||
+
+If the maximum paths is 2, wether to use 1 or 2 paths can be calculated.
+The difference between the number of edges of the two paths is the magic number.
+That number is the highest amount of ants when to use 1 path.
+
+	Example1:
+
+			Path1: 8 edges
+			Path2: 13 edges
+			Difference: 5.
+
+						Number of turns it takes with:
+				ANTS:	PATH1:	USING BOTH PATHS(1 ant in Path2):
+				7		14			13
+				6		13			13
+				5		12			13
+
+		With 7 ants it's better to use both paths as it takes 13 turns,
+		where just using the shortest path takes 14 turns.
+
+		With 6 ants it doesn't matter which on to choose - path1 or both.
+
+		With 5 ants - which is the difference between the number of edges,
+		It is better to use the shortest path only, as it takes less turns.
+
+
+How it could look like in the code:
+
+if (paths->max == 2)
+{
+	If (data->ants > (paths->path2->edge_nb) - (paths->path1->edge_nb))
+		use_two_paths(data, paths);
+	else
+		use_shortest_path(data, paths);
+}
+
+________________________________________________________________________________
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+
+
+
