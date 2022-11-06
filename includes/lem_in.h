@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/02 17:10:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/06 03:44:28 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define MAP_ERROR	"Not a valid map\n"
 # define DATA_FAIL "ERROR, malloc of data failed!\n"
 # define VERIFY_FAIL "ERROR, malloc of verify failed!\n"
+# define ROOM_FAIL "ERROR, duplicate rooms\n"
+# define COORD_FAIL "ERROR, duplicate coordinates\n"
 
 # define OFF		0
 # define ON			1
