@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/07 13:04:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/07 13:12:55 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	verify_and_assign_names(char *line, t_room *start)
 	counter2 = 0;
 	room = start;
 	temp = ft_strsplit(line, '-');
-	if (!temp || (ft_strchr(line, '-') != ft_strrchr(line, '-')))
+	if (!temp)
 		return (0);
 	while (room->next != NULL)
 	{
@@ -62,6 +62,9 @@ int	save_link_info(char *line, t_room *start, t_verify *verify)
 	}
 	if (!verify_and_assign_names(line, start))
 		return (0);
+
+	// NEED a check to see even if that room exists
+		
 	// Do we need to do something else?
 	// It feels like there should be more verifications here...
 	// If not we can go straight to verify_and_assign.
