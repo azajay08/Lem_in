@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/06 03:44:28 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/07 13:02:06 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define VERIFY_FAIL "ERROR, malloc of verify failed!\n"
 # define ROOM_FAIL "ERROR, duplicate rooms\n"
 # define COORD_FAIL "ERROR, duplicate coordinates\n"
+# define LINK_FAIL "ERROR, invalid link\n"
 
 # define OFF		0
 # define ON			1
@@ -81,6 +82,7 @@ t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room);
 void	get_link_info(char *line, t_verify *verify, t_data *data);
 int		comment_start_end(char *line);
 int		check_if_line_is_digits(char *line);
+void	comment_found(char *line, t_verify *verify);
 
 /*
 	Initialize structs
@@ -97,6 +99,7 @@ void	init_room(t_room *room);
 void	error_exit(char *error_str, t_data *data, t_verify *verify);
 void	error_exit2(char *error_str, t_data *data);
 void	error_nothing_to_be_freed(char *error_str);
+void	error_exit3(char *str, t_verify *verify, t_data *data, t_room *room);
 
 /*
 	Freeing functions
