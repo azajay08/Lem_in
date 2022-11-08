@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:09:53 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 20:37:51 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:40:56 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	error_exit2(char *error_str, t_data *data, t_verify *verify)
 	// str will contain the error message ?
 	// free all that needs freeing or maybe not on an exit ?
 
-	free(verify);
+	free_verify(verify);
 	free_data(data);
 
 	ft_putstr(error_str);
