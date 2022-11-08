@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 15:32:53 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:10:23 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	init_verify(t_verify *verify)
 
 void	init_room(t_room *room)
 {
+	room->coord_y = -1;
+	room->coord_x = -1;
 	room->name = NULL;
 	room->edges = NULL;
 	room->start = OFF;

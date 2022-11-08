@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 19:29:46 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:11:36 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	verify_all(t_verify *verify, t_data *data)
 			error_exit2("No links in room <temp->name>", data, verify);//is it invalid?
 		temp = temp->next;
 	}
+	return (0);
 }
 /*
 	Here we check the validity of the input.

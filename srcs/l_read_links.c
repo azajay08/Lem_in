@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/07 13:12:55 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:12:09 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	assign_link(char *link_to, t_room *room)
 {
 	if (room->edges)
-		room->edges = ft_strjoin(room->edges, '-');
+		room->edges = ft_strjoin(room->edges, "-");
 	room->edges = ft_strjoin(room->edges, link_to);
 	return (1);
 }
@@ -72,6 +72,7 @@ int	save_link_info(char *line, t_room *start, t_verify *verify)
 	// YEAH, this can be like a half way point for what needs to be freed
 	// so run the checks here to return 0 or 1, and free accordingly. 
 	// can run the line checks here before splitting in the next function
+	return (1);
 }
 
 void	get_link_info(char *line, t_verify *verify, t_data *data)
@@ -89,7 +90,7 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 		if (line[0] == '#')
 			comment_found(line, verify);
 		else if (ft_strchr(line, ' '))
-			error_exit("Room in wrong place", data, verify);
+			error_exit2(ROOM_FAIL, data, verify);
 		else if (!save_link_info(line, start, verify))
 			error_exit3(LINK_FAIL, verify, data, start);
 			// error_data("bad link", data, verify);

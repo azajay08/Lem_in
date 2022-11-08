@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 19:30:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:10:01 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # define MAP_ERROR		"ERROR! Not a valid map\n"
 # define DATA_FAIL		"ERROR! Memory allocation of t_data failed!\n"
 # define VERIFY_FAIL	"ERROR! Memory allocation of t_verify failed!\n"
-# define ROOM_FAIL		"ERROR! Invalid room name or duplicate names\n"
-# define COORD_FAIL		"ERROR! Duplicate coordinates\n"
+# define T_ROOM_FAIL	"ERROR! Memory allocation of t_room failed\n"
+# define ROOM_FAIL		"ERROR! Invalid room\n"
+# define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
 # define START_FAIL		"ERROR! No start or too many starts\n"
 # define END_FAIL		"ERROR! No end or too many ends been\n"
@@ -49,6 +50,8 @@ typedef struct s_room
 {
 	char			*name;
 	char			*edges;
+	int				coord_y;
+	int				coord_x;
 	int8_t			start;
 	int8_t			end;
 	struct s_room	*next;

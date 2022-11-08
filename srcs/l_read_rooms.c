@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_rooms.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/01 15:44:43 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/11/08 20:10:29 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ t_room	*make_room(char *line, t_verify *verify, t_data *data)
 	temp = ft_strsplit(line, ' ');
 	if (!temp || !check_if_line_is_digits(temp[1])
 		|| !check_if_line_is_digits(temp[2]) || temp[3])
-		error_exit("Invalid coordinates", data, verify);//Also return (NULL);
+		error_exit2(COORD_FAIL, data, verify);//Also return (NULL);
 	new_room = (t_room *)malloc(sizeof(t_room));
 	if (!new_room)
-		error_exit("MALLOC_ERROR", data, verify);//Also return (NULL);
+		error_exit2(T_ROOM_FAIL, data, verify);//Also return (NULL);
 	init_room(new_room);
 	new_room->name = ft_strdup(temp[0]);
-	//new_room->coord_x = ft_atoi(temp[1]);
-	//new_room->coord_y = ft_atoi(temp[2]);
+	new_room->coord_x = ft_atoi(temp[1]);
+	new_room->coord_y = ft_atoi(temp[2]);
 	if (verify->start == ON)
 		new_room->start = ON;
 	else if (verify->end == ON)
