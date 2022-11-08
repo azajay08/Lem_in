@@ -6,11 +6,16 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 00:41:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/10/27 00:43:03 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:40:09 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void	free_room(t_room *room)
+{
+	
+}
 
 void	free_verify(t_verify *verify)
 {
