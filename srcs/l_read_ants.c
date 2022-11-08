@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/02 17:12:52 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:17:21 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 	while (!verify->ants)
 	{
 		if (get_next_line(0, &line) != 1)
-			error_exit(MAP_ERROR, data, verify);
+			error_exit2(MAP_ERROR, data, verify);
 		com_ret = comment_start_end(line);
 		if (!com_ret)
 		{
 			if (!check_if_line_is_digits(line))
-				error_exit(ANT_ERROR, data, verify);
+				error_exit2(ANT_ERROR, data, verify);
 			verify->ants = ft_atoi(line);
 			if (verify->ants == 0)
-				error_exit(ANT_ERROR, data, verify);
+				error_exit2(ANT_ERROR, data, verify);
 		}
 		else if (com_ret == START_END)
-			error_exit(MAP_ERROR, data, verify);
+			error_exit2(MAP_ERROR, data, verify);
 		ft_strdel(&line);
 	}
 	data->nb_ants = verify->ants;

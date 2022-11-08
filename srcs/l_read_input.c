@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/02 17:32:42 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:29:46 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ int	verify_all(t_verify *verify, t_data *data)
 	t_room	*temp;
 
 	if (!verify->valid_map)
-		error_exit("Wrong input", data, verify);
+		error_exit2(MAP_ERROR, data, verify);
 	if (verify->nb_of_starts != 1 || verify->nb_of_ends != 1)
-		error_exit("Too many Starts or Ends", data, verify);
+		error_exit2(TOO_MANY, data, verify);
 	if (verify->start == ON || verify->end == ON)
-		error_exit("Start or End not specified", data, verify);
+		error_exit2(NO_COMMAND, data, verify);
 	temp = data->source;
 	while (temp->next != NULL)
 	{
 		if (!temp->edges)
-			error_exit("No links in room <temp->name>", data, verify);//is it invalid?
+			error_exit2("No links in room <temp->name>", data, verify);//is it invalid?
 		temp = temp->next;
 	}
 }
@@ -43,14 +43,14 @@ void	arrange_sink(t_data *data, t_verify *verify)
 	t_room	*temp;
 
 	if (!data->source)
-		error_exit("No ##start found", data, verify);
+		error_exit2(START_FAIL, data, verify);
 	temp = data->source;
 	while (temp->next != NULL)
 		temp = temp->next;
 	if (data->sink)
 		temp->next = data->sink;
 	else
-		error_exit("No ##end found", data, verify);
+		error_exit2(END_FAIL, data, verify);
 }
 /*
 	We want to arrange our list in a way that ##start is the starting point,
@@ -86,7 +86,7 @@ void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 		if (line[0] == '#')
 			comment_found(line, verify);
 		else if (line[0] == 'L')
-			error_exit("Invalid room name", data, verify);
+			error_exit2(ROOM_FAIL, data, verify);
 		else if (!ft_strchr(line, ' '))
 			break ;
 		else if (verify->all_rooms_read == NOT_READ)
@@ -109,13 +109,13 @@ void	read_input(t_data *data)
 
 	verify = (t_verify *)malloc(sizeof(t_verify));
 	if (!verify)
-		error_exit2("MALLOC FAILED", data);
+		error_exit1(VERIFY_FAIL, data);
 	init_verify(verify);
 	line = NULL;
 	get_ant_info(line, data, verify);
 	read_room_and_link_info(line, verify, data);
 	if (!verify_all(verify, data))
-		error_exit(MAP_ERROR, data, verify);
+		error_exit2(MAP_ERROR, data, verify);
 	free_verify(verify);
 }
 

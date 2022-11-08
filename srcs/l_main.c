@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 18:37:57 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:10:00 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **argv)
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		error_nothing_to_be_freed("MALLOC_FAIL");
+		error_exit(DATA_FAIL);
 	init_data(data);
 	read_input(data);
 	// DO WE NEED TO PARSE SOMETHING ELSE,

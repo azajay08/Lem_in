@@ -6,27 +6,31 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 18:37:52 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 19:30:26 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define GNL_FAIL	"File input error\n"  // These are examples
-# define ANT_ERROR	"Not a valid number of ants\n"
-# define MAP_ERROR	"Not a valid map\n"
-# define DATA_FAIL "ERROR, malloc of data failed!\n"
-# define VERIFY_FAIL "ERROR, malloc of verify failed!\n"
-# define ROOM_FAIL "ERROR, duplicate rooms\n"
-# define COORD_FAIL "ERROR, duplicate coordinates\n"
-# define LINK_FAIL "ERROR, invalid link\n"
+# define GNL_FAIL		"File input error\n"
+# define ANT_ERROR		"ERROR! Not a valid number of ants\n"
+# define MAP_ERROR		"ERROR! Not a valid map\n"
+# define DATA_FAIL		"ERROR! Memory allocation of t_data failed!\n"
+# define VERIFY_FAIL	"ERROR! Memory allocation of t_verify failed!\n"
+# define ROOM_FAIL		"ERROR! Invalid room name or duplicate names\n"
+# define COORD_FAIL		"ERROR! Duplicate coordinates\n"
+# define LINK_FAIL		"ERROR! Invalid link\n"
+# define START_FAIL		"ERROR! No start or too many starts\n"
+# define END_FAIL		"ERROR! No end or too many ends been\n"
+# define NO_COMMAND		"ERROR! No start or end has been specified\n"
+# define TOO_MANY		"ERROR! Too many starts or ends have been found\n"
 
-# define OFF		0
-# define ON			1
-# define COMMENT	1
-# define START_END	2
-# define NOT_READ	0
+# define OFF			0
+# define ON				1
+# define COMMENT		1
+# define START_END		2
+# define NOT_READ		0
 
 # include "../libft/libft.h"
 
@@ -96,9 +100,9 @@ void	init_room(t_room *room);
 	Error management
 */
 
-void	error_exit(char *error_str, t_data *data, t_verify *verify);
-void	error_exit2(char *error_str, t_data *data);
-void	error_nothing_to_be_freed(char *error_str);
+void	error_exit(char *error_str);
+void	error_exit1(char *error_str, t_data *data);
+void	error_exit2(char *error_str, t_data *data, t_verify *verify);
 void	error_exit3(char *str, t_verify *verify, t_data *data, t_room *room);
 
 /*
