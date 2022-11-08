@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ajones <ajones@student.42.fr>              +#+  +:+       +#+         #
+#    By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 00:15:54 by ajones            #+#    #+#              #
-#    Updated: 2022/11/02 14:55:19 by ajones           ###   ########.fr        #
+#    Updated: 2022/11/08 16:46:59 by mtissari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIB := -L./libft/ -lft
 
 #SOURCES:
 SRCS := l_main.c l_init.c l_errors.c l_read_input.c l_free.c l_read_ants.c \
-l_read_rooms.c l_read_links.c l_bfs.c
+		l_read_rooms.c l_read_links.c l_bfs.c l_solver.c
 SRCS_PATH := ./srcs/
 SRCS_DIR := $(addprefix $(SRCS_PATH), $(SRCS))
 
