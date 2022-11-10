@@ -168,3 +168,40 @@ temp->next = coords;
 
 ________________________________________________________________________________
 
+|||||||||||||||||||||||||| FINDING BOTTLENECKS |||||||||||||||||||||||||||||||||
+	Do we even need to find them??
+
+
+When two terminal nodes are given, they are typically referred to as the source
+and the sink. In a directed, weighted flow network,
+the minimum cut separates the source and sink vertices
+and minimizes the total weight on the edges
+that are directed from the source side of the cut to the sink side of the cut.
+As shown in the max-flow min-cut theorem,
+the weight of this cut equals the maximum amount of flow
+that can be sent from the source to the sink in the given network.
+
+In a weighted, undirected network,
+it is possible to calculate the cut
+that separates a particular pair of vertices from each other
+and has minimum possible weight.
+A system of cuts that solves this problem for every possible vertex pair
+can be collected into a structure known as the Gomory–Hu tree of the graph.
+
+A generalization of the minimum cut problem with terminals is the k-terminal cut,
+or multi-terminal cut.
+This problem is NP-hard, even for {\displaystyle k=3}k=3.[3]
+	https://en.wikipedia.org/wiki/Minimum_cut 
+
+________________________________________________________________________________
+
+|||||||||||||||||||||||||||||||||| V D S |||||||||||||||||||||||||||||||||||||||
+
+Very important:
+https://matthewdaws.github.io/blog/2015-06-08-Paths.html 
+https://matthewdaws.github.io/blog/2015-06-15-Paths-Implementation.html 
+
+Maybe could use this?:
+https://iajit.org/portal/PDF/vol.12,no.6/7418.pdf 
+
+
