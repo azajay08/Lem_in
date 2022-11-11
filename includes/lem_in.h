@@ -54,13 +54,15 @@ typedef struct s_room
 	int				coord_x;
 	int8_t			start;
 	int8_t			end;
+	struct s_room	*bfs_previous;
 	struct s_room	*next;
 }					t_room;
 
 typedef struct s_path
 {
-	int				present;
 	struct s_path	*previous;
+	char			*present;
+	struct s_path	*next;
 }					t_pat;
 
 typedef struct s_queue
