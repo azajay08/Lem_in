@@ -6,14 +6,14 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 20:40:28 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/11 17:11:26 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define GNL_FAIL		"File input error\n"
+# define GNL_FAIL		"ERROR! File input error\n"
 # define ANT_ERROR		"ERROR! Not a valid number of ants\n"
 # define MAP_ERROR		"ERROR! Not a valid map\n"
 # define DATA_FAIL		"ERROR! Memory allocation of t_data failed!\n"

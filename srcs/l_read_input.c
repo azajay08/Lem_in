@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 20:11:36 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/11 17:11:37 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,14 @@ void	comment_found(char *line, t_verify *verify)
 void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 {
 	t_room	*room;
+	int		ret;
 
 	room = NULL;
-	while (get_next_line(0, &line) == 1)
+	while (1)
 	{
+		ret = get_next_line(0, &line);
+		if (ret < 1)
+			error_exit3(GNL_FAIL, verify, data, room);
 		if (line[0] == '#')
 			comment_found(line, verify);
 		else if (line[0] == 'L')
