@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 20:12:09 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/11 16:59:22 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 		if (line[0] == '#')
 			comment_found(line, verify);
 		else if (ft_strchr(line, ' '))
-			error_exit2(ROOM_FAIL, data, verify);
+			error_exit3(ROOM_FAIL, verify, data, start);
 		else if (!save_link_info(line, start, verify))
 			error_exit3(LINK_FAIL, verify, data, start);
 			// error_data("bad link", data, verify);
