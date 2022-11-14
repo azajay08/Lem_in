@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/11 17:11:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/14 02:05:39 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
 # define START_FAIL		"ERROR! No start or too many starts\n"
-# define END_FAIL		"ERROR! No end or too many ends been\n"
+# define END_FAIL		"ERROR! No end or too many ends\n"
 # define NO_COMMAND		"ERROR! No start or end has been specified\n"
 # define TOO_MANY		"ERROR! Too many starts or ends have been found\n"
 
