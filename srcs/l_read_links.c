@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/11 16:59:22 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/15 02:25:31 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,16 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 	t_room	*start;
 
 	start = data->source;
+	ret = 1;
 	if (!save_link_info(line, start, verify))
 		error_exit3(LINK_FAIL, verify, data, start);
 	ft_strdel(&line);
-	while (get_next_line(0, &line) == 1)
+	while (ret == 1)
 	{
+		// need a error check for EOF (if there is one)
+		ret = get_next_line(0, &line);
+		if (ret == -1)
+			error_exit2(GNL_FAIL, data, verify);
 		start = data->source;
 		if (line[0] == '#')
 			comment_found(line, verify);

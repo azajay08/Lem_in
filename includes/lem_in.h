@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/14 02:05:39 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/15 02:19:21 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_verify
 	int			ants;
 	int			nb_of_starts;
 	int			nb_of_ends;
+	int			index;
 	int8_t		start;
 	int8_t		end;
 	int8_t		all_rooms_read;
@@ -52,6 +53,7 @@ typedef struct s_room
 	char			*edges;
 	int				coord_y;
 	int				coord_x;
+	int				index;
 	int8_t			start;
 	int8_t			end;
 	struct s_room	*bfs_previous;
