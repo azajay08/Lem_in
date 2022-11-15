@@ -64,8 +64,17 @@ typedef struct s_path
 {
 	struct s_path	*previous;
 	char			*present;
+	int				turns;
 	struct s_path	*next;
-}					t_pat;
+}					t_path;
+
+typedef struct s_option
+{
+	struct s_path	*start;
+	int				turns;
+	struct s_option	*previous;
+	struct s_option	*next;
+}					t_option;
 
 typedef struct s_queue
 {
