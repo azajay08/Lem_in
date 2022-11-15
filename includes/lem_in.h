@@ -72,6 +72,7 @@ typedef struct s_option
 {
 	struct s_path	*start;
 	int				turns;
+	int				edges;
 	struct s_option	*previous;
 	struct s_option	*next;
 }					t_option;
