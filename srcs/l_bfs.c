@@ -41,7 +41,6 @@ t_path	*bfs(t_data *data)
 {
 	t_room	*room;
 	t_queue	*queue;
-	t_path	*start;
 	t_path	*path;
 
 	room = data->source;
@@ -52,5 +51,7 @@ t_path	*bfs(t_data *data)
 		//keep track of the paths.
 		room = queue->next_room;
 	}
-	return (start);
+	while (path->previous != NULL)
+		path = path->previous;
+	return (path);
 }
