@@ -37,10 +37,12 @@ void	set_queue(t_room *room, t_queue *queue)
 	clean_room_queue(queue); //to get rid of the first room in the queue.
 }
 
-void	bfs(t_data *data)
+t_path	*bfs(t_data *data)
 {
 	t_room	*room;
 	t_queue	*queue;
+	t_path	*start;
+	t_path	*path;
 
 	room = data->source;
 	while (room->next != NULL)
@@ -50,4 +52,5 @@ void	bfs(t_data *data)
 		//keep track of the paths.
 		room = queue->next_room;
 	}
+	return (start);
 }
