@@ -63,8 +63,9 @@ typedef struct s_room
 typedef struct s_path
 {
 	struct s_path	*previous;
-	char			*present;
-	int				turns;
+	char			*name;
+	int				index;
+	int				edges;
 	struct s_path	*next;
 }					t_path;
 
