@@ -55,3 +55,10 @@ t_path	*bfs(t_data *data)
 		path = path->previous;
 	return (path);
 }
+
+/*
+	The idea of breadth-first search is to find the shortest path.
+	We use it in a way that we stop the search when the shortest path is found,
+	and return that. Then we call bfs again with an updated map to see if it 
+	finds the next shortest path that can co-exist with the previous.
+*/

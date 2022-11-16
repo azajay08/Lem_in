@@ -88,7 +88,7 @@ int	send_ants(t_data *data, t_option *option)
 	int	paths;
 
 	paths = calculate_paths(option);
-
+	// Need to see if we can find a pattern for the nb of ants in the paths
 }
 
 t_option	*find_all_disjoint_paths(t_data *data)
@@ -129,7 +129,8 @@ void	solver(t_data *data)
 	orig_option = find_all_disjoint_paths(data);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		return (orig_option);
-	while (orig_option->turns >= next_added->turns)
+	next_added = vertex_disjoint(data, orig_option);
+	while (calculate_paths(orig_option) < calculate_paths_used(data, next_added))
 	{
 		free (orig_option);
 		orig_option = next_added;
