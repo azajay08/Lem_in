@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/15 02:21:27 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/08 20:10:29 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ t_room	*make_room(char *line, t_verify *verify, t_data *data)
 	new_room->name = ft_strdup(temp[0]);
 	new_room->coord_x = ft_atoi(temp[1]);
 	new_room->coord_y = ft_atoi(temp[2]);
-	new_room->index = verify->index;
-	verify->index++;
 	if (verify->start == ON)
 		new_room->start = ON;
 	else if (verify->end == ON)
@@ -78,7 +76,6 @@ t_room	*get_room_info(char *line, t_verify *verify, t_data *data, t_room *room)
 		data->source = new_room;
 		if (verify->start == ON || verify->end == ON)
 			arrange_source_or_sink(new_room, data, verify);
-		room = new_room;
 	}
 	else
 	{

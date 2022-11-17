@@ -63,8 +63,9 @@ typedef struct s_room
 typedef struct s_path
 {
 	struct s_path	*previous;
-	char			*present;
-	int				turns;
+	char			*name;
+	int				index;
+	int				edges;
 	struct s_path	*next;
 }					t_path;
 
@@ -72,6 +73,7 @@ typedef struct s_option
 {
 	struct s_path	*start;
 	int				turns;
+	int				edges;
 	struct s_option	*previous;
 	struct s_option	*next;
 }					t_option;
@@ -79,8 +81,8 @@ typedef struct s_option
 typedef struct s_queue
 {
 	t_room			*next_room;
-	t_room			*cold_rooms;
-	char			*room_queue;
+	int				*cold_rooms;
+	int				*room_queue;
 }					t_queue;
 
 typedef struct s_data
