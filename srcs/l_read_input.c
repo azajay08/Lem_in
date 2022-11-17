@@ -6,58 +6,96 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/11 17:11:37 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/17 23:01:38 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
+t_vertex	*find_room_index(t_vertex *head, int target)
+{
+	t_vertex *temp;
+
+	temp = head;
+	while (temp != NULL)
+	{
+		if (temp->index == target)
+			return (temp);
+		temp = temp->next;
+	}
+	return (NULL);
+}
+
+t_room	*make_index_room(t_vertex *head, t_room *new_room, int index)
+{
+	t_vertex	*old_room;
+	
+	new_room = (t_room *)malloc(sizeof(t_room));
+	if (!new_room)
+		return (NULL);
+	init_room(new_room);
+	old_room = head;
+	old_room = find_room_index(old_room, index);
+	new_room->index = index;
+	new_room->name = ft_strdup(old_room->name);
+	new_room->start = old_room->start;
+	new_room->end = old_room->end;
+	new_room->edge = old_room->edge;
+	return (new_room);
+}
+
+void	make_room_array(t_data *data)
+{
+	t_vertex *head;
+	t_room	**room;
+	int		i;
+	
+	head = data->source;
+	i = 0;
+	room = (t_room **)malloc(sizeof(*room) * (data->nb_rooms));
+	while (i < data->nb_rooms)
+	{
+		room[i] = make_index_room(head, *room, i);
+		i++;
+	}
+	data->room = room;
+}
+
+// void	print_data(t_data *data)
+// {
+// 	t_room **room;
+	
+// 	int i;
+
+// 	i = 0;
+
+// 	room = data->room;
+
+// 	printf("\nNUMBER OF ROOMS:%i\n", data->nb_rooms);
+// 	while (i < data->nb_rooms)
+// 	{
+// 		printf("\nROOM NAME:\n%s(%i)\n", room[i]->name, room[i]->index);
+// 		printf("\nROOM EDGES\n");
+// 		while (room[i]->edge)
+// 		{
+			
+// 			printf("%i, ", room[i]->edge->room);
+// 	 		room[i]->edge = room[i]->edge->next;
+// 		}
+		
+// 		printf("\n--------------");
+// 		i++;
+// 	}
+// }
+
 int	verify_all(t_verify *verify, t_data *data)
 {
-	t_room	*temp;
-
-	if (!verify->valid_map)
-		error_exit2(MAP_ERROR, data, verify);
 	if (verify->nb_of_starts != 1 || verify->nb_of_ends != 1)
 		error_exit2(TOO_MANY, data, verify);
 	if (verify->start == ON || verify->end == ON)
 		error_exit2(NO_COMMAND, data, verify);
-	temp = data->source;
-	while (temp->next != NULL)
-	{
-		if (!temp->edges)
-			error_exit2("No links in room <temp->name>", data, verify);//is it invalid?
-		temp = temp->next;
-	}
-	return (0);
+	return (1);
 }
-/*
-	Here we check the validity of the input.
-	We need to have one start, one end, and enough data to proceed.
-****Not sure yet if all rooms need links!!****
-****it might be that we have enough data even if few rooms are without****
-****There must be more checks for the validity...?****
-*/
-
-void	arrange_sink(t_data *data, t_verify *verify)
-{
-	t_room	*temp;
-
-	if (!data->source)
-		error_exit2(START_FAIL, data, verify);
-	temp = data->source;
-	while (temp->next != NULL)
-		temp = temp->next;
-	if (data->sink)
-		temp->next = data->sink;
-	else
-		error_exit2(END_FAIL, data, verify);
-}
-/*
-	We want to arrange our list in a way that ##start is the starting point,
-	and ##end is the last element in the list.
-	That is why we have to move the ##end-element when the list is ready.
-*/
 
 void	comment_found(char *line, t_verify *verify)
 {
@@ -72,14 +110,10 @@ void	comment_found(char *line, t_verify *verify)
 		verify->nb_of_ends++;
 	}
 }
-/*
-	Turns on a switch when ##start or ##end is found.
-	Also keeps count how many times they occur.
-*/
 
 void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 {
-	t_room	*room;
+	t_vertex	*room;
 	int		ret;
 
 	room = NULL;
@@ -95,17 +129,11 @@ void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 		else if (!ft_strchr(line, ' '))
 			break ;
 		else if (verify->all_rooms_read == NOT_READ)
-			room = get_room_info(line, verify, data, room);
-		ft_strdel(&line);
+			room = get_vertex_info(line, verify, data, room);
+		//ft_strdel(&line);
 	}
-	arrange_sink(data, verify);
 	get_link_info(line, verify, data);
 }
-/*
-	This function reads, checks comments and
-	sends the line to the correct function to be dealt with.
-	It is mostly used for getting room info.
-*/
 
 void	read_input(t_data *data)
 {
@@ -121,10 +149,8 @@ void	read_input(t_data *data)
 	read_room_and_link_info(line, verify, data);
 	if (!verify_all(verify, data))
 		error_exit2(MAP_ERROR, data, verify);
-	free_verify(verify);
+	make_room_array(data);
+	// print_data(data);
+	
+	// printf("\nFINISHED\n");
 }
-
-/*
-	read_input -function is actually a separator function.
-	From here we call different reading and verifying functions.
-*/

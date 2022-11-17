@@ -6,39 +6,88 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/15 02:25:31 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/17 22:58:54 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int	assign_link(char *link_to, t_room *room)
+t_vertex	*find_room_name(t_vertex *head, char *target)
 {
-	if (room->edges)
-		room->edges = ft_strjoin(room->edges, "-");
-	room->edges = ft_strjoin(room->edges, link_to);
+	t_vertex *temp;
+
+	temp = head;
+	while (temp != NULL)
+	{
+		if (ft_strequ(target, temp->name))
+			return (temp);
+		temp = temp->next;
+	}
+	return (NULL);
+}
+
+// t_edge	*init_edge(t_edge *edge)
+// {
+	
+// 	edge->room = -1;
+// 	edge.
+// }
+
+t_edge	*append_edge(t_vertex *room)
+{
+	t_edge *new_edge;
+
+	new_edge = (t_edge *)malloc(sizeof(t_edge));
+	if (!new_edge)
+		return (NULL);
+	new_edge->room = room->index;
+	new_edge->next = NULL;
+	new_edge->head = NULL;
+	return (new_edge);
+}
+
+int	assign_link(char *link_to, t_vertex *curr_room, t_vertex *head)
+{
+	t_vertex *room;
+
+	room = head;
+	room = find_room_name(room, link_to);
+	if (!curr_room->edge)
+	{
+		curr_room->edge = append_edge(room);
+		curr_room->edge->head = curr_room->edge;
+	}
+	else
+	{
+		while (curr_room->edge->next)
+			curr_room->edge = curr_room->edge->next;
+		curr_room->edge->next = append_edge(room);
+		curr_room->edge->next->head = curr_room->edge->head;
+		curr_room->edge = curr_room->edge->next;
+	}
+	curr_room->edge = curr_room->edge->head;
 	return (1);
 }
 
-int	verify_and_assign_names(char *line, t_room *start)
+int	verify_and_assign_names(char *line, t_vertex *start)
 {
 	char	**temp;
-	t_room	*room;
+	t_vertex	*room;
 	int		counter;
 	int		counter2;
-
+	
 	counter = 0;
 	counter2 = 0;
 	room = start;
 	temp = ft_strsplit(line, '-');
 	if (!temp)
 		return (0);
-	while (room->next != NULL)
+	while (room != NULL)
 	{
 		if (ft_strequ(temp[0], room->name))
-			counter += assign_link(temp[1], room);
+			counter += assign_link(temp[1], room, start);
 		if (ft_strequ(temp[1], room->name))
-			counter2 += assign_link(temp[0], room);
+			counter2 += assign_link(temp[0], room, start);
 		room = room->next;
 	}
 	ft_2d_free(temp);
@@ -46,49 +95,35 @@ int	verify_and_assign_names(char *line, t_room *start)
 		return (0);
 	return (1);
 }
-/*
-	Here we have a few verifications.
-	First we check if there is precisely one dash('-').
-	Then we check that both of the room names in the link are found
-	exactly in the same format. Both must be found.
-*/
 
-int	save_link_info(char *line, t_room *start, t_verify *verify)
+int	save_link_info(char *line, t_vertex *start, t_verify *verify)
 {
+
 	if (ft_strchr(line, '-') != ft_strrchr(line, '-'))
 	{
-		ft_strdel(&line);
+		//ft_strdel(&line);
 		return (0);
 	}
-	if (!verify_and_assign_names(line, start))
-		return (0);
-
-	// NEED a check to see even if that room exists
+	if (verify->ants)
+	{
 		
-	// Do we need to do something else?
-	// It feels like there should be more verifications here...
-	// If not we can go straight to verify_and_assign.
-	
-	// YEAH, this can be like a half way point for what needs to be freed
-	// so run the checks here to return 0 or 1, and free accordingly. 
-	// can run the line checks here before splitting in the next function
+		if (!verify_and_assign_names(line, start))
+		{
+			return (0);
+		}
+	}
 	return (1);
 }
 
 void	get_link_info(char *line, t_verify *verify, t_data *data)
 {
 	int		ret;
-	t_room	*start;
+	t_vertex	*start;
 
 	start = data->source;
 	ret = 1;
-	if (!save_link_info(line, start, verify))
-		error_exit3(LINK_FAIL, verify, data, start);
-	ft_strdel(&line);
 	while (ret == 1)
 	{
-		// need a error check for EOF (if there is one)
-		ret = get_next_line(0, &line);
 		if (ret == -1)
 			error_exit2(GNL_FAIL, data, verify);
 		start = data->source;
@@ -98,11 +133,7 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 			error_exit3(ROOM_FAIL, verify, data, start);
 		else if (!save_link_info(line, start, verify))
 			error_exit3(LINK_FAIL, verify, data, start);
-			// error_data("bad link", data, verify);
 		ft_strdel(&line);
+		ret = get_next_line(0, &line);
 	}
 }
-
-/*
-	Just basic verifying checks in this function.
-*/

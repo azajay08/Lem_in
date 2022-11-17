@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:09:53 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/11 16:58:14 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/17 23:01:31 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	error_exit2(char *error_str, t_data *data, t_verify *verify)
 {
 	// str will contain the error message ?
 	// free all that needs freeing or maybe not on an exit ?
-
 	free_verify(verify);
 	free_data(data);
 
@@ -38,12 +37,12 @@ void	error_exit2(char *error_str, t_data *data, t_verify *verify)
 	exit(1);
 }
 
-void	error_exit3(char *str, t_verify *verify, t_data *data, t_room *room)
+void	error_exit3(char *str, t_verify *verify, t_data *data, t_vertex *room)
 {
 	free_verify(verify);
-	free(room);
+	//free(room);
 	free_data(data);
-
+	free_room(room);
 	ft_putstr(str);
 
 	exit(1);

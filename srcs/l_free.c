@@ -6,33 +6,39 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 00:41:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/08 20:40:09 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/17 23:01:25 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	free_room(t_room *room)
+void	free_room(t_vertex *room)
 {
-	
+	if (room)
+		free(room);
 }
 
 void	free_verify(t_verify *verify)
 {
-	
+	if (verify)
+		free(verify);
 }
 
 void	free_data(t_data *data)
 {
-	t_room	*temp;
+	t_vertex	*temp;
 
-	while (data->source->next != NULL)
+	while (data->source != NULL)
 	{
 		temp = data->source;
 		data->source = data->source->next;
-		free (temp);
+		free(temp->name);
+		// free(temp->edges);
+		// free(temp->next);
+		free(temp);
 	}
-	if (data->sink)
-		free (data->sink);
-	free (data);
+	// if (data->sink)
+	// 	free (data->sink);
+	if (data)
+		free (data);
 }
