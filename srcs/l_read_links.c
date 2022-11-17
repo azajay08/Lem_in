@@ -6,32 +6,11 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/17 22:58:54 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/17 23:09:06 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-t_vertex	*find_room_name(t_vertex *head, char *target)
-{
-	t_vertex *temp;
-
-	temp = head;
-	while (temp != NULL)
-	{
-		if (ft_strequ(target, temp->name))
-			return (temp);
-		temp = temp->next;
-	}
-	return (NULL);
-}
-
-// t_edge	*init_edge(t_edge *edge)
-// {
-	
-// 	edge->room = -1;
-// 	edge.
-// }
 
 t_edge	*append_edge(t_vertex *room)
 {

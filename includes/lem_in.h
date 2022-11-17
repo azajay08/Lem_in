@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/17 23:01:06 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/17 23:08:12 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,12 @@ void	free_room(t_vertex *room);
 */
 
 void	solver(t_data *data);
+
+/*
+	Fucntions that locate data
+*/
+
+t_vertex	*find_room_index(t_vertex *head, int target);
+t_vertex	*find_room_name(t_vertex *head, char *target);
 
 #endif

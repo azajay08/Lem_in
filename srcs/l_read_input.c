@@ -6,25 +6,11 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/17 23:01:38 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/17 23:08:49 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-t_vertex	*find_room_index(t_vertex *head, int target)
-{
-	t_vertex *temp;
-
-	temp = head;
-	while (temp != NULL)
-	{
-		if (temp->index == target)
-			return (temp);
-		temp = temp->next;
-	}
-	return (NULL);
-}
 
 t_room	*make_index_room(t_vertex *head, t_room *new_room, int index)
 {
@@ -60,33 +46,6 @@ void	make_room_array(t_data *data)
 	}
 	data->room = room;
 }
-
-// void	print_data(t_data *data)
-// {
-// 	t_room **room;
-	
-// 	int i;
-
-// 	i = 0;
-
-// 	room = data->room;
-
-// 	printf("\nNUMBER OF ROOMS:%i\n", data->nb_rooms);
-// 	while (i < data->nb_rooms)
-// 	{
-// 		printf("\nROOM NAME:\n%s(%i)\n", room[i]->name, room[i]->index);
-// 		printf("\nROOM EDGES\n");
-// 		while (room[i]->edge)
-// 		{
-			
-// 			printf("%i, ", room[i]->edge->room);
-// 	 		room[i]->edge = room[i]->edge->next;
-// 		}
-		
-// 		printf("\n--------------");
-// 		i++;
-// 	}
-// }
 
 int	verify_all(t_verify *verify, t_data *data)
 {
@@ -150,7 +109,4 @@ void	read_input(t_data *data)
 	if (!verify_all(verify, data))
 		error_exit2(MAP_ERROR, data, verify);
 	make_room_array(data);
-	// print_data(data);
-	
-	// printf("\nFINISHED\n");
 }
