@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/15 02:19:21 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/17 16:33:30 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,45 @@
 
 # include "../libft/libft.h"
 
+typedef struct s_edge
+{
+	int				room;
+	struct s_edge	*next;
+	struct s_edge	*head;
+}					t_edge;
+
 typedef struct s_verify
 {
-	int			valid_map;
-	int			ants;
-	int			nb_of_starts;
-	int			nb_of_ends;
-	int			index;
-	int8_t		start;
-	int8_t		end;
-	int8_t		all_rooms_read;
-}				t_verify;
+	int				valid_map;
+	int				ants;
+	int				nb_of_starts;
+	int				nb_of_ends;
+	int				index;
+	int8_t			start;
+	int8_t			end;
+	int8_t			all_rooms_read;
+}					t_verify;
 
-typedef struct s_room
+typedef struct s_vertex
 {
 	char			*name;
-	char			*edges;
 	int				coord_y;
 	int				coord_x;
 	int				index;
 	int8_t			start;
 	int8_t			end;
-	struct s_room	*bfs_previous;
-	struct s_room	*next;
+	struct s_vertex	*next;
+	struct s_edge	*edge;
+}					t_vertex;
+
+typedef struct s_room
+{
+	char			*name;
+	int				index;
+	int8_t			start;
+	int8_t			end;
+	int				bfs_previous;
+	struct s_edge	*edge;
 }					t_room;
 
 typedef struct s_path
@@ -87,11 +103,11 @@ typedef struct s_queue
 
 typedef struct s_data
 {
-	int			nb_ants;
-	int			nb_rooms;
-	t_room		*source;
-	t_room		*sink;
-}				t_data;
+	int				nb_ants;
+	int				nb_rooms;
+	t_vertex		*source;
+	t_room			**room;
+}					t_data;
 
 /*
 	Functions that parse input
