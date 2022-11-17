@@ -14,6 +14,13 @@
 
 t_queue	*init_queue(t_data *data) //This might not even need a struct, but int array
 {
+	int	*queue;
+
+	queue = (int *)malloc(sizeof(data->nb_rooms));
+	if (!queue)
+		return (NULL); //need to check how to do this!!
+	return (queue);
+	/*
 	t_queue	*queue;
 
 	queue = (t_queue *)malloc(sizeof(t_queue));
@@ -25,7 +32,7 @@ t_queue	*init_queue(t_data *data) //This might not even need a struct, but int a
 		error_exit1("malloc_error in t_queue", data);
 	queue->room_queue[0] = data->source->index;
 	//the struct might get something else inside
-	return (queue);
+	return (queue);*/
 }
 
 t_path	*init_path(t_data *data, t_room *room)
@@ -103,7 +110,7 @@ int	search_int_in_int_array(int	needle, int *haystack) // better name?
 
 void	add_to_queue(t_data *data, t_room *room, t_queue *queue, int index)
 {
-	int	i;
+	int		i;
 	t_room	*temp_room;
 
 	i = 0;
@@ -118,25 +125,25 @@ void	add_to_queue(t_data *data, t_room *room, t_queue *queue, int index)
 	// free (temp_room);
 }
 
-void	set_queue(t_data *data, t_room *room, t_queue *queue)
+void	set_queue(t_data *data, t_room **room, int *queue, int index)
 {
 	int		i;
 	int		in_list;
 	t_edge	*temp;
 
-	temp = room->edges;
+	temp = room[index]->edge; //this far I'm now - going upwards.
 	while (temp)
 	{
 		i = 0;
 		in_list = OFF;
-		while (queue->room_queue[i])
+		while (queue[i])
 		{
-			if (search_int_in_int_array(temp->index, queue->room_queue))
+			if (search_int_in_int_array(temp->room, queue))
 				in_list = ON;
 			i++;
 		}
 		if (in_list == OFF)
-			add_to_queue(data, room, queue, temp->index);
+			add_to_queue(data, room, queue, temp->room);
 		temp = temp->next;
 	}
 	// free (temp);
@@ -144,23 +151,23 @@ void	set_queue(t_data *data, t_room *room, t_queue *queue)
 
 t_path	*bfs(t_data *data)
 {
-	t_room	*room;
-	t_queue	*queue;
+	t_room	**room;
+	int		*queue;
 	t_path	*path;
 	int		i;
 
 	room = data->source;
 	queue = init_queue(data);
 	i = 0;
-	while (queue->room_queue[i])
+	while (queue && queue[i])
 	{
-		set_queue(data, room, queue);
-		if (room->end == ON)
+		set_queue(data, room, queue, i);
+		if (room[i]->end == ON)
 			break ;
 		i++;
-		room = hash_find(data, queue->room_queue[i]);
+		room = room[queue[i]];
 	}
-	if (room->end == OFF)
+	if (room[i]->end == OFF)
 		path = NULL;
 	else
 		path = make_path(data);
