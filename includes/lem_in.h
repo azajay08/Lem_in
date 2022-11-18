@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/17 23:08:12 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:15:06 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ int		comment_start_end(char *line);
 int		check_if_line_is_digits(char *line);
 void	comment_found(char *line, t_verify *verify);
 t_room	**make_room_array(t_data *data);
+t_room	*make_index_room(t_vertex *head, t_room *new_room, int index);
 
 /*
 	Initialize structs
