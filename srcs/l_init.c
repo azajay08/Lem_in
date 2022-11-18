@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:18:45 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:31:11 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	init_verify(t_verify *verify)
 	verify->all_rooms_read = NOT_READ;
 }
 
-void	init_vertex(t_vertex *room)
+void	init_vert(t_vert *room)
 {
 	room->coord_y = -1;
 	room->coord_x = -1;

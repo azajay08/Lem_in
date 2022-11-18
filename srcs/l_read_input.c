@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:14:25 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:30:53 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	comment_found(char *line, t_verify *verify)
 
 void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 {
-	t_vertex	*room;
+	t_vert	*room;
 	int		ret;
 
 	room = NULL;
@@ -53,7 +53,7 @@ void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 		else if (!ft_strchr(line, ' '))
 			break ;
 		else if (verify->all_rooms_read == NOT_READ)
-			room = get_vertex_info(line, verify, data, room);
+			room = get_vert_info(line, verify, data, room);
 		//ft_strdel(&line);
 	}
 	get_link_info(line, verify, data);

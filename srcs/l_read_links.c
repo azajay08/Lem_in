@@ -6,13 +6,13 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/17 23:09:06 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:30:39 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-t_edge	*append_edge(t_vertex *room)
+t_edge	*append_edge(t_vert *room)
 {
 	t_edge *new_edge;
 
@@ -25,9 +25,9 @@ t_edge	*append_edge(t_vertex *room)
 	return (new_edge);
 }
 
-int	assign_link(char *link_to, t_vertex *curr_room, t_vertex *head)
+int	assign_link(char *link_to, t_vert *curr_room, t_vert *head)
 {
-	t_vertex *room;
+	t_vert *room;
 
 	room = head;
 	room = find_room_name(room, link_to);
@@ -48,10 +48,10 @@ int	assign_link(char *link_to, t_vertex *curr_room, t_vertex *head)
 	return (1);
 }
 
-int	verify_and_assign_names(char *line, t_vertex *start)
+int	verify_and_assign_names(char *line, t_vert *start)
 {
 	char	**temp;
-	t_vertex	*room;
+	t_vert	*room;
 	int		counter;
 	int		counter2;
 	
@@ -75,7 +75,7 @@ int	verify_and_assign_names(char *line, t_vertex *start)
 	return (1);
 }
 
-int	save_link_info(char *line, t_vertex *start, t_verify *verify)
+int	save_link_info(char *line, t_vert *start, t_verify *verify)
 {
 
 	if (ft_strchr(line, '-') != ft_strrchr(line, '-'))
@@ -97,7 +97,7 @@ int	save_link_info(char *line, t_vertex *start, t_verify *verify)
 void	get_link_info(char *line, t_verify *verify, t_data *data)
 {
 	int		ret;
-	t_vertex	*start;
+	t_vert	*start;
 
 	start = data->source;
 	ret = 1;

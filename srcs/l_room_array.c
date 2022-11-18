@@ -6,15 +6,15 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:21:02 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:30:17 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-t_room	*make_index_room(t_vertex *head, t_room *new_room, int index)
+t_room	*make_index_room(t_vert *head, t_room *new_room, int index)
 {
-	t_vertex	*old_room;
+	t_vert	*old_room;
 	
 	new_room = (t_room *)malloc(sizeof(t_room));
 	if (!new_room)
@@ -32,7 +32,7 @@ t_room	*make_index_room(t_vertex *head, t_room *new_room, int index)
 
 t_room	**make_room_array(t_data *data)
 {
-	t_vertex *head;
+	t_vert *head;
 	t_room	**room;
 	int		i;
 	

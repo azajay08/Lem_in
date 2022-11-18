@@ -6,15 +6,15 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:26:32 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:30:26 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	arrange_source_or_sink(t_vertex *new_room, t_data *data, t_verify *verify)
+void	arrange_source_or_sink(t_vert *new_room, t_data *data, t_verify *verify)
 {
-	t_vertex	*temp;
+	t_vert	*temp;
 
 	temp = data->source;
 	if (verify->start == ON)
@@ -29,19 +29,19 @@ void	arrange_source_or_sink(t_vertex *new_room, t_data *data, t_verify *verify)
 	}
 }
 
-t_vertex	*make_room(char *line, t_verify *verify, t_data *data)
+t_vert	*make_room(char *line, t_verify *verify, t_data *data)
 {
-	t_vertex	*new_room;
+	t_vert	*new_room;
 	char		**temp;
 
 	temp = ft_strsplit(line, ' ');
 	if (!temp || !check_if_line_is_digits(temp[1])
 		|| !check_if_line_is_digits(temp[2]) || temp[3])
 		error_exit2(COORD_FAIL, data, verify);//Also return (NULL);
-	new_room = (t_vertex *)malloc(sizeof(t_vertex));
+	new_room = (t_vert *)malloc(sizeof(t_vert));
 	if (!new_room)
-		error_exit2(VERTEX_FAIL, data, verify);//Also return (NULL);
-	init_vertex(new_room);
+		error_exit2(VERT_FAIL, data, verify);//Also return (NULL);
+	init_vert(new_room);
 	new_room->name = ft_strdup(temp[0]);
 	new_room->coord_x = ft_atoi(temp[1]);
 	new_room->coord_y = ft_atoi(temp[2]);
@@ -58,9 +58,9 @@ t_vertex	*make_room(char *line, t_verify *verify, t_data *data)
 	return (new_room);
 }
 
-t_vertex	*get_vertex_info(char *line, t_verify *verify, t_data *data, t_vertex *room)
+t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room)
 {
-	t_vertex	*new_room;
+	t_vert	*new_room;
 
 	if (!room)
 	{
