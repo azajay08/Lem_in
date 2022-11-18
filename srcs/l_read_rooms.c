@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/17 23:01:45 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:26:32 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	arrange_source_or_sink(t_vertex *new_room, t_data *data, t_verify *verify)
 t_vertex	*make_room(char *line, t_verify *verify, t_data *data)
 {
 	t_vertex	*new_room;
-	char	**temp;
+	char		**temp;
 
 	temp = ft_strsplit(line, ' ');
 	if (!temp || !check_if_line_is_digits(temp[1])
@@ -50,8 +50,11 @@ t_vertex	*make_room(char *line, t_verify *verify, t_data *data)
 	if (verify->start == ON)
 		new_room->start = ON;
 	else if (verify->end == ON)
+	{
 		new_room->end = ON;
-	//ft_2d_free(temp);
+		data->sink_index = new_room->index;
+	}
+	ft_2d_free(temp);
 	return (new_room);
 }
 
@@ -82,4 +85,3 @@ t_vertex	*get_vertex_info(char *line, t_verify *verify, t_data *data, t_vertex *
 	}
 	return (room);
 }
-

@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:15:06 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:18:25 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_data
 {
 	int				nb_ants;
 	int				nb_rooms;
+	int				sink_index;
 	t_vertex		*source;
 	t_room			**room;
 }					t_data;
