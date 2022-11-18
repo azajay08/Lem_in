@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:30:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/18 20:40:34 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	arrange_source_or_sink(t_vert *new_room, t_data *data, t_verify *verify)
 t_vert	*make_room(char *line, t_verify *verify, t_data *data)
 {
 	t_vert	*new_room;
-	char		**temp;
+	char	**temp;
 
 	temp = ft_strsplit(line, ' ');
 	if (!temp || !check_if_line_is_digits(temp[1])
 		|| !check_if_line_is_digits(temp[2]) || temp[3])
-		error_exit2(COORD_FAIL, data, verify);//Also return (NULL);
+		error_exit2(COORD_FAIL, data, verify);
 	new_room = (t_vert *)malloc(sizeof(t_vert));
 	if (!new_room)
-		error_exit2(VERT_FAIL, data, verify);//Also return (NULL);
+		error_exit2(VERT_FAIL, data, verify);
 	init_vert(new_room);
 	new_room->name = ft_strdup(temp[0]);
 	new_room->coord_x = ft_atoi(temp[1]);
