@@ -87,19 +87,12 @@ typedef struct s_path
 
 typedef struct s_option
 {
-	struct s_path	*start;
+	struct s_path	*path;
 	int				turns;
 	int				edges;
 	struct s_option	*previous;
 	struct s_option	*next;
 }					t_option;
-
-typedef struct s_queue
-{
-	t_room			*next_room;
-	int				*cold_rooms;
-	int				*room_queue;
-}					t_queue;
 
 typedef struct s_data
 {

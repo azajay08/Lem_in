@@ -21,7 +21,7 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 		error_exit(data);
 	new_option->next = NULL;
 	new_option->previous = NULL;
-	new_option->start = cur_path;
+	new_option->path = cur_path;
 	new_option->turns = 0;
 	return (new_option);
 }
@@ -105,7 +105,7 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 		cur_path = bfs(data, room);
 		if (cur_path == NULL)
 			break ;
-		if (all_paths->start == NULL)
+		if (all_paths == NULL)
 			all_paths = make_t_option(data, cur_path);
 		else
 		{
@@ -135,13 +135,13 @@ void	solver(t_data *data)
 	orig_option = find_all_disjoint_paths(data, room);//from here we call bfs in loop.
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		return (orig_option);//if we use less paths than found, no need for vertex_disjoint.
-	next_added = vertex_disjoint(data, orig_option);
+	next_added = vertex_disjoint(data, room, orig_option);
 	while (calculate_paths(orig_option) < calculate_paths_used(data, next_added))
 	{
 		free_option(orig_option);
 		orig_option = next_added;
 		free_option(next_added);
-		next_added = vertex_disjoint(data, orig_option);
+		next_added = vertex_disjoint(data, room, orig_option);
 	}
 	// print here or in the main?
 }

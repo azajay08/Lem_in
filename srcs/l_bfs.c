@@ -93,7 +93,7 @@ int	search_int_in_int_array(int	index, int *queue) // better name?
 	i = 0;
 	while (queue[i])
 	{
-		if (index == queue[i])
+		if (index == queue[i] || index == -1)
 			return (1);
 		i++;
 	}
