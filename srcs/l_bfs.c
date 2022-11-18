@@ -133,14 +133,12 @@ void	set_queue(t_data *data, t_room **room, int *queue, int index)
 	// free (dge);
 }
 
-t_path	*bfs(t_data *data)
+t_path	*bfs(t_data *data, t_room **room)
 {
-	t_room	**room; //should come as a parameter.
 	t_path	*path;
 	int		*queue;
 	int		i;
 
-	room = data->source; //this should be done in solver, and making a copy of it, not it being the same..
 	queue = init_queue(data);
 	i = 0;
 	while (queue && queue[i])

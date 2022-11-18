@@ -121,6 +121,7 @@ void	get_link_info(char *line, t_verify *verify, t_data *data);
 int		comment_start_end(char *line);
 int		check_if_line_is_digits(char *line);
 void	comment_found(char *line, t_verify *verify);
+t_room	**make_room_array(t_data *data);
 
 /*
 	Initialize structs

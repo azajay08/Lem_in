@@ -30,7 +30,7 @@ t_room	*make_index_room(t_vertex *head, t_room *new_room, int index)
 	return (new_room);
 }
 
-void	make_room_array(t_data *data)
+t_room	**make_room_array(t_data *data)
 {
 	t_vertex *head;
 	t_room	**room;
@@ -44,7 +44,7 @@ void	make_room_array(t_data *data)
 		room[i] = make_index_room(head, *room, i);
 		i++;
 	}
-	data->room = room;
+	return (room);
 }
 
 int	verify_all(t_verify *verify, t_data *data)
@@ -108,5 +108,5 @@ void	read_input(t_data *data)
 	read_room_and_link_info(line, verify, data);
 	if (!verify_all(verify, data))
 		error_exit2(MAP_ERROR, data, verify);
-	make_room_array(data);
+	data->room = make_room_array(data);
 }
