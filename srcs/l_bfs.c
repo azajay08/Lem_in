@@ -35,7 +35,7 @@ t_queue	*init_queue(t_data *data) //This might not even need a struct, but int a
 	return (queue);*/
 }
 
-t_path	*init_path(t_data *data, t_room *room)
+t_path	*init_path(t_data *data, t_room *room) //atm data is here only for free.
 {
 	t_path	*path;
 
@@ -50,26 +50,22 @@ t_path	*init_path(t_data *data, t_room *room)
 	return (path);
 }
 
-t_path	*make_path(t_data *data)
+t_path	*make_path(t_data *data, t_room **room, int sink)
 {
-	t_room	*room;
+	t_room	*temp_room;
 	t_path	*path;
 	int		edge_count;
 
 	edge_count = 0;
-	room = data->sink;
+	temp_room = room[sink];
+	path = init_path(data, temp_room);
 	while (1)
 	{
-		if (room->end == ON)
-			path = init_path(data, room);
-		else
-		{
-			path->previous = init_path(data, room);
-			path->previous->next = path;
-			path = path->previous;
-		}
-		room = hash_find(data, room->bfs_previous);
-		if (room->start == ON)
+		temp_room = room[temp_room->bfs_previous];
+		path->previous = init_path(data, temp_room);
+		path->previous->next = path;
+		path = path->previous;
+		if (room[temp_room->bfs_previous]->start == ON)
 			break ;
 		edge_count++;
 	}
@@ -77,100 +73,87 @@ t_path	*make_path(t_data *data)
 	return (path);
 }
 
-void	clean_bfs(t_data *data, t_room *room, t_queue *queue)
+void	clean_bfs(t_data *data, t_room **room, t_queue *queue)
 {
-	t_room	*temp_room;
+	int		i;
 
-	temp_room = data->source;
-	while (temp_room)
+	i = 0;
+	while (i < data->nb_rooms)
 	{
-		temp_room->bfs_previous = -1; // need to agree on this.
-		temp_room = temp_room->next;
+		room[i]->bfs_previous = -1;
+		i++;
 	}
-	// free (temp_room);
-	// free (room);
-	free (queue->room_queue);
-	// free all other queue things if we use a struct
-	// free (queue); // if we use it as a struct
+	free (queue);
 }
 
-int	search_int_in_int_array(int	needle, int *haystack) // better name?
+int	search_int_in_int_array(int	index, int *queue) // better name?
 {
 	int	i;
 
 	i = 0;
-	while (haystack[i])
+	while (queue[i])
 	{
-		if (needle == haystack[i])
+		if (index == queue[i])
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-void	add_to_queue(t_data *data, t_room *room, t_queue *queue, int index)
+void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index)
 {
 	int		i;
-	t_room	*temp_room;
 
 	i = 0;
-	while (queue->room_queue[i])
-		i++;
-	queue->room_queue[i] = index;
-	temp_room = data->source;
-	while (temp_room->index != index || temp_room)
-		temp_room = temp_room->next;
-	if (temp_room->index == index)
-		temp_room->bfs_previous = room->index;
-	// free (temp_room);
+	queue[i] = temp->room;
+	room[temp->room]->bfs_previous = index;
 }
 
 void	set_queue(t_data *data, t_room **room, int *queue, int index)
 {
 	int		i;
 	int		in_list;
-	t_edge	*temp;
+	t_edge	*edge;
 
-	temp = room[index]->edge; //this far I'm now - going upwards.
-	while (temp)
+	edge = room[index]->edge;
+	while (edge)
 	{
 		i = 0;
 		in_list = OFF;
 		while (queue[i])
 		{
-			if (search_int_in_int_array(temp->room, queue))
+			if (search_int_in_int_array(edge->room, queue))
 				in_list = ON;
 			i++;
 		}
 		if (in_list == OFF)
-			add_to_queue(data, room, queue, temp->room);
-		temp = temp->next;
+			add_to_queue(room, edge, &queue[i], index);
+		edge = edge->next;
 	}
-	// free (temp);
+	// free (dge);
 }
 
 t_path	*bfs(t_data *data)
 {
-	t_room	**room;
-	int		*queue;
+	t_room	**room; //should come as a parameter.
 	t_path	*path;
+	int		*queue;
 	int		i;
 
-	room = data->source;
+	room = data->source; //this should be done in solver, and making a copy of it, not it being the same..
 	queue = init_queue(data);
 	i = 0;
 	while (queue && queue[i])
 	{
-		set_queue(data, room, queue, i);
-		if (room[i]->end == ON)
+		set_queue(data, room, queue, queue[i]);
+		if (room[queue[i]]->end == ON)
 			break ;
 		i++;
-		room = room[queue[i]];
 	}
-	if (room[i]->end == OFF)
+	if (room[queue[i]]->end == OFF)
 		path = NULL;
 	else
-		path = make_path(data);
+		path = make_path(data, room, queue[i]);
 	clean_bfs(data, room, queue);
 	return (path);
 }

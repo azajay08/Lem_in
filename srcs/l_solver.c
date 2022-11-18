@@ -71,7 +71,7 @@ int	calculate_paths_used(t_data *data, t_option *option)
 			if (diff2 == 0)
 				diff2 = -2;
 			if (data->nb_ants >= (diff1 + 3) + (diff2 + 2))
-				break ;
+				break ; // Not sure yet if this works for all possibilities.
 			nb_of_paths--;
 		}
 	}
@@ -83,15 +83,18 @@ int	calculate_paths_used(t_data *data, t_option *option)
 	not sure if it works with more. We'll see later on.///
 */
 
-int	send_ants(t_data *data, t_option *option)
+int	calculate_turns(t_data *data, t_option *option) // irrelevant for now!!!
 {
-	int	paths;
+	int	paths; // NOT YET sure if this is even needed!!
 
 	paths = calculate_paths(option);
 	// Need to see if we can find a pattern for the nb of ants in the paths
+	// This function is going to be a big one for us:
+	// It's gonna calculate the turns, so it's gonna solve how many ants
+	// go to which path, and calculate from there.
 }
 
-t_option	*find_all_disjoint_paths(t_data *data)
+t_option	*find_all_disjoint_paths(t_data *data)//, t_room **room)
 {
 	t_path		*cur_path;
 	t_option	*all_paths;
@@ -110,6 +113,7 @@ t_option	*find_all_disjoint_paths(t_data *data)
 			all_paths->next->previous = all_paths;
 			all_paths = all_paths->next;
 		}
+		update_map(); //take the cur_path away so the edges of it can't be used.
 		free (cur_path);
 	}
 	if (all_paths == NULL)
@@ -124,20 +128,20 @@ void	solver(t_data *data)
 	t_option	*orig_option;
 	t_option	*next_added;
 
-	if (data->nb_ants == 1)
-		return (bfs(data));//Just to show that it skips all funcitons after bfs.
-	orig_option = find_all_disjoint_paths(data);
+	//HERE we should make the copy of data->source (**room)
+	//BUT we should keep the original as well...
+	if (data->nb_ants == 1)//still need to figure out this.
+		return (bfs(data));//Just to show that we just need to do 1 bfs.
+	orig_option = find_all_disjoint_paths(data);//from here we call bfs in loop.
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
-		return (orig_option);
+		return (orig_option);//if we use less paths than found, no need for vertex_disjoint.
 	next_added = vertex_disjoint(data, orig_option);
 	while (calculate_paths(orig_option) < calculate_paths_used(data, next_added))
 	{
-		free (orig_option);
+		free_option(orig_option);
 		orig_option = next_added;
-		free (next_added);
+		free_option(next_added);
 		next_added = vertex_disjoint(data, orig_option);
 	}
 	// print here or in the main?
-	// If in the main, we need to either return the string from here,
-	// or save it in data.
 }
