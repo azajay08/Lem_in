@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:29:20 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/19 03:35:14 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define MAP_ERROR		"ERROR! Not a valid map\n"
 # define DATA_FAIL		"ERROR! Memory allocation of t_data failed!\n"
 # define VERIFY_FAIL	"ERROR! Memory allocation of t_verify failed!\n"
-# define VERT_FAIL	"ERROR! Memory allocation of t_vert failed\n"
+# define VERT_FAIL		"ERROR! Memory allocation of t_vert failed\n"
 # define ROOM_FAIL		"ERROR! Invalid room\n"
 # define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
@@ -99,7 +99,7 @@ typedef struct s_data
 	int				nb_ants;
 	int				nb_rooms;
 	int				sink_index;
-	t_vert		*source;
+	t_vert			*source;
 	t_room			**room;
 }					t_data;
 
