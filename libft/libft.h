@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 10:56:31 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/21 18:39:42 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/21 18:47:19 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ char		*ft_strmap(char const *s, char (*f)(char));
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin_line(char const *s1, char const *s2);
 char		*ft_strjoin_free1(char *s1, char *s2);
 char		*ft_strjoin_free2(char *s1, char *s2);
-char		*ft_strjoin_line(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s);
 char		*ft_itoa(int n);
 char		**ft_strsplit(char const *s, char c);

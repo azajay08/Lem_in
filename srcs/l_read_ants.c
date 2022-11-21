@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/17 22:57:43 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/21 18:49:02 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 	{
 		if (get_next_line(0, &line) != 1)
 			error_exit2(MAP_ERROR, data, verify);
+		data->line = ft_strdup(line);
 		com_ret = comment_start_end(line);
 		if (!com_ret)
 		{
@@ -59,7 +60,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 		}
 		else if (com_ret == START_END)
 			error_exit2(MAP_ERROR, data, verify);
-		// ft_strdel(&line);
+		ft_strdel(&line);
 	}
 	data->nb_ants = verify->ants;
 }

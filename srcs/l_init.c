@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:31:11 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/21 18:48:13 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_data(t_data *data)
 	data->nb_ants = 0;
 	data->nb_rooms = 0;
 	data->sink_index = -1;
+	data->line = NULL;
 	data->source = NULL;
 }
 
