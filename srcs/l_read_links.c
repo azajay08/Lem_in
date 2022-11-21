@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/21 18:51:32 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/22 01:23:07 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_edge	*append_edge(t_vert *room)
 {
-	t_edge *new_edge;
+	t_edge	*new_edge;
 
 	new_edge = (t_edge *)malloc(sizeof(t_edge));
 	if (!new_edge)
@@ -28,7 +28,7 @@ t_edge	*append_edge(t_vert *room)
 
 int	assign_link(char *link_to, t_vert *curr_room, t_vert *head)
 {
-	t_vert *room;
+	t_vert	*room;
 
 	room = head;
 	room = find_room_name(room, link_to);
@@ -55,7 +55,7 @@ int	verify_and_assign_names(char *line, t_vert *start)
 	t_vert	*room;
 	int		counter;
 	int		counter2;
-	
+
 	counter = 0;
 	counter2 = 0;
 	room = start;
@@ -78,7 +78,6 @@ int	verify_and_assign_names(char *line, t_vert *start)
 
 int	save_link_info(char *line, t_vert *start, t_verify *verify)
 {
-
 	if (ft_strchr(line, '-') != ft_strrchr(line, '-'))
 	{
 		//ft_strdel(&line);
@@ -86,7 +85,6 @@ int	save_link_info(char *line, t_vert *start, t_verify *verify)
 	}
 	if (verify->ants)
 	{
-		
 		if (!verify_and_assign_names(line, start))
 		{
 			return (0);
