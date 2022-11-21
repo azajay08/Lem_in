@@ -38,6 +38,7 @@
 typedef struct s_edge
 {
 	int				room;
+	int8_t			on_off;
 	struct s_edge	*next;
 	struct s_edge	*head;
 }					t_edge;

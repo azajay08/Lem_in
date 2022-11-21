@@ -12,7 +12,7 @@
 
 #include "../includes/lem_in.h"
 
-t_queue	*init_queue(t_data *data) //This might not even need a struct, but int array
+int	*init_queue(t_data *data) //This might not even need a struct, but int array
 {
 	int	*queue;
 
@@ -73,7 +73,7 @@ t_path	*make_path(t_data *data, t_room **room, int sink)
 	return (path);
 }
 
-void	clean_bfs(t_data *data, t_room **room, t_queue *queue)
+void	clean_bfs(t_data *data, t_room **room, int *queue)
 {
 	int		i;
 
@@ -115,9 +115,11 @@ void	set_queue(t_data *data, t_room **room, int *queue, int index)
 	int		in_list;
 	t_edge	*edge;
 
-	edge = room[index]->edge;
+	edge = room[index]->edge->head;
 	while (edge)
 	{
+		if (edge->on_off == OFF)
+			edge = edge->next;
 		i = 0;
 		in_list = OFF;
 		while (queue[i])
@@ -130,7 +132,7 @@ void	set_queue(t_data *data, t_room **room, int *queue, int index)
 			add_to_queue(room, edge, &queue[i], index);
 		edge = edge->next;
 	}
-	// free (dge);
+	// free (edge);
 }
 
 t_path	*bfs(t_data *data, t_room **room)

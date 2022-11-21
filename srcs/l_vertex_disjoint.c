@@ -1,6 +1,56 @@
 
 #include "../includes/lem_in.h"
 
+int	delete_edge(t_room *room)
+{
+	t_edge	*temp1;
+	t_edge	*temp2;
+
+	temp1 = NULL;
+	temp2 = room->edge->head;
+	while (room->edge)
+	{
+		if (room->edge->on_off == ON)
+		{
+			if (temp1)
+				temp1->next = temp2;
+			if (temp2 == room->edge)
+			{
+				temp2 = room->edge->next;
+				while (temp2)
+				{
+
+					temp2 = temp2->next;
+				}
+			}
+			free_edge(room->edge); // doesn't exist yet!
+		}
+		temp1 = room->edge;
+		room->edge = room->edge->next;
+	}
+	return (1);
+}
+
+void	find_edge_to_delete(t_room **room, t_path *path)
+{
+	int		counter;
+	t_room	*temp_room;
+
+	counter = 0;
+	path = path->next;
+	while (path)
+	{
+		temp_room = room[path->previous->index];
+		while (temp_room->edge)
+		{
+			if (temp_room->edge->on_off == ON)
+				counter += delete_edge(room[path->index]);
+			temp_room->edge = temp_room->edge->next;
+		}
+		path = path->next;
+	}
+}
+
 void	make_residual_path(t_option *option, t_room **room)
 {
 	while (option)
@@ -10,7 +60,12 @@ void	make_residual_path(t_option *option, t_room **room)
 			while (room[option->path->index]->edge)
 			{
 				if (room[option->path->index]->edge->room == option->path->next->index)
-					room[option->path->index]->edge->room = -1;
+				{
+					room[option->path->next->index]->bfs_previous = option->path->index;
+					room[option->path->index]->edge->on_off = OFF;
+				}
+				else
+					room[option->path->index]->edge->on_off = ON;
 				room[option->path->index]->edge = room[option->path->index]->edge->next;
 			}
 			option->path = option->path->next;
@@ -22,9 +77,13 @@ void	make_residual_path(t_option *option, t_room **room)
 t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option)
 {
 	t_option	*new_option;
+	t_path		*temp;
 
 	make_residual_path(option, room);
-
+	temp = bfs(data, room);
+	if (temp == NULL)
+		return (NULL);
+	find_edge_to_delete(room, temp);
 	// saving the bfs_previouses might help in here
 	// But would have to save ONLY the used ones.
 

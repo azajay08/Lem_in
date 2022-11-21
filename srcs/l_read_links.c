@@ -20,6 +20,7 @@ t_edge	*append_edge(t_vert *room)
 	if (!new_edge)
 		return (NULL);
 	new_edge->room = room->index;
+	new_edge->on_off = ON;
 	new_edge->next = NULL;
 	new_edge->head = NULL;
 	return (new_edge);
