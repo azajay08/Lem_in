@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   l_vertex_disjoint.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/22 15:45:54 by mtissari          #+#    #+#             */
+/*   Updated: 2022/11/22 15:58:36 by mtissari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
@@ -23,7 +34,7 @@ int	delete_edge(t_room *room)
 					temp2 = temp2->next;
 				}
 			}
-			free_edge(room->edge); // doesn't exist yet!
+			free_edge(room->edge); // function doesn't exist yet!
 		}
 		temp1 = room->edge;
 		room->edge = room->edge->next;
@@ -53,6 +64,9 @@ void	find_edge_to_delete(t_room **room, t_path *path)
 
 void	make_residual_path(t_option *option, t_room **room)
 {
+	t_path	*temp;
+	//Make some temps??
+
 	while (option)
 	{
 		while (option->path->next)

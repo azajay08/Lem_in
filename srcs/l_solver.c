@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_solver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/11/08 20:44:11 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/22 16:05:11 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,72 +26,11 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 	return (new_option);
 }
 
-int	calculate_paths(t_option *option)
+void	update_map(t_room **room, t_path *path)
 {
-	int	counter;
-
-	counter = 1;
-	while (option->next)
-		option = option->next;
-	while (option->previous)
-	{
-		option = option->previous;
-		counter++;
-	}
-	return (counter);
-}
-
-int	calculate_diff(t_option *option)
-{
-	int			diff;
-	t_option	*temp;
-
-	temp = option->previous;
-	diff = option->edges - temp->edges;
-	// free (temp); // Not sure if it's a leak or not.. //
-	return (diff);
-}
-
-int	calculate_paths_used(t_data *data, t_option *option)
-{
-	int	diff1;
-	int	diff2;
-	int	nb_of_paths;
-
-	nb_of_paths = calculate_paths(option);
-	if (option->next)
-	{
-		while (option->next)
-			option = option->next;
-		while(1)
-		{
-			diff2 = calculate_diff(option);
-			option = option->previous;
-			diff1 = calculate_diff(option);
-			if (diff2 == 0)
-				diff2 = -2;
-			if (data->nb_ants >= (diff1 + 3) + (diff2 + 2))
-				break ; // Not sure yet if this works for all possibilities.
-			nb_of_paths--;
-		}
-	}
-	return (nb_of_paths);
-}
-
-/*
-	The "data->nb_ants >= (diff1 + 3) + (diff2 + 2)" works on 3 paths, but 
-	not sure if it works with more. We'll see later on.///
-*/
-
-int	calculate_turns(t_data *data, t_option *option) // irrelevant for now!!!
-{
-	int	paths; // NOT YET sure if this is even needed!!
-
-	paths = calculate_paths(option);
-	// Need to see if we can find a pattern for the nb of ants in the paths
-	// This function is going to be a big one for us:
-	// It's gonna calculate the turns, so it's gonna solve how many ants
-	// go to which path, and calculate from there.
+	// make all the updates to rooms and edges!
+	// can we use make_residual_path ??????
+	// bfs need to be modified to the ON/OFF !!
 }
 
 t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
@@ -113,7 +52,7 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 			all_paths->next->previous = all_paths;
 			all_paths = all_paths->next;
 		}
-		update_map(room, cur_path); //take the cur_path away from the room so the edges of it can't be used.
+		update_map(room, cur_path);
 		free (cur_path);
 	}
 	if (all_paths == NULL)
@@ -130,9 +69,9 @@ void	solver(t_data *data)
 	t_room		**room;
 
 	room = make_room_array(data);
-	if (data->nb_ants == 1)//still need to figure out this.
-		return (bfs(data));//Just to show that we just need to do 1 bfs.
-	orig_option = find_all_disjoint_paths(data, room);//from here we call bfs in loop.
+	if (data->nb_ants == 1)
+		// Do an option for this or can we just use a path from bfs?
+	orig_option = find_all_disjoint_paths(data, room);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		return (orig_option);//if we use less paths than found, no need for vertex_disjoint.
 	next_added = vertex_disjoint(data, room, orig_option);
@@ -145,3 +84,12 @@ void	solver(t_data *data)
 	}
 	// print here or in the main?
 }
+
+/*
+	solver takes care of everything that happens between parsing and printing.
+	
+	The first if is to check if there's just one ant - in which case we don't
+	need to do all the algorithms.
+	The second if is a similiar check - it checks whether we have already found
+	more paths than we even need.
+*/
