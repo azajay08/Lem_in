@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/21 18:50:05 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/22 03:11:53 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ void	read_input(t_data *data)
 	if (!verify_all(verify, data))
 		error_exit2(MAP_ERROR, data, verify);
 	data->room = make_room_array(data);
+	free(verify);
 }
