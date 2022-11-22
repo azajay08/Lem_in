@@ -6,13 +6,13 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:16:30 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/21 18:37:50 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/22 02:43:59 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_line(char const *s1, char const *s2)
+char	*ft_strjoin_line(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
@@ -37,5 +37,6 @@ char	*ft_strjoin_line(char const *s1, char const *s2)
 		j++;
 	}
 	str[i + j] = '\0';
+	free(s1);
 	return (str);
 }
