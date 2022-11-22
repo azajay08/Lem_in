@@ -12,50 +12,49 @@
 
 #include "../includes/lem_in.h"
 
-int	delete_edge(t_room *room)
+void	delete_the_edge(t_room *room)
 {
-	t_edge	*temp1;
 	t_edge	*temp2;
+	t_edge	*prev;
 
-	temp1 = NULL;
 	temp2 = room->edge->head;
-	while (room->edge)
+	prev = room->edge->head;
+	while (temp2->next)
 	{
-		if (room->edge->on_off == ON)
+		if (temp2->on_off == OFF)
 		{
-			if (temp1)
-				temp1->next = temp2;
-			if (temp2 == room->edge)
+			if (prev == room->edge->head)
 			{
-				temp2 = room->edge->next;
-				while (temp2)
+				prev = prev->next;
+				while (prev)
 				{
-
-					temp2 = temp2->next;
+					prev->head = room->edge->next;
+					prev = prev->next;
 				}
 			}
-			free_edge(room->edge); // function doesn't exist yet!
+			else
+				prev->next = temp2->next;
+			free_edge(temp2); // function doesn't exist yet!
+			break ;
 		}
-		temp1 = room->edge;
-		room->edge = room->edge->next;
+		prev = temp2;
+		temp2 = temp2->next;
 	}
-	return (1);
+	//free (prev);
 }
 
 void	find_edge_to_delete(t_room **room, t_path *path)
 {
-	int		counter;
 	t_room	*temp_room;
 
-	counter = 0;
 	path = path->next;
 	while (path)
 	{
 		temp_room = room[path->previous->index];
 		while (temp_room->edge)
 		{
-			if (temp_room->edge->on_off == ON)
-				counter += delete_edge(room[path->index]);
+			if (temp_room->edge->on_off == OFF)
+				delete_the_edge(room[path->index]);
 			temp_room->edge = temp_room->edge->next;
 		}
 		path = path->next;
@@ -64,7 +63,7 @@ void	find_edge_to_delete(t_room **room, t_path *path)
 
 void	make_residual_path(t_option *option, t_room **room)
 {
-	t_path	*temp;
+	t_path	*temp; //not used (yet)
 	//Make some temps??
 
 	while (option)
@@ -91,13 +90,13 @@ void	make_residual_path(t_option *option, t_room **room)
 t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option)
 {
 	t_option	*new_option;
-	t_path		*temp;
+	t_path		*temp_path;
 
 	make_residual_path(option, room);
-	temp = bfs(data, room);
-	if (temp == NULL)
+	temp_path = bfs(data, room);
+	if (temp_path == NULL)
 		return (NULL);
-	find_edge_to_delete(room, temp);
+	find_edge_to_delete(room, temp_path);
 	// saving the bfs_previouses might help in here
 	// But would have to save ONLY the used ones.
 

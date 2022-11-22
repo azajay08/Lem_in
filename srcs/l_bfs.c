@@ -59,8 +59,8 @@ void	set_queue(t_data *data, t_room **room, int *queue, int index)
 	edge = room[index]->edge->head;
 	while (edge)
 	{
-		if (edge->on_off == OFF)
-			edge = edge->next;
+		if (edge->on_off == OFF) //if we follow here, we need a residual switch too.
+			edge = edge->next; //must follow when this is found(i think) - but do we do it here ?????
 		i = 0;
 		in_list = OFF;
 		while (queue[i])
