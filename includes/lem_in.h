@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/22 23:06:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/23 19:43:55 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,9 @@ void	error_exit3(char *str, t_verify *verify, t_data *data, t_vert *room);
 void	free_verify(t_verify *verify);
 void	free_data(t_data *data);
 void	free_room(t_vert *room);
+void	free_all(t_data *data);
+void	free_edge(t_edge *head);
+void	free_room_arr(t_data *data);
 
 /*
 	Solving functions

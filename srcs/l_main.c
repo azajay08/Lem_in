@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/22 23:07:20 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/23 19:44:03 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int	main(int ac, char **argv)
 	// read input if all is okay
 	solver(data);
 	//print the solution here?
+	free_all(data);
 	return (0);
 }
