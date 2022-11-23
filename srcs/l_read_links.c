@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/22 01:23:07 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/23 03:11:13 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,8 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 	ret = 1;
 	while (ret == 1)
 	{
-		data->line = ft_strjoin_line(data->line, line);
+		if (data->q_mode == OFF)
+			data->line = ft_strjoin_line(data->line, line);
 		if (ret == -1)
 			error_exit2(GNL_FAIL, data, verify);
 		start = data->source;
