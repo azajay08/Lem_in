@@ -12,18 +12,18 @@
 
 #include "../includes/lem_in.h"
 
-void	delete_the_edge(t_room *room)
+void	delete_the_edge(t_room *room)	// Maybe don't delete after all!!
 {
-	t_edge	*temp2;
-	t_edge	*prev;
+	t_edge	*temp2;	// Maybe we can use the edge->on_off button for this
+	t_edge	*prev;	// so that we don't need to delete. could be like ON/OFF/BAD
 
-	temp2 = room->edge->head;
-	prev = room->edge->head;
-	while (temp2->next)
+	temp2 = room->edge->head;	// Because if we delete it completely, we lose
+	prev = room->edge->head;	// The data of that edge, which we might need
+	while (temp2->next)			// in case of this option doesn't work.
 	{
-		if (temp2->on_off == OFF)
+		if (temp2->on_off == OFF)	// Although the paths are saved in the previous option
 		{
-			if (prev == room->edge->head)
+			if (prev == room->edge->head)	// So will have to think which one to choose!
 			{
 				prev = prev->next;
 				while (prev)
@@ -43,7 +43,7 @@ void	delete_the_edge(t_room *room)
 	//free (prev);
 }
 
-void	find_edge_to_delete(t_room **room, t_path *path)
+void	find_edge_to_delete(t_room **room, t_path *path) //find_edge_to_turn_bad
 {
 	t_room	*temp_room;
 
