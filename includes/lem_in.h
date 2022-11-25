@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/23 19:43:55 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/25 03:26:55 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define END_FAIL		"ERROR! No end or too many ends\n"
 # define NO_COMMAND		"ERROR! No start or end has been specified\n"
 # define TOO_MANY		"ERROR! Too many starts or ends have been found\n"
+# define DUPLICATE		"ERROR! Duplicate room name or coordinates\n"
 
 # define OFF			0
 # define ON				1
