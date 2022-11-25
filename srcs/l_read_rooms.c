@@ -6,17 +6,11 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/25 03:47:57 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/25 04:30:34 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	reset_start_end(t_verify *verify)
-{
-	verify->start = OFF;
-	verify->end = OFF;
-}
 
 void	arrange_source(t_vert *new_room, t_data *data, t_verify *verify)
 {
@@ -28,7 +22,6 @@ void	arrange_source(t_vert *new_room, t_data *data, t_verify *verify)
 		new_room->next = temp;
 		data->source = new_room;
 	}
-	reset_start_end(verify);
 }
 
 int	check_dups(t_vert *head, t_vert *curr_room)
@@ -46,6 +39,20 @@ int	check_dups(t_vert *head, t_vert *curr_room)
 		temp = temp->next;
 	}
 	return (1);
+}
+
+void	set_start_end(t_data *data, t_vert *new_room, t_verify *verify)
+{
+	if (verify->start == ON)
+	{
+		new_room->start = ON;
+		data->src_index = new_room->index;
+	}
+	else if (verify->end == ON)
+	{
+		new_room->end = ON;
+		data->sink_index = new_room->index;
+	}
 }
 
 t_vert	*make_room(char *line, t_verify *verify, t_data *data)
@@ -69,10 +76,8 @@ t_vert	*make_room(char *line, t_verify *verify, t_data *data)
 	new_room->index = data->nb_rooms;
 	if (!check_dups(data->source, new_room))
 		error_exit2(DUPLICATE, data, verify);
-	if (verify->start == ON)
-		new_room->start = ON;
-	else if (verify->end == ON)
-		new_room->end = ON;
+	if (verify->start == ON || verify->end == ON)
+		set_start_end(data, new_room, verify);
 	return (new_room);
 }
 
@@ -84,8 +89,6 @@ t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room)
 	if (!room)
 	{
 		data->source = new_room;
-		if (verify->start == ON || verify->end == ON)
-			reset_start_end(verify);
 		room = new_room;
 	}
 	else
@@ -94,12 +97,12 @@ t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room)
 			arrange_source(new_room, data, verify);
 		else
 		{
-			if (verify->end == ON)
-				arrange_source(new_room, data, verify);
 			room->next = new_room;
 			room = room->next;
 		}
 	}
+	verify->start = OFF;
+	verify->end = OFF;
 	data->nb_rooms++;
 	return (room);
 }
