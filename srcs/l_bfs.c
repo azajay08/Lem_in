@@ -50,6 +50,42 @@ t_path	*make_path(t_data *data, t_room **room, int sink)
 	return (path);
 }
 
+void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index)
+{
+	int		i;
+	int		in_list;
+	t_edge	*edge;
+
+	edge = room[index]->edge->head;
+	if (room[index]->bfs_previous != -1 && data->hop_off_switch == OFF)
+	{
+		queue[i] = room[index]->bfs_previous;
+		room[queue[i]]->bfs_previous = index;
+		data->hop_off_switch = ON;	// didn't add this yet as not sure if it's the best way
+	}
+	else
+	{
+		while (edge)
+		{
+			if (edge->on_off == OFF)
+				edge = edge->next;
+			i = 0;
+			in_list = OFF;
+			while (queue[i])
+			{
+				if (search_int_in_int_array(edge->room, queue))
+					in_list = ON;
+				i++;
+			}
+			if (in_list == OFF)
+				add_to_queue(room, edge, &queue[i], index);
+			edge = edge->next;
+		}
+		data->hop_off_switch = OFF;
+	}
+	// free (edge);
+}
+
 void	set_queue(t_data *data, t_room **room, int *queue, int index)
 {
 	int		i;
@@ -59,8 +95,8 @@ void	set_queue(t_data *data, t_room **room, int *queue, int index)
 	edge = room[index]->edge->head;
 	while (edge)
 	{
-		if (edge->on_off == OFF) //if we follow here, we need a residual switch too.
-			edge = edge->next; //must follow when this is found(i think) - but do we do it here ?????
+		if (room[edge->room]->bfs_previous != -1)
+			edge = edge->next;
 		i = 0;
 		in_list = OFF;
 		while (queue[i])
@@ -86,7 +122,10 @@ t_path	*bfs(t_data *data, t_room **room)
 	i = 0;
 	while (queue && queue[i])
 	{
-		set_queue(data, room, queue, queue[i]);
+		if (data->vertex == OFF)
+			set_queue(data, room, queue, queue[i]);
+		else if (data->vertex == ON)
+			set_vertex_queue(data, room, queue, queue[i]);
 		if (room[queue[i]]->end == ON)
 			break ;
 		i++;

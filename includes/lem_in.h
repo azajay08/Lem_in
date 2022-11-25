@@ -105,6 +105,7 @@ typedef struct s_data
 	int				sink_index;
 	int				src_index;
 	char			*line;
+	int8_t			vertex;
 	t_vert			*source;
 	t_room			**room;
 }					t_data;

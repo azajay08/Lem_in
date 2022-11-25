@@ -12,18 +12,30 @@
 
 #include "../includes/lem_in.h"
 
-void	delete_the_edge(t_room *room)	// Maybe don't delete after all!!
-{
-	t_edge	*temp2;	// Maybe we can use the edge->on_off button for this
-	t_edge	*prev;	// so that we don't need to delete. could be like ON/OFF/BAD
+/*
+	Maybe don't delete after all!!
+ Maybe we can use the edge->on_off button for this
+so that we don't need to delete. could be like ON/OFF/BAD
+ Because if we delete it completely, we lose
+The data of that edge, which we might need
+in case of this option doesn't work.
 
-	temp2 = room->edge->head;	// Because if we delete it completely, we lose
-	prev = room->edge->head;	// The data of that edge, which we might need
-	while (temp2->next)			// in case of this option doesn't work.
+Although the paths are saved in the previous option
+So will have to think which one to choose!
+*/
+
+void	delete_the_edge(t_room *room)
+{
+	t_edge	*temp2;
+	t_edge	*prev;
+
+	temp2 = room->edge->head;
+	prev = room->edge->head;
+	while (temp2->next)
 	{
-		if (temp2->on_off == OFF)	// Although the paths are saved in the previous option
+		if (temp2->on_off == OFF)
 		{
-			if (prev == room->edge->head)	// So will have to think which one to choose!
+			if (prev == room->edge->head)
 			{
 				prev = prev->next;
 				while (prev)
@@ -34,7 +46,7 @@ void	delete_the_edge(t_room *room)	// Maybe don't delete after all!!
 			}
 			else
 				prev->next = temp2->next;
-			free_edge(temp2); // function doesn't exist yet!
+			free_edge(temp2); // just this one edge!!!
 			break ;
 		}
 		prev = temp2;
@@ -43,7 +55,7 @@ void	delete_the_edge(t_room *room)	// Maybe don't delete after all!!
 	//free (prev);
 }
 
-void	find_edge_to_delete(t_room **room, t_path *path) //find_edge_to_turn_bad
+void	find_edge_to_delete(t_room **room, t_path *path)
 {
 	t_room	*temp_room;
 
@@ -53,7 +65,7 @@ void	find_edge_to_delete(t_room **room, t_path *path) //find_edge_to_turn_bad
 		temp_room = room[path->previous->index];
 		while (temp_room->edge)
 		{
-			if (temp_room->edge->on_off == OFF)
+			if (temp_room->edge->on_off == OFF) // turn to BAD? many are OFF already
 				delete_the_edge(room[path->index]);
 			temp_room->edge = temp_room->edge->next;
 		}
@@ -92,11 +104,13 @@ t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option)
 	t_option	*new_option;
 	t_path		*temp_path;
 
+	data->vertex = ON;
 	make_residual_path(option, room);
 	temp_path = bfs(data, room);
 	if (temp_path == NULL)
 		return (NULL);
 	find_edge_to_delete(room, temp_path);
+	data->vertex = OFF;
 	// saving the bfs_previouses might help in here
 	// But would have to save ONLY the used ones.
 

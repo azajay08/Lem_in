@@ -52,7 +52,7 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 			all_paths->next->previous = all_paths;
 			all_paths = all_paths->next;
 		}
-		update_map(room, cur_path);
+		make_residual_path(all_paths, room);
 		free (cur_path);
 	}
 	if (all_paths == NULL)

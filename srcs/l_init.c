@@ -30,6 +30,7 @@ void	init_data(t_data *data)
 	data->p_mode = OFF;
 	data->sink_index = -1;
 	data->src_index = -1;
+	data->vertex == OFF;
 	data->line = NULL;
 	data->source = NULL;
 }
