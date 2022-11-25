@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/25 03:29:01 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/25 03:31:35 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ t_vert	*make_room(char *line, t_verify *verify, t_data *data)
 	if (verify->start == ON)
 		new_room->start = ON;
 	else if (verify->end == ON)
+	{
 		new_room->end = ON;
+		data->sink_index = new_room->index;
+	}
 	return (new_room);
 }
 
