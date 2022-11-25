@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/25 03:26:55 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/25 03:44:32 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_data
 	int				q_mode;
 	int				p_mode;
 	int				sink_index;
+	int				src_index;
 	char			*line;
 	t_vert			*source;
 	t_room			**room;
