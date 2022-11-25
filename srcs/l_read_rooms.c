@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/25 03:31:35 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/25 03:47:57 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,12 @@ t_vert	*make_room(char *line, t_verify *verify, t_data *data)
 	new_room->next = NULL;
 	ft_2d_free(temp);
 	new_room->index = data->nb_rooms;
-	data->nb_rooms++;
 	if (!check_dups(data->source, new_room))
 		error_exit2(DUPLICATE, data, verify);
 	if (verify->start == ON)
 		new_room->start = ON;
 	else if (verify->end == ON)
-	{
 		new_room->end = ON;
-		data->sink_index = new_room->index;
-	}
 	return (new_room);
 }
 
@@ -104,5 +100,6 @@ t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room)
 			room = room->next;
 		}
 	}
+	data->nb_rooms++;
 	return (room);
 }
