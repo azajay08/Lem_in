@@ -82,6 +82,7 @@ void	solver(t_data *data)
 		free_option(next_added);
 		next_added = vertex_disjoint(data, room, orig_option);
 	}
+	free_option(next_added);
 	// print here or in the main?
 }
 

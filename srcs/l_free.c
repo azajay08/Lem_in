@@ -24,6 +24,36 @@ void	free_verify(t_verify *verify)
 		free(verify);
 }
 
+void	free_path(t_path *path)
+{
+	while (path)
+	{
+		//free(path->name);
+		//free(path->previous);	//need to check how path will be freed!!
+		path = path->next;
+	}
+}
+
+/*
+	!!!		!!!		!!!		!!!		!!!		!!!		!!!		!!!	!!!
+	!!!		free_path() AND free_option() ARE JUST DRAFTS		!!!
+	!!!		!!!		!!!		!!!		!!!		!!!		!!!		!!!	!!!
+*/
+
+void	free_option(t_option *option)
+{
+	t_option	*temp;
+
+	while (option)
+	{
+		temp = option->next;
+		free_path(option->path);
+		if (option->previous)
+			free(option->previous); //Not sure at all how to free option!!
+		
+	}
+}
+
 void	free_data(t_data *data)
 {
 	t_vert	*temp;

@@ -12,17 +12,21 @@
 
 #include "../includes/lem_in.h"
 
-/*
-	Maybe don't delete after all!!
- Maybe we can use the edge->on_off button for this
-so that we don't need to delete. could be like ON/OFF/BAD
- Because if we delete it completely, we lose
-The data of that edge, which we might need
-in case of this option doesn't work.
+void	reset_map(t_room **room, int nb)
+{
+	t_edge	*edge;
 
-Although the paths are saved in the previous option
-So will have to think which one to choose!
-*/
+	while (nb >= 0)
+	{
+		edge = room[nb]->edge->head;
+		while (edge)
+		{
+			edge->on_off = ON;
+			edge = edge->next;
+		}
+		nb--;
+	}
+}
 
 void	delete_the_edge(t_room *room)
 {
@@ -111,11 +115,7 @@ t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option)
 		return (NULL);
 	find_edge_to_delete(room, temp_path);
 	data->vertex = OFF;
-	// saving the bfs_previouses might help in here
-	// But would have to save ONLY the used ones.
-
-	// Do we use bfs here or make another similiar algo..?
-
+	reset_map(room, data->nb_rooms - 1);
 	new_option = find_all_disjoin_paths(data, room);
 	return (new_option);
 }
