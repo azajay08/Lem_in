@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/25 03:44:32 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/26 18:09:46 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@
 # define ROOM_FAIL		"ERROR! Invalid room\n"
 # define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
-# define START_FAIL		"ERROR! No start or too many starts\n"
-# define END_FAIL		"ERROR! No end or too many ends\n"
-# define NO_COMMAND		"ERROR! No start or end has been specified\n"
-# define TOO_MANY		"ERROR! Too many starts or ends have been found\n"
+# define INVALID_COM	"ERROR! Invalid start or end\n"
 # define DUPLICATE		"ERROR! Duplicate room name or coordinates\n"
 
 # define OFF			0
@@ -121,7 +118,7 @@ t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room);
 void	get_link_info(char *line, t_verify *verify, t_data *data);
 int		comment_start_end(char *line);
 int		check_if_line_is_digits(char *line);
-void	comment_found(char *line, t_verify *verify);
+void	comment_found(char *line, t_verify *verify, t_data *data);
 t_room	**make_room_array(t_data *data);
 t_room	*make_index_room(t_vert *head, t_room *new_room, int index);
 
@@ -142,6 +139,7 @@ void	error_exit(char *error_str);
 void	error_exit1(char *error_str, t_data *data);
 void	error_exit2(char *error_str, t_data *data, t_verify *verify);
 void	error_exit3(char *str, t_verify *verify, t_data *data, t_vert *room);
+void	error_exit4(char *str, t_data *data, t_verify *verify, char *line);
 
 /*
 	Freeing functions

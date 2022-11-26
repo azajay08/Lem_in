@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:09:53 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:31:53 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/26 18:08:08 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ void	error_exit3(char *str, t_verify *verify, t_data *data, t_vert *room)
 	//free(room);
 	free_data(data);
 	free_room(room);
+	ft_putstr(str);
+
+	exit(1);
+}
+
+void	error_exit4(char *str, t_data *data, t_verify *verify, char *line)
+{
+	free_verify(verify);
+	//free(room);
+	free_data(data);
+	ft_strdel(&line);
+	// free_room(room);
 	ft_putstr(str);
 
 	exit(1);

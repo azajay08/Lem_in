@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/25 03:44:58 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/26 18:10:04 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_data(t_data *data)
 	data->p_mode = OFF;
 	data->sink_index = -1;
 	data->src_index = -1;
-	data->vertex == OFF;
+	data->vertex = OFF;
 	data->line = NULL;
 	data->source = NULL;
 }
