@@ -6,13 +6,13 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/26 18:09:52 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/26 18:11:12 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int	verify_all(t_verify *verify, t_data *data)
+void	verify_all(t_verify *verify, t_data *data)
 {
 	if (verify->nb_of_starts != 1 || verify->nb_of_ends != 1)
 		error_exit2(INVALID_COM, data, verify);
