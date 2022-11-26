@@ -18,7 +18,8 @@ int	*init_queue(t_data *data)
 
 	queue = (int *)malloc(sizeof(data->nb_rooms));
 	if (!queue)
-		return (NULL); //need to check how to do this!!
+		return (NULL); //need to check how to do this!
+	queue[0] = data->src_index;
 	return (queue);
 }
 
