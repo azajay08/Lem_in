@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/26 18:09:56 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 03:50:21 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,11 @@ int	save_link_info(char *line, t_vert *start, t_verify *verify)
 {
 	if (ft_strchr(line, '-') != ft_strrchr(line, '-'))
 	{
-		//ft_strdel(&line);
+		ft_strdel(&line);
 		return (0);
 	}
-	if (verify->ants)
-	{
-		if (!verify_and_assign_names(line, start))
-		{
-			return (0);
-		}
-	}
+	if (!verify_and_assign_names(line, start))
+		return (0);
 	return (1);
 }
 
@@ -110,9 +105,9 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 		if (line[0] == '#')
 			comment_found(line, verify, data);
 		else if (ft_strchr(line, ' '))
-			error_exit3(ROOM_FAIL, verify, data, start);
+			error_exit2(LINK_FAIL, data, verify);
 		else if (!save_link_info(line, start, verify))
-			error_exit3(LINK_FAIL, verify, data, start);
+			error_exit2(LINK_FAIL, data, verify);
 		ft_strdel(&line);
 		ret = get_next_line(0, &line);
 	}

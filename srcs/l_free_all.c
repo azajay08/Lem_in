@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:42:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 02:16:41 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 03:55:54 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	free_all(t_data *data, int condition)
 	{
 		temp = data->source;
 		data->source = data->source->next;
-		free_edge(temp->edge->head);
+		if (temp->edge)
+			free_edge(temp->edge->head);
 		free(temp->name);
 		temp->name = NULL;
 		free(temp);

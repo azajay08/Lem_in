@@ -6,23 +6,11 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 00:41:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:31:37 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 03:53:48 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	free_room(t_vert *room)
-{
-	if (room)
-		free(room);
-}
-
-void	free_verify(t_verify *verify)
-{
-	if (verify)
-		free(verify);
-}
 
 void	free_path(t_path *path)
 {
@@ -72,3 +60,6 @@ void	free_data(t_data *data)
 	if (data)
 		free (data);
 }
+
+/*MIGHT NOT NEED FREE DATA, I HAVE MADE THE FREE ALL FUNCTION
+THE OTHERS COULD BE ADDED TO THAT*/

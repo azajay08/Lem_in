@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/25 04:30:34 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 03:45:31 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ t_vert	*make_room(char *line, t_verify *verify, t_data *data)
 	char	**temp;
 
 	temp = ft_strsplit(line, ' ');
-	if (!temp || !check_if_line_is_digits(temp[1])
-		|| !check_if_line_is_digits(temp[2]) || temp[3])
+	if (!temp || !check_line_is_digits(temp[1])
+		|| !check_line_is_digits(temp[2]) || temp[3])
 		error_exit2(COORD_FAIL, data, verify);
 	new_room = (t_vert *)malloc(sizeof(t_vert));
 	if (!new_room)

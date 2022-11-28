@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/23 03:10:07 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 03:44:32 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	comment_start_end(char *line)
 	return (0);
 }
 
-int	check_if_line_is_digits(char *line)
+int	check_line_is_digits(char *line)
 {
 	int	i;
 
@@ -39,6 +39,14 @@ int	check_if_line_is_digits(char *line)
 	return (1);
 }
 
+void	dup_or_join(t_data *data, char *line)
+{
+	if (!data->line)
+		data->line = ft_strdup(line);
+	else
+		data->line = ft_strjoin_line(data->line, line);
+}
+
 void	get_ant_info(char *line, t_data *data, t_verify *verify)
 {
 	int	com_ret;
@@ -49,11 +57,11 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 		if (get_next_line(0, &line) != 1)
 			error_exit2(MAP_ERROR, data, verify);
 		if (data->q_mode == OFF)
-			data->line = ft_strdup(line);
+			dup_or_join(data, line);
 		com_ret = comment_start_end(line);
 		if (!com_ret)
 		{
-			if (!check_if_line_is_digits(line))
+			if (!check_line_is_digits(line))
 				error_exit2(ANT_ERROR, data, verify);
 			verify->ants = ft_atoi(line);
 			if (verify->ants == 0)

@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 02:11:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 03:47:37 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	comment_found(char *line, t_verify *verify, t_data *data)
 		verify->nb_of_ends++;
 	}
 	if (verify->start == ON && verify->end == ON)
-		error_exit4(INVALID_COM, data, verify, line);
+		error_exit2(INVALID_COM, data, verify);
 }
 
 void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
@@ -46,7 +46,7 @@ void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 	{
 		ret = get_next_line(0, &line);
 		if (ret < 1)
-			error_exit3(GNL_FAIL, verify, data, room);
+			error_exit2(GNL_FAIL, data, verify);
 		if (data->q_mode == OFF)
 			data->line = ft_strjoin_line(data->line, line);
 		if (line[0] == '#')
