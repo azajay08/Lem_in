@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 03:50:21 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 14:20:50 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	assign_link(char *link_to, t_vert *curr_room, t_vert *head)
 
 	room = head;
 	room = find_room_name(room, link_to);
+	if (!room)
+		return (0);
 	if (!curr_room->edge)
 	{
 		curr_room->edge = append_edge(room);
