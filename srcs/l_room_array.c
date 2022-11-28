@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 02:17:12 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 02:23:49 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_room	**make_room_array(t_data *data)
 		room[i] = make_index_room(head, *room, i);
 		if (!room[i])
 		{
-			while (i < data->room_mal)
+			while (i < data->rooms_malloced)
 			{
 				free(room[i]->name);
 				free(room[i]);
@@ -54,7 +54,7 @@ t_room	**make_room_array(t_data *data)
 			error_exit(T_ROOM_FAIL);
 		}
 		i++;
-		data->room_mal++;
+		data->rooms_malloced++;
 	}
 	return (room);
 }

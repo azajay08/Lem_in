@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 02:15:13 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 02:23:44 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct s_data
 	int				p_mode;
 	int				sink_index;
 	int				src_index;
-	int				room_mal;
+	int				rooms_malloced;
 	char			*line;
 	int8_t			vertex;
 	t_vert			*source;
