@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 02:23:49 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 11:21:49 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_room	**make_room_array(t_data *data)
 				free(room[i]);
 				i++;
 			}
+			free(room);
 			free_all(data, ERROR);
 			error_exit(T_ROOM_FAIL);
 		}
