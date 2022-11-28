@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 11:21:49 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 13:54:12 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,14 @@ t_room	*make_index_room(t_vert *head, t_room *new_room, int index)
 	return (new_room);
 }
 
-t_room	**make_room_array(t_data *data)
+void	fill_room_array(t_data *data, t_room **room, t_vert *head, int i)
 {
-	t_vert	*head;
-	t_room	**room;
-	int		i;
-
-	head = data->source;
-	i = 0;
-	room = (t_room **)malloc(sizeof(*room) * (data->nb_rooms));
 	while (i < data->nb_rooms)
 	{
 		room[i] = make_index_room(head, *room, i);
 		if (!room[i])
 		{
+			i = 0;
 			while (i < data->rooms_malloced)
 			{
 				free(room[i]->name);
@@ -57,5 +51,23 @@ t_room	**make_room_array(t_data *data)
 		i++;
 		data->rooms_malloced++;
 	}
+}
+
+t_room	**make_room_array(t_data *data)
+{
+	t_vert	*head;
+	t_room	**room;
+	int		i;
+
+	head = data->source;
+	i = 0;
+	room = (t_room **)malloc(sizeof(*room) * (data->nb_rooms));
+	if (!room)
+	{
+		free_all(data, ERROR);
+		error_exit(T_ROOM_FAIL);
+	}
+	else
+		fill_room_array(data, room, head, i);
 	return (room);
 }
