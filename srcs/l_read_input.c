@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/26 18:11:12 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 02:11:26 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,6 @@ void	read_input(t_data *data)
 	get_ant_info(line, data, verify);
 	read_room_and_link_info(line, verify, data);
 	verify_all(verify, data);
-	data->room = make_room_array(data);
 	free(verify);
+	data->room = make_room_array(data);
 }

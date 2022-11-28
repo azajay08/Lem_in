@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:30:17 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 02:17:12 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_room	*make_index_room(t_vert *head, t_room *new_room, int index)
 {
 	t_vert	*old_room;
-	
+
 	new_room = (t_room *)malloc(sizeof(t_room));
 	if (!new_room)
 		return (NULL);
@@ -32,17 +32,29 @@ t_room	*make_index_room(t_vert *head, t_room *new_room, int index)
 
 t_room	**make_room_array(t_data *data)
 {
-	t_vert *head;
+	t_vert	*head;
 	t_room	**room;
 	int		i;
-	
+
 	head = data->source;
 	i = 0;
 	room = (t_room **)malloc(sizeof(*room) * (data->nb_rooms));
 	while (i < data->nb_rooms)
 	{
 		room[i] = make_index_room(head, *room, i);
+		if (!room[i])
+		{
+			while (i < data->room_mal)
+			{
+				free(room[i]->name);
+				free(room[i]);
+				i++;
+			}
+			free_all(data, ERROR);
+			error_exit(T_ROOM_FAIL);
+		}
 		i++;
+		data->room_mal++;
 	}
 	return (room);
 }

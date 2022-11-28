@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:42:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/27 01:48:08 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 02:16:41 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_edge(t_edge *head)
 {
-	t_edge *temp;
+	t_edge	*temp;
 
 	while (head != NULL)
 	{
@@ -35,8 +35,6 @@ void	free_room_arr(t_data *data)
 	{
 		free(temp[i]->name);
 		temp[i]->name = NULL;
-		if (temp[i]->edge)
-			free_edge(temp[i]->edge->head);
 		free(temp[i]);
 		i++;
 	}
@@ -44,11 +42,10 @@ void	free_room_arr(t_data *data)
 	data->room = NULL;
 }
 
-void	free_all(t_data *data)
+void	free_all(t_data *data, int condition)
 {
 	t_vert	*temp;
 
-	free_room_arr(data);
 	if (data->q_mode == OFF)
 		free(data->line);
 	data->line = NULL;
@@ -56,9 +53,12 @@ void	free_all(t_data *data)
 	{
 		temp = data->source;
 		data->source = data->source->next;
+		free_edge(temp->edge->head);
 		free(temp->name);
 		temp->name = NULL;
 		free(temp);
 	}
-	free (data);
+	if (condition == SUCCESS)
+		free_room_arr(data);
+	free(data);
 }

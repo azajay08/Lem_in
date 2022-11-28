@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/26 18:09:46 by ajones           ###   ########.fr       */
+/*   Updated: 2022/11/28 02:15:13 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define DATA_FAIL		"ERROR! Memory allocation of t_data failed!\n"
 # define VERIFY_FAIL	"ERROR! Memory allocation of t_verify failed!\n"
 # define VERT_FAIL		"ERROR! Memory allocation of t_vert failed\n"
+# define T_ROOM_FAIL	"ERROR! Memory allocation of t_room failed\n"
 # define ROOM_FAIL		"ERROR! Invalid room\n"
 # define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
@@ -30,6 +31,8 @@
 # define COMMENT		1
 # define START_END		2
 # define NOT_READ		0
+# define ERROR			0
+# define SUCCESS		1
 
 # include "../libft/libft.h"
 
@@ -101,6 +104,7 @@ typedef struct s_data
 	int				p_mode;
 	int				sink_index;
 	int				src_index;
+	int				room_mal;
 	char			*line;
 	int8_t			vertex;
 	t_vert			*source;
@@ -148,7 +152,7 @@ void	error_exit4(char *str, t_data *data, t_verify *verify, char *line);
 void	free_verify(t_verify *verify);
 void	free_data(t_data *data);
 void	free_room(t_vert *room);
-void	free_all(t_data *data);
+void	free_all(t_data *data, int condition);
 void	free_edge(t_edge *head);
 void	free_room_arr(t_data *data);
 
