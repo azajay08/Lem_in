@@ -16,6 +16,8 @@ int	calculate_paths(t_option *option)
 {
 	int	counter;
 
+	if (!option)
+		return (0);
 	counter = 1;
 	while (option->next)
 		option = option->next;
@@ -38,14 +40,38 @@ int	calculate_diff(t_option *option)
 	return (diff);
 }
 
+int	calculate_them_paths(t_option *option)
+{
+	t_option	*temp;
+	int			big_edge;
+	int			res;
+
+	res = 1;
+	temp = option;
+	while (temp->next)
+		temp = temp->next;
+	big_edge = temp->edges;
+	while (temp->previous)
+	{
+		temp = temp->previous;
+		res += (big_edge - temp->edges);
+	}
+	return (res);
+}
+
 int	calculate_paths_used(t_data *data, t_option *option)
 {
-	int	diff1;
+	int	diff1; //diffs might not be needed at all
 	int	diff2;
 	int	nb_of_paths;
 
 	nb_of_paths = calculate_paths(option);
-	if (option->next)
+	if (nb_of_paths < 2)
+		return (nb_of_paths);
+	if (nb_of_paths == 2 && data->nb_ants < calculate_diff(option))
+		return (1);
+	nb_of_paths = calculate_them_paths(option);
+	/*else if (option->next && nb_of_paths == 3)
 	{
 		while (option->next)
 			option = option->next;
@@ -56,11 +82,11 @@ int	calculate_paths_used(t_data *data, t_option *option)
 			diff1 = calculate_diff(option);
 			if (diff2 == 0)
 				diff2 = -2;
-			if (data->nb_ants >= (diff1 + 3) + (diff2 + 2))
+			if (data->nb_ants >= (diff1 + 3) + (diff2 * 2))
 				break ; // Not sure yet if this works for all possibilities.
 			nb_of_paths--;
 		}
-	}
+	}*/
 	return (nb_of_paths);
 }
 
