@@ -57,11 +57,11 @@ void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index)
 	t_edge	*edge;
 
 	edge = room[index]->edge->head;
-	if (room[index]->bfs_previous != -1 && data->hop_off_switch == OFF)
+	if (room[index]->bfs_previous != -1 && room[index]->hop_off_switch == OFF)
 	{
 		queue[i] = room[index]->bfs_previous;
 		room[queue[i]]->bfs_previous = index;
-		data->hop_off_switch = ON;	// didn't add this yet as not sure if it's the best way
+		room[index]->hop_off_switch = ON;
 	}
 	else
 	{
@@ -81,7 +81,8 @@ void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index)
 				add_to_queue(room, edge, &queue[i], index);
 			edge = edge->next;
 		}
-		data->hop_off_switch = OFF;
+		if (room[index]->bfs_previous == -1)
+			room[index]->hop_off_switch = OFF;
 	}
 	// free (edge);
 }

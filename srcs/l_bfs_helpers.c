@@ -31,6 +31,7 @@ void	clean_bfs(t_data *data, t_room **room, int *queue)
 	while (i < data->nb_rooms)
 	{
 		room[i]->bfs_previous = -1;
+		room[i]->hop_off_switch = OFF;
 		i++;
 	}
 	free (queue);

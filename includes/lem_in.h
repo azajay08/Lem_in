@@ -74,6 +74,7 @@ typedef struct s_room
 	int				index;
 	int8_t			start;
 	int8_t			end;
+	int8_t			hop_off_switch;
 	int				bfs_previous;
 	struct s_edge	*edge;
 }					t_room;
