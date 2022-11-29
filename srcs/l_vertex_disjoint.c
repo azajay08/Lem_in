@@ -50,7 +50,7 @@ void	delete_the_edge(t_room *room)
 			}
 			else
 				prev->next = temp2->next;
-			free_edge(temp2); // just this one edge!!!
+			free(temp2);
 			break ;
 		}
 		prev = temp2;
@@ -69,7 +69,7 @@ void	find_edge_to_delete(t_room **room, t_path *path)
 		temp_room = room[path->previous->index];
 		while (temp_room->edge)
 		{
-			if (temp_room->edge->on_off == OFF) // turn to BAD? many are OFF already
+			if (temp_room->edge->on_off == OFF) // This search should be modified
 				delete_the_edge(room[path->index]);
 			temp_room->edge = temp_room->edge->next;
 		}
@@ -79,27 +79,28 @@ void	find_edge_to_delete(t_room **room, t_path *path)
 
 void	make_residual_path(t_option *option, t_room **room)
 {
-	t_path	*temp; //not used (yet)
-	//Make some temps??
+	t_path		*temp;
+	t_option	*opt;
 
-	while (option)
+	opt = option;
+	while (opt)
 	{
-		while (option->path->next)
+		while (opt->path->next)
 		{
-			while (room[option->path->index]->edge)
+			while (room[opt->path->index]->edge)
 			{
-				if (room[option->path->index]->edge->room == option->path->next->index)
+				if (room[opt->path->index]->edge->room == opt->path->next->index)
 				{
-					room[option->path->next->index]->bfs_previous = option->path->index;
-					room[option->path->index]->edge->on_off = OFF;
+					room[opt->path->next->index]->bfs_previous = opt->path->index;
+					room[opt->path->index]->edge->on_off = OFF;
 				}
 				else
-					room[option->path->index]->edge->on_off = ON;
-				room[option->path->index]->edge = room[option->path->index]->edge->next;
+					room[opt->path->index]->edge->on_off = ON;
+				room[opt->path->index]->edge = room[opt->path->index]->edge->next;
 			}
-			option->path = option->path->next;
+			opt->path = opt->path->next;
 		}
-		option = option->next;
+		opt = opt->next;
 	}
 }
 
