@@ -84,20 +84,21 @@ void	make_residual_path(t_option *option, t_room **room)
 	opt = option;
 	while (opt)
 	{
-		while (opt->path->next)
+		temp = opt->path;
+		while (temp->next)
 		{
-			while (room[opt->path->index]->edge)
+			while (room[temp->index]->edge)
 			{
-				if (room[opt->path->index]->edge->room == opt->path->next->index)
+				if (room[temp->index]->edge->room == temp->next->index)
 				{
-					room[opt->path->next->index]->bfs_previous = opt->path->index;
-					room[opt->path->index]->edge->on_off = OFF;
+					room[temp->next->index]->bfs_previous = temp->index;
+					room[temp->index]->edge->on_off = OFF;
 				}
 				else
-					room[opt->path->index]->edge->on_off = ON;
-				room[opt->path->index]->edge = room[opt->path->index]->edge->next;
+					room[temp->index]->edge->on_off = ON;
+				room[temp->index]->edge = room[temp->index]->edge->next;
 			}
-			opt->path = opt->path->next;
+			temp = temp->next;
 		}
 		opt = opt->next;
 	}
