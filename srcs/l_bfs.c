@@ -58,30 +58,11 @@ void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index)
 
 	edge = room[index]->edge->head;
 	if (room[index]->bfs_previous != -1 && room[index]->hop_off_switch == OFF)
-	{
-		queue[i] = room[index]->bfs_previous;
-		room[queue[i]]->bfs_previous = index;
-		room[index]->hop_off_switch = ON;
-	}
+		follow_backwards(room, queue, index);
 	else
 	{
-		while (edge)
-		{
-			if (edge->on_off == OFF)
-				edge = edge->next;
-			i = 0;
-			in_list = OFF;
-			while (queue[i])
-			{
-				if (search_int_in_int_array(edge->room, queue))
-					in_list = ON;
-				i++;
-			}
-			if (in_list == OFF)
-				add_to_queue(room, edge, &queue[i], index);
-			edge = edge->next;
-		}
-		if (room[index]->bfs_previous == -1)
+		set_queue(data, room, queue, index);
+		if (room[index]->hop_off_switch == ON)
 			room[index]->hop_off_switch = OFF;
 	}
 	// free (edge);
@@ -96,7 +77,7 @@ void	set_queue(t_data *data, t_room **room, int *queue, int index)
 	edge = room[index]->edge->head;
 	while (edge)
 	{
-		if (room[edge->room]->bfs_previous != -1)
+		if (room[edge->room]->bfs_previous != -1 || edge->on_off == OFF)
 			edge = edge->next;
 		i = 0;
 		in_list = OFF;

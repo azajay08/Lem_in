@@ -41,11 +41,10 @@ void	delete_the_edge(t_room *room)
 		{
 			if (prev == room->edge->head)
 			{
-				prev = prev->next;
-				while (prev)
+				while (prev->next)
 				{
-					prev->head = room->edge->next;
 					prev = prev->next;
+					prev->head = room->edge->next;
 				}
 			}
 			else
@@ -69,7 +68,7 @@ void	find_edge_to_delete(t_room **room, t_path *path)
 		temp_room = room[path->previous->index];
 		while (temp_room->edge)
 		{
-			if (temp_room->edge->on_off == OFF) // This search should be modified
+			if (temp_room->edge->on_off == OFF)
 				delete_the_edge(room[path->index]);
 			temp_room->edge = temp_room->edge->next;
 		}

@@ -26,13 +26,6 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 	return (new_option);
 }
 
-void	update_map(t_room **room, t_path *path)
-{
-	// make all the updates to rooms and edges!
-	// can we use make_residual_path ??????
-	// bfs need to be modified to the ON/OFF !!
-}
-
 t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 {
 	t_path		*cur_path;
@@ -70,7 +63,7 @@ void	solver(t_data *data)
 
 	room = make_room_array(data);
 	if (data->nb_ants == 1)
-		// Do an option for this or can we just use a path from bfs?
+		//Do a t_option for this or can we just use bfs to get the one path?How?
 	orig_option = find_all_disjoint_paths(data, room);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		return (orig_option);//if we use less paths than found, no need for vertex_disjoint.
@@ -79,7 +72,7 @@ void	solver(t_data *data)
 	{
 		free_option(orig_option);
 		orig_option = next_added;
-		free_option(next_added);
+		//free_option(next_added);
 		next_added = vertex_disjoint(data, room, orig_option);
 	}
 	free_option(next_added);

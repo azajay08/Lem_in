@@ -40,7 +40,7 @@ int	calculate_diff(t_option *option)
 	return (diff);
 }
 
-int	calculate_them_paths(t_option *option)
+int	calculate_them_paths(t_option *option)//name to be changed!
 {
 	t_option	*temp;
 	int			big_edge;

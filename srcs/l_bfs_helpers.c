@@ -51,6 +51,22 @@ int	search_int_in_int_array(int index, int *queue) // better name?
 	return (0);
 }
 
+void	follow_backwards(t_room **room, int *queue, int index)
+{
+	int	i;
+
+	i = 0;
+	while (queue[i])
+	{
+		if (search_int_in_int_array(room[index]->bfs_previous, queue))
+			return ;
+		i++;
+	}
+	queue[i] = room[index]->bfs_previous;
+	room[queue[i]]->bfs_previous = index;
+	room[queue[i]]->hop_off_switch = ON;
+}
+
 void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index)
 {
 	int		i;
