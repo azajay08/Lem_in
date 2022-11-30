@@ -55,18 +55,17 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 	return (all_paths);
 }
 
-void	solver(t_data *data)
+t_option	*solver(t_data *data)
 {
 	t_option	*orig_option;
 	t_option	*next_added;
 	t_room		**room;
 
 	room = make_room_array(data);
-	if (data->nb_ants == 1)
-		//Do a t_option for this or can we just use bfs to get the one path?How?
 	orig_option = find_all_disjoint_paths(data, room);
-	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
-		return (orig_option);//if we use less paths than found, no need for vertex_disjoint.
+	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option)
+		|| calculate_paths(orig_option) <= data->nb_ants)
+		return (orig_option);
 	next_added = vertex_disjoint(data, room, orig_option);
 	while (calculate_paths(orig_option) < calculate_paths_used(data, next_added))
 	{
@@ -76,7 +75,8 @@ void	solver(t_data *data)
 		next_added = vertex_disjoint(data, room, orig_option);
 	}
 	free_option(next_added);
-	// print here or in the main?
+	// all freeing are uncertain still!
+	return (orig_option);
 }
 
 /*

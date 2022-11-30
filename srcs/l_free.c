@@ -38,7 +38,7 @@ void	free_option(t_option *option)
 		free_path(option->path);
 		if (option->previous)
 			free(option->previous); //Not sure at all how to free option!!
-		
+		option = temp;
 	}
 }
 

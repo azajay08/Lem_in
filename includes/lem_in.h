@@ -157,7 +157,7 @@ void	free_room_arr(t_data *data);
 	Solving functions
 */
 
-void	solver(t_data *data);
+t_option	*solver(t_data *data);
 
 /*
 	Fucntions that locate data

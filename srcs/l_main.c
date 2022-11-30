@@ -42,7 +42,8 @@ void	read_flags(t_data *data, int ac, char **argv)
 
 int	main(int ac, char **argv)
 {
-	t_data	*data;
+	t_data		*data;
+	t_option	*option;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
@@ -51,14 +52,11 @@ int	main(int ac, char **argv)
 	if (ac > 1)
 		read_flags(data, ac, argv);
 	read_input(data);
-	// DO WE NEED TO PARSE SOMETHING ELSE,
-	// so that we could send that to the solver?
-	// That way we could make another struct here
 
 	// check error inputs and exit properly
 	// can also take the check to another fucntion
 	// read input if all is okay
-	solver(data);
+	option = solver(data);
 	//print the solution here?
 	free_all(data, SUCCESS);
 	return (0);
