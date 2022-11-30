@@ -117,6 +117,6 @@ t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option)
 	find_edge_to_delete(room, temp_path);
 	data->vertex = OFF;
 	reset_map(room, data->nb_rooms - 1);
-	new_option = find_all_disjoin_paths(data, room);
+	new_option = find_all_disjoint_paths(data, room);
 	return (new_option);
 }

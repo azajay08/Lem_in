@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+#include <stdio.h>
 
 void	print_usage(t_data *data)
 {
@@ -58,6 +59,7 @@ int	main(int ac, char **argv)
 	// read input if all is okay
 	option = solver(data);
 	//print the solution here?
+	printf("\ntesting %i\n", option->path->index);
 	free_all(data, SUCCESS);
 	return (0);
 }

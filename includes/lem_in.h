@@ -153,14 +153,38 @@ void	free_all(t_data *data, int condition);
 void	free_edge(t_edge *head);
 void	free_room_arr(t_data *data);
 
+void	free_option(t_option *option);
+
 /*
 	Solving functions
 */
 
 t_option	*solver(t_data *data);
+t_option	*find_all_disjoint_paths(t_data *data, t_room **room);
+t_option	*make_t_option(t_data *data, t_path *cur_path);
+
+t_path	*bfs(t_data *data, t_room **room);
+void	set_queue(t_room **room, int *queue, int index);
+
+void	follow_backwards(t_room **room, int *queue, int index);
+void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index);
+int		search_int_in_int_array(int index, int *queue);
+void	clean_bfs(t_data *data, t_room **room, int *queue);
+int		*init_queue(t_data *data);
+
+t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option);
+void	make_residual_path(t_option *option, t_room **room);
 
 /*
-	Fucntions that locate data
+	Functions that calculate data
+*/
+
+int	calculate_paths_used(t_data *data, t_option *option);
+int	calculate_paths(t_option *option);
+
+
+/*
+	Functions that locate data
 */
 
 t_vert	*find_room_index(t_vert *head, int target);

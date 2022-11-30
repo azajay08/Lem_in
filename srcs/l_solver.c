@@ -18,7 +18,7 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 
 	new_option = (t_option *)malloc(sizeof(t_option));
 	if (!new_option)
-		error_exit(data);
+		error_exit1("malloc failed in t_option", data);
 	new_option->next = NULL;
 	new_option->previous = NULL;
 	new_option->path = cur_path;

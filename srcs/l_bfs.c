@@ -18,7 +18,7 @@ t_path	*init_path(t_data *data, t_room *room) //atm data is here only for free.
 
 	path = (t_path *)malloc(sizeof(t_path));
 	if (!path)
-		error_exit3("malloc failed in t_path", data, room);
+		error_exit1("malloc failed in t_path", data); //CHECK THIS
 	path->index = room->index;
 	path->edges = -1;
 	// path->name = room->name; // are we going to use this?
@@ -50,25 +50,19 @@ t_path	*make_path(t_data *data, t_room **room, int sink)
 	return (path);
 }
 
-void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index)
+void	set_vertex_queue(t_room **room, int *queue, int index)
 {
-	int		i;
-	int		in_list;
-	t_edge	*edge;
-
-	edge = room[index]->edge->head;
 	if (room[index]->bfs_previous != -1 && room[index]->hop_off_switch == OFF)
 		follow_backwards(room, queue, index);
 	else
 	{
-		set_queue(data, room, queue, index);
+		set_queue(room, queue, index);
 		if (room[index]->hop_off_switch == ON)
 			room[index]->hop_off_switch = OFF;
 	}
-	// free (edge);
 }
 
-void	set_queue(t_data *data, t_room **room, int *queue, int index)
+void	set_queue(t_room **room, int *queue, int index)
 {
 	int		i;
 	int		in_list;
@@ -81,7 +75,7 @@ void	set_queue(t_data *data, t_room **room, int *queue, int index)
 			edge = edge->next;
 		i = 0;
 		in_list = OFF;
-		while (queue[i])
+		while (queue[i] != -1)
 		{
 			if (search_int_in_int_array(edge->room, queue))
 				in_list = ON;
@@ -102,12 +96,12 @@ t_path	*bfs(t_data *data, t_room **room)
 
 	queue = init_queue(data);
 	i = 0;
-	while (queue && queue[i])
+	while (queue && queue[i] != -1)
 	{
 		if (data->vertex == OFF)
-			set_queue(data, room, queue, queue[i]);
+			set_queue(room, queue, queue[i]);
 		else if (data->vertex == ON)
-			set_vertex_queue(data, room, queue, queue[i]);
+			set_vertex_queue(room, queue, queue[i]);
 		if (room[queue[i]]->end == ON)
 			break ;
 		i++;

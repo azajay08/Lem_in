@@ -78,7 +78,7 @@ int	verify_and_assign_names(char *line, t_vert *start)
 	return (1);
 }
 
-int	save_link_info(char *line, t_vert *start, t_verify *verify)
+int	save_link_info(char *line, t_vert *start)
 {
 	if (ft_strchr(line, '-') != ft_strrchr(line, '-'))
 	{
@@ -110,7 +110,7 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 			comment_found(line, verify, data);
 		else if (ft_strchr(line, ' '))
 			error_exit2(LINK_FAIL, data, verify);
-		else if (!save_link_info(line, start, verify))
+		else if (!save_link_info(line, start))
 			error_exit2(LINK_FAIL, data, verify);
 		ft_strdel(&line);
 		ret = get_next_line(0, &line);

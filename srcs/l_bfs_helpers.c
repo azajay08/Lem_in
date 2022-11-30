@@ -15,10 +15,14 @@
 int	*init_queue(t_data *data)
 {
 	int	*queue;
+	int	i;
 
-	queue = (int *)malloc(sizeof(data->nb_rooms));
+	queue = (int *)malloc(sizeof(data->nb_rooms + 1));
 	if (!queue)
 		return (NULL); //need to check how to exit from here, need to free?
+	i = 0;
+	while (i <= data->nb_rooms)
+		queue[i] = -1;
 	queue[0] = data->src_index;
 	return (queue);
 }
@@ -42,7 +46,7 @@ int	search_int_in_int_array(int index, int *queue) // better name?
 	int	i;
 
 	i = 0;
-	while (queue[i])
+	while (queue[i] != -1)
 	{
 		if (index == queue[i] || index == -1)
 			return (1);
@@ -56,7 +60,7 @@ void	follow_backwards(t_room **room, int *queue, int index)
 	int	i;
 
 	i = 0;
-	while (queue[i])
+	while (queue[i] != -1)
 	{
 		if (search_int_in_int_array(room[index]->bfs_previous, queue))
 			return ;

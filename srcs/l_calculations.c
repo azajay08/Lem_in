@@ -61,8 +61,8 @@ int	calculate_them_paths(t_option *option)//name to be changed!
 
 int	calculate_paths_used(t_data *data, t_option *option)
 {
-	int	diff1; //diffs might not be needed at all
-	int	diff2;
+//	int	diff1;
+//	int	diff2;
 	int	nb_of_paths;
 
 	nb_of_paths = calculate_paths(option);
@@ -94,7 +94,7 @@ int	calculate_paths_used(t_data *data, t_option *option)
 	The "data->nb_ants >= (diff1 + 3) + (diff2 + 2)" works on 3 paths, but 
 	not sure if it works with more. We'll see later on.///
 */
-
+/*
 int	calculate_turns(t_data *data, t_option *option) // irrelevant for now!!!
 {
 	int	paths; // NOT YET sure if this is even needed!!
@@ -104,4 +104,4 @@ int	calculate_turns(t_data *data, t_option *option) // irrelevant for now!!!
 	// This function is going to be a big one for us:
 	// It's gonna calculate the turns, so it's gonna solve how many ants
 	// go to which path, and calculate from there.
-}
+}*/

@@ -238,3 +238,77 @@ Maybe could use this?:
 https://iajit.org/portal/PDF/vol.12,no.6/7418.pdf 
 
 
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+srcs/l_read_links.c: In function ‘save_link_info’:
+srcs/l_read_links.c:81:57: error: unused parameter ‘verify’ [-Werror=unused-parameter]
+   81 | int save_link_info(char *line, t_vert *start, t_verify *verify)
+
+srcs/l_bfs.c: In function ‘init_path’:
+srcs/l_bfs.c:21:3: error: implicit declaration of function ‘error_exit3’; did you mean ‘error_exit2’? [-Werror=implicit-function-declaration]
+   21 |   error_exit3("malloc failed in t_path", data, room);
+
+
+srcs/l_bfs.c:57:10: error: variable ‘edge’ set but not used [-Werror=unused-but-set-variable]
+   57 |  t_edge *edge;
+      |          ^~~~
+srcs/l_bfs.c:56:7: error: unused variable ‘in_list’ [-Werror=unused-variable]
+   56 |  int  in_list;
+      |       ^~~~~~~
+srcs/l_bfs.c:55:7: error: unused variable ‘i’ [-Werror=unused-variable]
+   55 |  int  i;
+
+
+srcs/l_bfs.c: In function ‘set_vertex_queue’:
+srcs/l_bfs.c:61:3: error: implicit declaration of function ‘follow_backwards’ [-Werror=implicit-function-declaration]
+   61 |   follow_backwards(room, queue, index);
+      |   ^~~~~~~~~~~~~~~~
+srcs/l_bfs.c:64:3: error: implicit declaration of function ‘set_queue’ [-Werror=implicit-function-declaration]
+   64 |   set_queue(data, room, queue, index);
+
+
+srcs/l_bfs.c: At top level:
+srcs/l_bfs.c:71:6: error: conflicting types for ‘set_queue’ [-Werror]
+   71 | void set_queue(t_data *data, t_room **room, int *queue, int index)
+      |      ^~~~~~~~~
+srcs/l_bfs.c:64:3: note: previous implicit declaration of ‘set_queue’ was here
+   64 |   set_queue(data, room, queue, index);
+      |   ^~~~~~~~~
+srcs/l_bfs.c: In function ‘set_queue’:
+srcs/l_bfs.c:86:8: error: implicit declaration of function ‘search_int_in_int_array’ [-Werror=implicit-function-declaration]
+   86 |    if (search_int_in_int_array(edge->room, queue))
+      |        ^~~~~~~~~~~~~~~~~~~~~~~
+srcs/l_bfs.c:91:4: error: implicit declaration of function ‘add_to_queue’ [-Werror=implicit-function-declaration]
+   91 |    add_to_queue(room, edge, &queue[i], index);
+      |    ^~~~~~~~~~~~
+srcs/l_bfs.c:71:24: error: unused parameter ‘data’ [-Werror=unused-parameter]
+   71 | void set_queue(t_data *data, t_room **room, int *queue, int index)
+      |                ~~~~~~~~^~~~
+srcs/l_bfs.c: In function ‘bfs’:
+srcs/l_bfs.c:103:10: error: implicit declaration of function ‘init_queue’; did you mean ‘set_queue’? [-Werror=implicit-function-declaration]
+  103 |  queue = init_queue(data);
+      |          ^~~~~~~~~~
+      |          set_queue
+srcs/l_bfs.c:103:8: error: assignment to ‘int *’ from ‘int’ makes pointer from integer without a cast [-Werror=int-conversion]
+  103 |  queue = init_queue(data);
+      |        ^
+srcs/l_bfs.c:119:2: error: implicit declaration of function ‘clean_bfs’ [-Werror=implicit-function-declaration]
+  119 |  clean_bfs(data, room, queue);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
