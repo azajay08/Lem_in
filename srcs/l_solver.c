@@ -22,7 +22,7 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 	new_option->next = NULL;
 	new_option->previous = NULL;
 	new_option->path = cur_path;
-	new_option->turns = 0;
+	new_option->turns = cur_path->edges;
 	return (new_option);
 }
 
@@ -75,6 +75,7 @@ t_option	*solver(t_data *data)
 		next_added = vertex_disjoint(data, room, orig_option);
 	}
 	free_option(next_added);
+	calculate_ants_in_paths(data, orig_option);
 	// all freeing are uncertain still!
 	return (orig_option);
 }

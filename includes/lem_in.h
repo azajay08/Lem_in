@@ -92,6 +92,7 @@ typedef struct s_option
 {
 	struct s_path	*path;
 	int				turns;
+	int				ants;
 	int				edges;
 	struct s_option	*previous;
 	struct s_option	*next;
@@ -179,8 +180,9 @@ void	make_residual_path(t_option *option, t_room **room);
 	Functions that calculate data
 */
 
-int	calculate_paths_used(t_data *data, t_option *option);
-int	calculate_paths(t_option *option);
+int		calculate_paths_used(t_data *data, t_option *option);
+int		calculate_paths(t_option *option);
+void	calculate_ants_in_paths(t_data *data, t_option *option);
 
 
 /*

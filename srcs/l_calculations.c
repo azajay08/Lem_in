@@ -40,7 +40,7 @@ int	calculate_diff(t_option *option)
 	return (diff);
 }
 
-int	calculate_them_paths(t_option *option)//name to be changed!
+int	calculate_min_for_path(t_option *option, int nb_paths)
 {
 	t_option	*temp;
 	int			big_edge;
@@ -48,7 +48,7 @@ int	calculate_them_paths(t_option *option)//name to be changed!
 
 	res = 1;
 	temp = option;
-	while (temp->next)
+	while (temp->next && --nb_paths)
 		temp = temp->next;
 	big_edge = temp->edges;
 	while (temp->previous)
@@ -70,8 +70,12 @@ int	calculate_paths_used(t_data *data, t_option *option)
 		return (nb_of_paths);
 	if (nb_of_paths == 2 && data->nb_ants < calculate_diff(option))
 		return (1);
-	nb_of_paths = calculate_them_paths(option);
-	/*else if (option->next && nb_of_paths == 3)
+	if (data->nb_ants >= calculate_min_for_path(option, nb_of_paths))
+		return (nb_of_paths);
+	return (0);
+}
+
+/*else if (option->next && nb_of_paths == 3)
 	{
 		while (option->next)
 			option = option->next;
@@ -86,22 +90,46 @@ int	calculate_paths_used(t_data *data, t_option *option)
 				break ; // Not sure yet if this works for all possibilities.
 			nb_of_paths--;
 		}
-	}*/
-	return (nb_of_paths);
-}
-
-/*
+	}
 	The "data->nb_ants >= (diff1 + 3) + (diff2 + 2)" works on 3 paths, but 
 	not sure if it works with more. We'll see later on.///
 */
-/*
-int	calculate_turns(t_data *data, t_option *option) // irrelevant for now!!!
-{
-	int	paths; // NOT YET sure if this is even needed!!
 
-	paths = calculate_paths(option);
-	// Need to see if we can find a pattern for the nb of ants in the paths
-	// This function is going to be a big one for us:
-	// It's gonna calculate the turns, so it's gonna solve how many ants
-	// go to which path, and calculate from there.
-}*/
+
+void	deploy_ants(t_option *option, int nb_paths, int added, int edges)
+{
+	t_option	*opt;
+
+	opt = option;
+	while (opt->next && nb_paths > 0)
+	{
+		opt->ants += (edges - opt->edges) * added;
+		opt = opt->next;
+	}
+}
+
+void	calculate_ants_in_paths(t_data *data, t_option *option)
+{
+	t_option	*opt;
+	int			nb_paths;
+	int			min_ants;
+	int			remain;
+
+	nb_paths = calculate_paths(option);
+	opt = option;
+	while (opt->next)
+		opt = opt->next;
+	remain = data->nb_ants;
+	while (nb_paths > 0 && remain > 0)
+	{
+		min_ants = calculate_min_for_path(option, nb_paths);
+		opt->ants += remain / min_ants;
+		if(opt->previous && nb_paths > 1)
+		{
+			deploy_ants(option, nb_paths, remain / min_ants, opt->edges + 1);
+			remain = remain % min_ants;
+			opt = opt->previous;
+		}
+		nb_paths--;
+	}
+}
