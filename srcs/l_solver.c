@@ -23,6 +23,7 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 	new_option->previous = NULL;
 	new_option->path = cur_path;
 	new_option->turns = cur_path->edges;
+	new_option->ants = 0;
 	return (new_option);
 }
 
