@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/03 21:42:29 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:53:37 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ typedef struct s_path
 typedef struct s_option
 {
 	struct s_path	*path;
-	int				limit;
-	int				used;
+	int				limit; // This is how many ants use this path
+	int				used; // This is increased as limit is decreased
+	int				p_len; // length of the path
 	int				turns;
 	int				ants;
 	int				edges;
@@ -112,11 +113,16 @@ typedef struct s_option
 	struct s_option	*next;
 }					t_option;
 
+/*
+	 Maybe need a head for path in options. also a head(first) for options 
+	in data. 
+ */
+
 typedef struct s_data
 {
 	int				nb_ants;
 	int				nb_rooms;
-	int				nb_paths;
+	int				nb_paths; // is there some how to get a count of how many paths?
 	int				q_mode;
 	int				p_mode;
 	int				sink_index;
