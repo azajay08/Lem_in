@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 03:55:10 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/03 02:38:01 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,19 @@
 # define NOT_READ		0
 # define ERROR			0
 # define SUCCESS		1
+# define YES			1
+# define NO				0
 
 # include "../libft/libft.h"
+
+typedef struct s_ant
+{
+	int				ant_num;
+	int				launched;
+	int				finished;
+	struct s_ant 	*next;
+	struct s_path	*head;
+}				t_ant;
 
 typedef struct s_edge
 {
