@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/03 21:27:05 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:42:29 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ typedef struct s_path
 typedef struct s_option
 {
 	struct s_path	*path;
+	int				limit;
+	int				used;
 	int				turns;
 	int				ants;
 	int				edges;
@@ -114,6 +116,7 @@ typedef struct s_data
 {
 	int				nb_ants;
 	int				nb_rooms;
+	int				nb_paths;
 	int				q_mode;
 	int				p_mode;
 	int				sink_index;
@@ -121,6 +124,7 @@ typedef struct s_data
 	int				rooms_malloced;
 	char			*line;
 	int8_t			vertex;
+	t_option		*first;
 	t_vert			*source;
 	t_room			**room;
 }					t_data;

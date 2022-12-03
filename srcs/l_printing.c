@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/03 21:22:38 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:38:27 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,4 @@ void	print_output(t_data *data, t_option *option)
 	path_tmp = data->nb_paths;
 	option = data->first;
 	temp = data->first;
-
 }
