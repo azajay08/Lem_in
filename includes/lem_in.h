@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/03 02:38:01 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:27:05 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define SUCCESS		1
 # define YES			1
 # define NO				0
+# define REACHED		-1
 
 # include "../libft/libft.h"
 
@@ -43,7 +44,7 @@ typedef struct s_ant
 	int				ant_num;
 	int				launched;
 	int				finished;
-	struct s_ant 	*next;
+	struct s_ant	*next;
 	struct s_path	*head;
 }				t_ant;
 
@@ -128,44 +129,47 @@ typedef struct s_data
 	Functions that parse input
 */
 
-void	read_input(t_data *data);
-void	get_ant_info(char *line, t_data *data, t_verify *verify);
-void	read_room_and_link_info(char *line, t_verify *verify, t_data *data);
-void	comment_found(char *line, t_verify *verify, t_data *data);
-void	get_link_info(char *line, t_verify *verify, t_data *data);
-int		comment_start_end(char *line);
-int		check_line_is_digits(char *line);
-t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room);
-t_room	**make_room_array(t_data *data);
-t_room	*make_index_room(t_vert *head, t_room *new_room, int index);
+void		read_input(t_data *data);
+void		get_ant_info(char *line, t_data *data, t_verify *verify);
+void		read_room_and_link_info(char *line, t_verify *verify, t_data *data);
+void		comment_found(char *line, t_verify *verify, t_data *data);
+void		get_link_info(char *line, t_verify *verify, t_data *data);
+int			comment_start_end(char *line);
+int			check_line_is_digits(char *line);
+t_vert		*get_vert_info(char *line, t_verify *verify, t_data *data,	\
+														t_vert *room);
+t_room		**make_room_array(t_data *data);
+t_room		*make_index_room(t_vert *head, t_room *new_room, int index);
 
 /*
 	Initialize structs
 */
 
-void	init_data(t_data *data);
-void	init_verify(t_verify *verify);
-void	init_vert(t_vert *room);
-void	init_room(t_room *room);
+void		init_data(t_data *data);
+void		init_verify(t_verify *verify);
+void		init_vert(t_vert *room);
+void		init_room(t_room *room);
+void		init_ant(t_ant *ant);
+int			*init_queue(t_data *data);
 
 /*
 	Error management
 */
 
-void	error_exit(char *error_str);
-void	error_exit1(char *error_str, t_data *data);
-void	error_exit2(char *error_str, t_data *data, t_verify *verify);
+void		error_exit(char *error_str);
+void		error_exit1(char *error_str, t_data *data);
+void		error_exit2(char *error_str, t_data *data, t_verify *verify);
 
 /*
 	Freeing functions
 */
 
-void	free_data(t_data *data);
-void	free_all(t_data *data, int condition);
-void	free_edge(t_edge *head);
-void	free_room_arr(t_data *data);
+void		free_data(t_data *data);
+void		free_all(t_data *data, int condition);
+void		free_edge(t_edge *head);
+void		free_room_arr(t_data *data);
 
-void	free_option(t_option *option);
+void		free_option(t_option *option);
 
 /*
 	Solving functions
@@ -175,32 +179,36 @@ t_option	*solver(t_data *data);
 t_option	*find_all_disjoint_paths(t_data *data, t_room **room);
 t_option	*make_t_option(t_data *data, t_path *cur_path);
 
-t_path	*bfs(t_data *data, t_room **room);
-void	set_queue(t_room **room, int *queue, int index);
+t_path		*bfs(t_data *data, t_room **room);
+void		set_queue(t_room **room, int *queue, int index);
 
-void	follow_backwards(t_room **room, int *queue, int index);
-void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index);
-int		search_int_in_int_array(int index, int *queue);
-void	clean_bfs(t_data *data, t_room **room, int *queue);
-int		*init_queue(t_data *data);
+void		follow_backwards(t_room **room, int *queue, int index);
+void		add_to_queue(t_room **room, t_edge *temp, int *queue, int index);
+int			search_int_in_int_array(int index, int *queue);
+void		clean_bfs(t_data *data, t_room **room, int *queue);
 
 t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option);
-void	make_residual_path(t_option *option, t_room **room);
+void		make_residual_path(t_option *option, t_room **room);
 
 /*
 	Functions that calculate data
 */
 
-int		calculate_paths_used(t_data *data, t_option *option);
-int		calculate_paths(t_option *option);
-void	calculate_ants_in_paths(t_data *data, t_option *option);
-
+int			calculate_paths_used(t_data *data, t_option *option);
+int			calculate_paths(t_option *option);
+void		calculate_ants_in_paths(t_data *data, t_option *option);
 
 /*
 	Functions that locate data
 */
 
-t_vert	*find_room_index(t_vert *head, int target);
-t_vert	*find_room_name(t_vert *head, char *target);
+t_vert		*find_room_index(t_vert *head, int target);
+t_vert		*find_room_name(t_vert *head, char *target);
+
+/*
+	Functions for printing
+*/
+
+void		print_output(t_data *data, t_option *option);
 
 #endif

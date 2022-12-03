@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 02:23:53 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/03 21:22:47 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,13 @@ void	init_vert(t_vert *room)
 	room->end = OFF;
 	room->next = NULL;
 	room->index = -1;
+}
+
+void	init_ant(t_ant *ant)
+{
+	ant->ant_num = 0;
+	ant->finished = NO;
+	ant->launched = NO;
+	ant->head = NULL;
+	ant->next = NULL;
 }
