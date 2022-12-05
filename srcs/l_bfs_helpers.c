@@ -22,7 +22,10 @@ int	*init_queue(t_data *data)
 		return (NULL); //need to check how to exit from here, need to free?
 	i = 0;
 	while (i <= data->nb_rooms)
+	{
 		queue[i] = -1;
+		i++;
+	}
 	queue[0] = data->src_index;
 	return (queue);
 }

@@ -35,11 +35,30 @@ void	free_room_arr(t_data *data)
 	{
 		free(temp[i]->name);
 		temp[i]->name = NULL;
+		if (temp[i]->edge)
+			free_edge(temp[i]->edge->head);
 		free(temp[i]);
 		i++;
 	}
 	free(data->room);
 	data->room = NULL;
+}
+
+void	free_vert(t_data *data)
+{
+	t_vert	*temp;
+
+	while (data->source != NULL)
+	{
+		temp = data->source;
+		data->source = data->source->next;
+		if (temp->edge)
+			temp->edge = NULL;
+		free(temp->name);
+		temp->name = NULL;
+		free(temp);
+		temp->next = NULL;
+	}
 }
 
 void	free_all(t_data *data, int condition)

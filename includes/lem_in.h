@@ -106,9 +106,6 @@ typedef struct s_option
 	int				limit; // This is how many ants use this path
 	int				used; // This is increased as limit is decreased
 	int				p_len; // length of the path
-	int				turns;
-	int				ants;
-	int				edges;
 	struct s_option	*previous;
 	struct s_option	*next;
 }					t_option;

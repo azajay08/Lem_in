@@ -35,7 +35,7 @@ int	calculate_diff(t_option *option)
 	t_option	*temp;
 
 	temp = option->previous;
-	diff = option->edges - temp->edges;
+	diff = option->p_len - temp->p_len;
 	// free (temp); // Not sure if it's a leak or not.. //
 	return (diff);
 }
@@ -50,11 +50,11 @@ int	calculate_min_for_path(t_option *option, int nb_paths)
 	temp = option;
 	while (temp->next && --nb_paths)
 		temp = temp->next;
-	big_edge = temp->edges;
+	big_edge = temp->p_len;
 	while (temp->previous)
 	{
 		temp = temp->previous;
-		res += (big_edge - temp->edges);
+		res += (big_edge - temp->p_len);
 	}
 	return (res);
 }
@@ -103,7 +103,7 @@ void	deploy_ants(t_option *option, int nb_paths, int added, int edges)
 	opt = option;
 	while (opt->next && nb_paths > 0)
 	{
-		opt->ants += (edges - opt->edges) * added;
+		opt->limit += (edges - opt->p_len) * added;
 		opt = opt->next;
 	}
 }
@@ -116,6 +116,7 @@ void	calculate_ants_in_paths(t_data *data, t_option *option)
 	int			remain;
 
 	nb_paths = calculate_paths(option);
+	data->nb_paths = nb_paths;
 	opt = option;
 	while (opt->next)
 		opt = opt->next;
@@ -123,10 +124,10 @@ void	calculate_ants_in_paths(t_data *data, t_option *option)
 	while (nb_paths > 0 && remain > 0)
 	{
 		min_ants = calculate_min_for_path(option, nb_paths);
-		opt->ants += remain / min_ants;
+		opt->limit += remain / min_ants;
 		if(opt->previous && nb_paths > 1)
 		{
-			deploy_ants(option, nb_paths, remain / min_ants, opt->edges + 1);
+			deploy_ants(option, nb_paths, remain / min_ants, opt->p_len + 1);
 			remain = remain % min_ants;
 			opt = opt->previous;
 		}
