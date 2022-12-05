@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/03 21:53:37 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/05 15:48:23 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,8 @@ void		calculate_ants_in_paths(t_data *data, t_option *option);
 
 t_vert		*find_room_index(t_vert *head, int target);
 t_vert		*find_room_name(t_vert *head, char *target);
+t_path		*get_path_head(t_path *path);
+t_option	*get_option_head(t_option *option);
 
 /*
 	Functions for printing

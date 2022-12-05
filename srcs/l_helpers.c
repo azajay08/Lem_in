@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:05:46 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/18 20:31:23 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/05 15:47:57 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,24 @@ t_vert	*find_room_index(t_vert *head, int target)
 		temp = temp->next;
 	}
 	return (NULL);
+}
+
+t_path	*get_path_head(t_path *path)
+{
+	t_path	*head;
+	
+	head = path;
+	while (head->previous != NULL)
+		head = head->previous;
+	return (head);
+}
+
+t_option	*get_option_head(t_option *option)
+{
+	t_option	*head;
+
+	head = option;
+	while (head->previous != NULL)
+		head = head->previous;
+	return (head);
 }
