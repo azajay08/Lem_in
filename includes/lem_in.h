@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/05 15:48:23 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/05 23:45:02 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define VERIFY_FAIL	"ERROR! Memory allocation of t_verify failed!\n"
 # define VERT_FAIL		"ERROR! Memory allocation of t_vert failed\n"
 # define T_ROOM_FAIL	"ERROR! Memory allocation of t_room failed\n"
+# define ANTS_FAIL		"ERROR! Memory allocation of t_ants failed\n"
 # define ROOM_FAIL		"ERROR! Invalid room\n"
 # define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
@@ -117,9 +118,11 @@ typedef struct s_option
 
 typedef struct s_data
 {
+	int				ants_ink_sink;
+	int				ant_num;
 	int				nb_ants;
 	int				nb_rooms;
-	int				nb_paths; // is there some how to get a count of how many paths?
+	int				nb_paths;
 	int				q_mode;
 	int				p_mode;
 	int				sink_index;
@@ -127,7 +130,7 @@ typedef struct s_data
 	int				rooms_malloced;
 	char			*line;
 	int8_t			vertex;
-	t_option		*first;
+	t_ant			*queen;
 	t_vert			*source;
 	t_room			**room;
 }					t_data;
@@ -175,7 +178,7 @@ void		free_data(t_data *data);
 void		free_all(t_data *data, int condition);
 void		free_edge(t_edge *head);
 void		free_room_arr(t_data *data);
-
+void		free_ants(t_data *data);
 void		free_option(t_option *option);
 
 /*
@@ -219,5 +222,6 @@ t_option	*get_option_head(t_option *option);
 */
 
 void		print_output(t_data *data, t_option *option);
+void		make_ant_army(t_data *data, t_option *option);
 
 #endif

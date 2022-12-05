@@ -6,11 +6,23 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 00:41:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 03:53:48 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/05 23:43:31 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void	free_ants(t_data *data)
+{
+	t_ant	*temp;
+
+	while (data->queen != NULL)
+	{
+		temp = data->queen;
+		data->queen = data->queen->next;
+		free(temp);
+	}
+}
 
 void	free_path(t_path *path)
 {
