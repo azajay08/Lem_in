@@ -6,22 +6,77 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/05 23:44:25 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/06 03:25:14 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-void	print_paths(t_data *data, t_option *option)
+void	print_ant_move(t_data *data, int num, int index)
 {
-
+	t_room **room;
 	
+	room = data->room;
+	write(1, "L", 1);
+	ft_putnbr(num);
+	write(1, "-", 1);
+	ft_putstr(room[index]->name);
+	write(1, " ", 1);
 }
 
-void	print_moves(t_data *data, t_option *option)
+void	move_ants(t_data *data, t_ant *ant)
 {
-	
-	
+	print_ant_move(data, ant->ant_num, ant->head->index);
+	ant->head = ant->head->next;
+	if (!ant->head->next)
+	{
+		data->ants_in_sink++;
+		ant->finished = YES;
+	}
+}
+
+void	launch_ants(int i, t_data *data, t_ant *ant, t_option *opt)
+{
+	while (i < data->nb_paths)
+	{
+		print_ant_move(data, ant->ant_num, ant->head->index);
+		if (opt->used > 0)
+		{
+			opt->used--;
+			if (opt->used == 0)
+				data->nb_paths--;
+		}
+		opt = opt->next;
+		ant->head = ant->head->next;
+		ant->launched = YES;
+		ant = ant->next;
+	}
+}
+
+void	print_moves(t_data *data, t_option *opt, t_option *head, t_ant *ant)
+{
+	int	i;
+
+	write(1, "\n", 1);
+	while (data->ants_in_sink < data->nb_ants)
+	{
+		write(1, "\n", 1);
+		ant = data->queen;
+		while (ant != NULL)
+		{
+			i = 0;
+			if (ant->launched == NO)
+			{
+				opt = head;
+				launch_ants(i, data, ant, opt);
+				break ;
+			}
+			if (ant->finished == NO && ant->launched == YES)
+				move_ants(data, ant);
+			ant = ant->next;	
+		}
+	}
+	write(1, "\n", 1);
 }
 
 void	print_output(t_data *data, t_option *option)
@@ -38,9 +93,7 @@ void	print_output(t_data *data, t_option *option)
 	make_ant_army(data, option);
 	ant = data->queen;
 	data->nb_paths = p_tmp;
-	print_moves(data, option);
+	print_moves(data, option, head, ant);
 	if (data->p_mode == ON)
 		print_paths(data, option);
-	
-
 }
