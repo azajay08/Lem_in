@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/06 03:25:14 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/06 18:16:52 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	print_ant_move(t_data *data, int num, int index)
 {
-	t_room **room;
-	
+	t_room	**room;
+
 	room = data->room;
 	write(1, "L", 1);
 	ft_putnbr(num);
@@ -73,7 +73,7 @@ void	print_moves(t_data *data, t_option *opt, t_option *head, t_ant *ant)
 			}
 			if (ant->finished == NO && ant->launched == YES)
 				move_ants(data, ant);
-			ant = ant->next;	
+			ant = ant->next;
 		}
 	}
 	write(1, "\n", 1);
@@ -84,15 +84,15 @@ void	print_output(t_data *data, t_option *option)
 	t_option	*head;
 	t_ant		*ant;
 	int			p_tmp;
-	
+
 	p_tmp = data->nb_paths;
-	if (data->q_mode == ON)
-		ft_putstr(data->line);
 	option = get_option_head(option);
 	head = option;
 	make_ant_army(data, option);
 	ant = data->queen;
 	data->nb_paths = p_tmp;
+	if (data->q_mode == ON)
+		ft_putstr(data->line);
 	print_moves(data, option, head, ant);
 	if (data->p_mode == ON)
 		print_paths(data, option);

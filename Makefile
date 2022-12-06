@@ -6,7 +6,7 @@
 #    By: ajones <ajones@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 00:15:54 by ajones            #+#    #+#              #
-#    Updated: 2022/12/06 03:24:46 by ajones           ###   ########.fr        #
+#    Updated: 2022/12/06 18:18:35 by ajones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIB := -L./libft/ -lft
 SRCS := l_main.c l_init.c l_errors.c l_read_input.c l_free.c l_read_ants.c \
 		l_read_rooms.c l_read_links.c l_bfs.c l_solver.c l_helpers.c \
 		l_room_array.c l_bfs_helpers.c l_calculations.c l_free_all.c \
-		l_vertex_disjoint.c l_printing.c l_printing2.c l_ants.c
+		l_vertex_disjoint.c l_printing.c l_print_extra.c l_ants.c
 SRCS_PATH := ./srcs/
 SRCS_DIR := $(addprefix $(SRCS_PATH), $(SRCS))
 
