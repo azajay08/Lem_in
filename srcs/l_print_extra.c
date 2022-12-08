@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 03:23:35 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/08 17:20:53 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/08 20:38:39 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,18 @@
 void	print_paths(t_data *data, t_option *option)
 {
 	t_path		*path;
-	t_option	*opt;
 	int			i;
 	int			ants;
 
 	i = 0;
 	ants = 0;
 	ft_printf("Paths used:\n");
-	while (opt)
+	while (option)
 	{
 		i++;
 		ft_printf("\nPath %i:", i);
-		path = get_path_head(opt->path);
-		ants = opt->limit + 1;
+		path = get_path_head(option->path);
+		ants = option->limit + 1;
 		while (path)
 		{
 			if (path->next == NULL)
@@ -36,6 +35,6 @@ void	print_paths(t_data *data, t_option *option)
 				ft_printf(" %s >", data->room[path->index]->name);
 			path = path->next;
 		}
-		opt = opt->next;
+		option = option->next;
 	}
 }
