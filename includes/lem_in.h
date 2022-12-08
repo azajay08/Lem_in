@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/06 03:26:35 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/08 13:35:15 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ typedef struct s_path
 typedef struct s_option
 {
 	struct s_path	*path;
-	int				limit; // This is how many ants use this path
-	int				used; // This is increased as limit is decreased
-	int				p_len; // length of the path
+	int				limit;
+	int				used;
+	int				p_len;
 	struct s_option	*previous;
 	struct s_option	*next;
 }					t_option;
@@ -188,17 +188,14 @@ void		free_option(t_option *option);
 t_option	*solver(t_data *data);
 t_option	*find_all_disjoint_paths(t_data *data, t_room **room);
 t_option	*make_t_option(t_data *data, t_path *cur_path);
-
+t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option);
 t_path		*bfs(t_data *data, t_room **room);
 void		set_queue(t_room **room, int *queue, int index);
-
 void		follow_backwards(t_room **room, int *queue, int index);
 void		add_to_queue(t_room **room, t_edge *temp, int *queue, int index);
-int			search_int_in_int_array(int index, int *queue);
 void		clean_bfs(t_data *data, t_room **room, int *queue);
-
-t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option);
 void		make_residual_path(t_option *option, t_room **room);
+int			search_int_in_int_array(int index, int *queue);
 
 /*
 	Functions that calculate data
