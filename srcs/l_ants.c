@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:39:24 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/06 15:49:04 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/08 02:37:59 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,34 +41,36 @@ void	reduce_paths(t_data *data, t_option *opt)
 	}
 }
 
-void	crown_queen(t_data *data, t_option *opt)
+t_ant	*crown_queen(t_data *data, t_option *opt, t_ant *ant)
 {
-	t_ant		*ant;
 	t_ant		*new_ant;
 
 	new_ant = make_ant(data, opt);
 	if (!data->queen)
 	{
-		data->queen = ant;
+		data->queen = new_ant;
 		ant = new_ant;
 	}
 	else
 	{
-		ant->next = ant;
+		ant->next = new_ant;
 		ant = ant->next;
 	}
+	return (ant);
 }
 
 void	make_ant_army(t_data *data, t_option *option)
 {
 	int			i;
+	t_ant		*ant;
 	t_option	*head;
 
 	i = 0;
+	ant = NULL;
 	head = option;
 	while (i < data->nb_paths)
 	{
-		crown_queen(data, option);
+		ant = crown_queen(data, option, ant);
 		if (option->limit > 0)
 			reduce_paths(data, option);
 		i++;
