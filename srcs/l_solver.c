@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_solver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/11/22 16:05:11 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/09 03:15:55 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 	new_option->path = cur_path;
 	new_option->p_len = cur_path->edges;
 	new_option->limit = 0;
+	new_option->ants = 0;
+	new_option->used = 0;
 	return (new_option);
 }
 

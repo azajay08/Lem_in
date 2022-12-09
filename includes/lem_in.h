@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/08 13:35:15 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/09 03:13:18 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ typedef struct s_option
 	struct s_path	*path;
 	int				limit;
 	int				used;
+	int				ants;
 	int				p_len;
 	struct s_option	*previous;
 	struct s_option	*next;
