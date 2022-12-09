@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/08 13:37:21 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/09 17:23:07 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,12 @@ t_room	*make_index_room(t_vert *head, t_room *new_room, int index)
 	new_room->name = ft_strdup(head->name);
 	new_room->start = head->start;
 	new_room->end = head->end;
-	new_edge = make_new_edge(new_room, head->edge, new_edge);
-	if (!new_edge)
-		return (NULL);
+	if (head->edge)
+	{
+		new_edge = make_new_edge(new_room, head->edge, new_edge);
+		if (!new_edge)
+			return (NULL);
+	}
 	return (new_room);
 }
 
