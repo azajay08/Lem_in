@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/09 03:13:18 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/09 03:21:15 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,7 @@ void		free_edge(t_edge *head);
 void		free_room_arr(t_data *data);
 void		free_ants(t_data *data);
 void		free_option(t_option *option);
+void		free_vert(t_data *data);
 
 /*
 	Solving functions
