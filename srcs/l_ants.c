@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:39:24 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/09 03:17:28 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/09 22:02:24 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 t_ant	*make_ant(t_data *data, t_option *opt)
 {
 	t_ant	*new_ant;
+	t_path	*temp;
 
+	temp = get_path_head(opt->path);
+	temp = temp->next;
 	data->ant_num++;
 	new_ant = (t_ant *)malloc(sizeof(t_ant));
 	if (!new_ant)
@@ -26,7 +29,7 @@ t_ant	*make_ant(t_data *data, t_option *opt)
 	}
 	init_ant(new_ant);
 	new_ant->ant_num = data->ant_num;
-	new_ant->head = get_path_head(opt->path);
+	new_ant->head = temp;
 	return (new_ant);
 }
 

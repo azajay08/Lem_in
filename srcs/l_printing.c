@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/08 14:00:24 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/09 22:07:02 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,28 @@ void	move_ants(t_data *data, t_ant *ant)
 
 void	launch_ants(int i, t_data *data, t_ant *ant, t_option *opt)
 {
+	int	reduce;
+
+	reduce = OFF;
 	while (i < data->nb_paths)
 	{
 		print_ant_move(data, ant->ant_num, ant->head->index);
 		if (opt->used > 0)
 		{
 			opt->used--;
-			opt->limit++;
 			if (opt->used == 0)
-				data->nb_paths--;
+				reduce = ON;
 		}
 		opt = opt->next;
 		ant->head = ant->head->next;
 		ant->launched = YES;
 		ant = ant->next;
 		i++;
+	}
+	if (reduce == ON)
+	{
+		data->nb_paths--;
+		reduce = OFF;
 	}
 }
 
