@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_bfs_helpers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:00:15 by mtissari          #+#    #+#             */
-/*   Updated: 2022/11/22 16:00:39 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/11 04:59:08 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	*init_queue(t_data *data)
 	int	*queue;
 	int	i;
 
-	queue = (int *)malloc(sizeof(data->nb_rooms + 1));
+	queue = (int *)malloc(sizeof(int) * (data->nb_rooms));
 	if (!queue)
 		return (NULL); //need to check how to exit from here, need to free?
 	i = 0;
-	while (i <= data->nb_rooms)
+	while (i < data->nb_rooms)
 	{
 		queue[i] = -1;
 		i++;
