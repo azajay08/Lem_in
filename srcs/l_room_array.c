@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/09 17:23:07 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/12 01:35:12 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_room	**make_room_array(t_data *data)
 
 	head = data->source;
 	i = 0;
-	room = (t_room **)malloc(sizeof(*room) * (data->nb_rooms));
+	room = (t_room **)malloc(sizeof(t_room *) * (data->nb_rooms));
 	if (!room)
 	{
 		free_all(data, ERROR);
