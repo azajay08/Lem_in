@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/09 03:21:15 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/12 01:38:47 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define YES			1
 # define NO				0
 # define REACHED		-1
+# define END			-2
 
 # include "../libft/libft.h"
 
@@ -111,11 +112,6 @@ typedef struct s_option
 	struct s_option	*previous;
 	struct s_option	*next;
 }					t_option;
-
-/*
-	 Maybe need a head for path in options. also a head(first) for options 
-	in data. 
- */
 
 typedef struct s_data
 {
