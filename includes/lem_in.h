@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/12 01:38:47 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 00:10:59 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_option
 
 typedef struct s_data
 {
+	int				turns;
 	int				ants_in_sink;
 	int				ant_num;
 	int				nb_ants;

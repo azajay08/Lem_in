@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/06 03:22:37 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 00:11:09 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_data(t_data *data)
 	data->nb_paths = 0;
 	data->ants_in_sink = 0;
 	data->rooms_malloced = 0;
+	data->turns = 0;
 	data->q_mode = OFF;
 	data->p_mode = OFF;
 	data->sink_index = -1;

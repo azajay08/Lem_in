@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/12 20:05:24 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 00:12:31 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	print_moves(t_data *data, t_option *opt, t_option *head, t_ant *ant)
 	write(1, "\n", 1);
 	while (data->ants_in_sink < data->nb_ants)
 	{
+		data->turns++;
 		write(1, "\n", 1);
 		ant = data->queen;
 		while (ant != NULL)
@@ -106,6 +107,7 @@ void	print_output(t_data *data, t_option *option)
 	option = get_option_head(option);
 	if (data->p_mode == ON)
 	{
+		ft_printf("\nTurns: %i", data->turns);
 		print_paths(data, option);
 		write(1, "\n", 1);
 	}
