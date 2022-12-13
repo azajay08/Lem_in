@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/13 00:12:31 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 02:35:56 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,10 @@ void	print_output(t_data *data, t_option *option)
 		ft_putstr(data->line);
 	print_moves(data, option, head, ant);
 	option = get_option_head(option);
+	if (data->t_mode == ON)
+		ft_printf("\nTurns: %i", data->turns);
 	if (data->p_mode == ON)
 	{
-		ft_printf("\nTurns: %i", data->turns);
 		print_paths(data, option);
 		write(1, "\n", 1);
 	}
