@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/13 02:36:38 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 02:37:23 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_usage(t_data *data)
 	ft_putstr("\nFlags:\n");
 	ft_putstr("\t-h\thelp - shows usage and flag options\n");
 	ft_putstr("\t-q\tquiet mode - only prints moves\n");
-	ft_putstr("\t-p\tpaths - prints path route(s)\n\n");
+	ft_putstr("\t-p\tpaths - prints path route(s)\n");
 	ft_putstr("\t-t\tturns - prints the number of turns\n\n");	
 	ft_putstr("\nVisualizer usage: ./lem-in < [map] | ");
 	ft_putstr("python3 visualizer/lem_in_vis.py\n\n");
