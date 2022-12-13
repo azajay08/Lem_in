@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 03:23:35 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/09 22:05:09 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 03:20:34 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	print_paths(t_data *data, t_option *option)
 
 	i = 0;
 	ants = 0;
-	ft_printf("Paths used:\n");
 	while (option)
 	{
 		i++;
@@ -37,5 +36,17 @@ void	print_paths(t_data *data, t_option *option)
 			path = path->next;
 		}
 		option = option->next;
+	}
+}
+
+void	print_flag_modes(t_data *data, t_option *option)
+{
+	if (data->t_mode == ON)
+		ft_printf("\nTurns: %i\n", data->turns);
+	if (data->p_mode == ON)
+	{
+		ft_printf("\nPaths used:\n");
+		print_paths(data, option);
+		write(1, "\n", 1);
 	}
 }

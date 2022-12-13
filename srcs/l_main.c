@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/13 02:37:23 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 03:19:05 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,44 @@ void	print_usage(t_data *data)
 	ft_putstr("\nUsage: ./lem-in -[flag] < [map]\n");
 	ft_putstr("\nFlags:\n");
 	ft_putstr("\t-h\thelp - shows usage and flag options\n");
-	ft_putstr("\t-q\tquiet mode - only prints moves\n");
 	ft_putstr("\t-p\tpaths - prints path route(s)\n");
-	ft_putstr("\t-t\tturns - prints the number of turns\n\n");	
+	ft_putstr("\t-q\tquiet mode - does not print map\n");
+	ft_putstr("\t-t\tturns - prints the number of turns\n");
 	ft_putstr("\nVisualizer usage: ./lem-in < [map] | ");
 	ft_putstr("python3 visualizer/lem_in_vis.py\n\n");
 	free(data);
 	exit(0);
 }
 
+void	activate_modes(t_data *data, char flag)
+{
+	if (flag == 'h')
+		print_usage(data);
+	else if (flag == 'q')
+		data->q_mode = ON;
+	else if (flag == 'p')
+		data->p_mode = ON;
+	else if (flag == 't')
+		data->t_mode = ON;
+}
+
 void	read_flags(t_data *data, int ac, char **argv)
 {
 	int	i;
 
-	i = 1;
-	if (ac == 2)
+	i = 0;
+	if (ac == 2 && argv[1][i++] == '-')
 	{
-		while (argv[1][i] && ft_strchr("qpht", argv[1][i]))
+		if (argv[1][i] && ft_strchr("qpht", argv[1][i]))
 		{
-			if (argv[1][i] ==  'h')
-				print_usage(data);
-			if (argv[1][i] ==  'q')
-				data->q_mode = ON;
-			if (argv[1][i] ==  'p')
-				data->p_mode = ON;
-			if (argv[1][i] ==  't')
-				data->t_mode = ON;
-			i++;
+			while (argv[1][i] && ft_strchr("qpht", argv[1][i]))
+			{
+				activate_modes(data, argv[1][i]);
+				i++;
+			}
 		}
+		else
+			print_usage(data);
 	}
 	else
 		print_usage(data);
@@ -63,13 +73,8 @@ int	main(int ac, char **argv)
 	if (ac > 1)
 		read_flags(data, ac, argv);
 	read_input(data);
-
-	// check error inputs and exit properly
-	// can also take the check to another fucntion
-	// read input if all is okay
 	option = solver(data);
-	//print the solution here?
-	printf("\ntesting %i\n", option->path->index);
+	print_output(data, option);
 	free_all(data, SUCCESS);
 	return (0);
 }
