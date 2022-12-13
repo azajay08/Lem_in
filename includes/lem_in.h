@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/13 00:10:59 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 02:34:22 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_data
 	int				nb_paths;
 	int				q_mode;
 	int				p_mode;
+	int				t_mode;
 	int				sink_index;
 	int				src_index;
 	int				rooms_malloced;
