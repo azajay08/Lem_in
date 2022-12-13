@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/30 16:32:06 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/13 02:33:27 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	print_usage(t_data *data)
 	ft_putstr("\t-h\thelp - shows usage and flag options\n");
 	ft_putstr("\t-q\tquiet mode - only prints moves\n");
 	ft_putstr("\t-p\tpaths - prints path route(s)\n\n");
+	ft_putstr("\t-t\tturns - prints the number of turns\n\n");	
 	ft_putstr("\nVisualizer usage: ./lem-in < [map] | ");
 	ft_putstr("python3 visualizer/lem_in_vis.py\n\n");
 	free(data);
@@ -28,14 +29,23 @@ void	print_usage(t_data *data)
 
 void	read_flags(t_data *data, int ac, char **argv)
 {
+	int	i;
+
+	i = 1;
 	if (ac == 2)
 	{
-		if (ft_strequ(argv[1], "-q"))
-			data->q_mode = ON;
-		else if (ft_strequ(argv[1], "-p"))
-			data->p_mode = ON;
-		else
-			print_usage(data);
+		while (argv[1][i] && ft_strchr("qpht", argv[1][i]))
+		{
+			if (argv[1][i] ==  'h')
+				print_usage(data);
+			if (argv[1][i] ==  'q')
+				data->q_mode = ON;
+			if (argv[1][i] ==  'p')
+				data->p_mode = ON;
+			if (argv[1][i] ==  't')
+				data->t_mode = ON;
+			i++;
+		}
 	}
 	else
 		print_usage(data);
