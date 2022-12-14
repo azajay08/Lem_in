@@ -150,8 +150,14 @@ void	calculate_ants_in_paths(t_data *data, t_option *option)
 			printf("\topt->limit in loop: %i\n", opt->limit);
 			opt = opt->next;
 		}
-		option->limit += remain % data->nb_paths; // This is still a problem
-	}								// Need to deploy to others too if needed !
+		remain = remain % data->nb_paths;
+		opt = option;
+		while (remain--)
+		{
+			opt->limit++;
+			opt = opt->next;
+		}
+	}
 	else
 		opt->limit = data->nb_ants;
 	opt = option;
