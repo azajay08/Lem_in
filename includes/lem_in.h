@@ -40,6 +40,7 @@
 # define END			-2
 
 # include "../libft/libft.h"
+# include <stdio.h>			//REMEMBER TO DELETE THIS AND stdint.h FROM PRINTF!!
 
 typedef struct s_ant
 {
@@ -89,6 +90,8 @@ typedef struct s_room
 	int8_t			start;
 	int8_t			end;
 	int8_t			hop_off_switch;
+	int8_t			bfs_folo;
+	int				to_folo;
 	int				bfs_previous;
 	struct s_edge	*edge;
 }					t_room;
@@ -96,7 +99,6 @@ typedef struct s_room
 typedef struct s_path
 {
 	struct s_path	*previous;
-	char			*name;
 	int				index;
 	int				edges;
 	struct s_path	*next;
@@ -105,16 +107,17 @@ typedef struct s_path
 typedef struct s_option
 {
 	struct s_path	*path;
-	int				limit;
-	int				used;
-	int				ants;
 	int				p_len;
+	int				used;
+	int				limit;
+	int				ants;
 	struct s_option	*previous;
 	struct s_option	*next;
 }					t_option;
 
 typedef struct s_data
 {
+	int				turn;
 	int				turns;
 	int				ants_in_sink;
 	int				ant_num;
@@ -127,59 +130,60 @@ typedef struct s_data
 	int				sink_index;
 	int				src_index;
 	int				rooms_malloced;
+	int				*queue;
 	char			*line;
 	int8_t			vertex;
-	t_ant			*queen;
 	t_vert			*source;
 	t_room			**room;
+	t_ant			*queen;
 }					t_data;
 
 /*
 	Functions that parse input
 */
 
-void		read_input(t_data *data);
-void		get_ant_info(char *line, t_data *data, t_verify *verify);
-void		read_room_and_link_info(char *line, t_verify *verify, t_data *data);
-void		comment_found(char *line, t_verify *verify, t_data *data);
-void		get_link_info(char *line, t_verify *verify, t_data *data);
-int			comment_start_end(char *line);
-int			check_line_is_digits(char *line);
-t_vert		*get_vert_info(char *line, t_verify *verify, t_data *data,	\
-														t_vert *room);
-t_room		**make_room_array(t_data *data);
-t_room		*make_index_room(t_vert *head, t_room *new_room, int index);
+void	read_input(t_data *data);
+void	get_ant_info(char *line, t_data *data, t_verify *verify);
+void	read_room_and_link_info(char *line, t_verify *verify, t_data *data);
+void	comment_found(char *line, t_verify *verify, t_data *data);
+void	get_link_info(char *line, t_verify *verify, t_data *data);
+int		comment_start_end(char *line);
+int		check_line_is_digits(char *line);
+t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room);
+t_room	**make_room_array(t_data *data);
+t_room	*make_index_room(t_vert *head, t_room *new_room, int index);
 
 /*
 	Initialize structs
 */
 
-void		init_data(t_data *data);
-void		init_verify(t_verify *verify);
-void		init_vert(t_vert *room);
-void		init_room(t_room *room);
-void		init_ant(t_ant *ant);
-int			*init_queue(t_data *data);
+void	init_data(t_data *data);
+void	init_verify(t_verify *verify);
+void	init_vert(t_vert *room);
+void	init_room(t_room *room);
+void	init_ant(t_ant *ant);
 
 /*
 	Error management
 */
 
-void		error_exit(char *error_str);
-void		error_exit1(char *error_str, t_data *data);
-void		error_exit2(char *error_str, t_data *data, t_verify *verify);
+void	error_exit(char *error_str);
+void	error_exit1(char *error_str, t_data *data);
+void	error_exit2(char *error_str, t_data *data, t_verify *verify);
 
 /*
 	Freeing functions
 */
 
-void		free_data(t_data *data);
-void		free_all(t_data *data, int condition);
-void		free_edge(t_edge *head);
-void		free_room_arr(t_data *data);
-void		free_ants(t_data *data);
-void		free_option(t_option *option);
-void		free_vert(t_data *data);
+void	free_data(t_data *data);
+void	free_all(t_data *data, int condition);
+void	free_edge(t_edge *head);
+void	free_room_arr(t_data *data);
+void	free_vert(t_data *data);
+
+void	free_option(t_option *option);
+void	free_path(t_path *path);
+void	free_ants(t_data *data);
 
 /*
 	Solving functions
@@ -188,22 +192,29 @@ void		free_vert(t_data *data);
 t_option	*solver(t_data *data);
 t_option	*find_all_disjoint_paths(t_data *data, t_room **room);
 t_option	*make_t_option(t_data *data, t_path *cur_path);
+
+t_path	*bfs(t_data *data, t_room **room);
+void	set_queue(t_room **room, int *queue, int index);
+
+void	follow_backwards(t_room **room, int *queue, int index);
+void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index);
+int		search_int_in_int_array(int index, int *queue);
+int		search_int_from_path(t_room **room, int index, int x, int *queue);
+void	clean_bfs(t_data *data, t_room **room);
+void	init_queue(t_data *data);
+
 t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option);
-t_path		*bfs(t_data *data, t_room **room);
-void		set_queue(t_room **room, int *queue, int index);
-void		follow_backwards(t_room **room, int *queue, int index);
-void		add_to_queue(t_room **room, t_edge *temp, int *queue, int index);
-void		clean_bfs(t_data *data, t_room **room, int *queue);
-void		make_residual_path(t_option *option, t_room **room);
-int			search_int_in_int_array(int index, int *queue);
+void	make_residual_path(t_option *option, t_room **room, int vertex);
 
 /*
 	Functions that calculate data
 */
 
-int			calculate_paths_used(t_data *data, t_option *option);
-int			calculate_paths(t_option *option);
-void		calculate_ants_in_paths(t_data *data, t_option *option);
+int		calculate_min_for_path(t_option *option, int nb_paths);
+int		calculate_paths_used(t_data *data, t_option *option);
+int		calculate_paths(t_option *option);
+void	calculate_ants_in_paths(t_data *data, t_option *option);
+
 
 /*
 	Functions that locate data
@@ -214,9 +225,6 @@ t_vert		*find_room_name(t_vert *head, char *target);
 t_path		*get_path_head(t_path *path);
 t_option	*get_option_head(t_option *option);
 
-/*
-	Functions for printing
-*/
 
 void		print_output(t_data *data, t_option *option);
 void		make_ant_army(t_data *data, t_option *option);

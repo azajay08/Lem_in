@@ -12,19 +12,22 @@
 
 #include "../includes/lem_in.h"
 
-t_path	*init_path(t_data *data, t_room *room) //atm data is here only for free.
+t_path	*init_path(t_data *data, t_room *room, int index) //atm data is here only for free.
 {
-	t_path	*path;
+	t_path	*new_path;
 
-	path = (t_path *)malloc(sizeof(t_path));
-	if (!path)
+	new_path = (t_path *)malloc(sizeof(t_path));
+	if (!new_path)
 		error_exit1("malloc failed in t_path", data); //CHECK THIS
-	path->index = room->index;
-	path->edges = -1;
-	// path->name = room->name; // are we going to use this?
-	path->previous = NULL;
-	path->next = NULL;
-	return (path);
+	printf("\t'![%s]!'\t", room->name);
+	printf("index: %i\n", index);
+//	printf("\n\n|path: %p|\n", &new_path);
+//	printf("\tin init_path\n\n");
+	new_path->index = index;
+	new_path->edges = -1;
+	new_path->previous = NULL;
+	new_path->next = NULL;
+	return (new_path);
 }
 
 t_path	*make_path(t_data *data, t_room **room, int sink)
@@ -32,17 +35,20 @@ t_path	*make_path(t_data *data, t_room **room, int sink)
 	t_room	*temp_room;
 	t_path	*path;
 	int		edge_count;
+	int		index;
 
-	edge_count = 0;
+	edge_count = 1;
 	temp_room = room[sink];
-	path = init_path(data, temp_room);
+	printf("\nPATH:\n");
+	path = init_path(data, temp_room, sink);
 	while (1)
 	{
+		index = temp_room->bfs_previous;
 		temp_room = room[temp_room->bfs_previous];
-		path->previous = init_path(data, temp_room);
+		path->previous = init_path(data, temp_room, index);
 		path->previous->next = path;
 		path = path->previous;
-		if (room[temp_room->bfs_previous]->start == ON)
+		if (temp_room->start == ON)
 			break ;
 		edge_count++;
 	}
@@ -50,15 +56,63 @@ t_path	*make_path(t_data *data, t_room **room, int sink)
 	return (path);
 }
 
+void	set_vert_queue(t_room **room, int *queue, int index)
+{
+	int		i;
+	int		in_list;
+	t_edge	*edge;
+
+	edge = room[index]->edge;
+	while (edge)
+	{
+		if (edge && (room[edge->room]->bfs_previous != -1 || edge->on_off == OFF
+			|| room[edge->room]->bfs_previous == index)
+			&& room[edge->room]->bfs_folo == OFF)
+			edge = edge->next;
+		if (!edge)
+			break ;
+		in_list = OFF;
+		i = search_int_from_path(room, edge->room, index, queue);
+		if (!i)
+			in_list = ON;
+		if (in_list == OFF && ((room[edge->room]->bfs_previous == -1
+			&& edge->on_off == ON) || (room[edge->room]->bfs_folo == ON
+			&& room[index]->start == OFF && room[index]->bfs_previous != edge->room)))
+		{
+			printf("\tedge to: %s\t", room[edge->room]->name);
+			add_to_queue(room, edge, &queue[i], index);
+		}
+		edge = edge->next;
+		if (!edge)
+			break ;
+	}
+}
+
 void	set_vertex_queue(t_room **room, int *queue, int index)
 {
-	if (room[index]->bfs_previous != -1 && room[index]->hop_off_switch == OFF)
+	int	i;
+
+	i = 0;
+	printf("\n\n********************* VERTEX QUEUE ! ************************\n\n");
+	printf("\troom: %s, index: %i\n", room[index]->name, index);
+	printf("queue:\n");
+	while (queue[i] != -1 && i < 108)
+	{
+		printf(" %s,", room[queue[i]]->name);
+		i++;
+	}
+	printf("\n\n");
+	if (room[index]->bfs_previous != -1 && room[index]->hop_off_switch == OFF
+		&& room[index]->bfs_folo == ON && room[index]->start == OFF
+		&& room[index]->end == OFF)
+	{
+		printf("\tfollow backwards!\n");
 		follow_backwards(room, queue, index);
+	}
 	else
 	{
-		set_queue(room, queue, index);
-		if (room[index]->hop_off_switch == ON)
-			room[index]->hop_off_switch = OFF;
+		printf("\tDON'T follow back");
+		set_vert_queue(room, queue, index);
 	}
 }
 
@@ -68,49 +122,61 @@ void	set_queue(t_room **room, int *queue, int index)
 	int		in_list;
 	t_edge	*edge;
 
-	edge = room[index]->edge->head;
+	edge = room[index]->edge;
 	while (edge)
 	{
-		if (room[edge->room]->bfs_previous != -1 || edge->on_off == OFF)
+		if (edge && (room[edge->room]->bfs_previous != -1 || edge->on_off == OFF
+			|| room[edge->room]->bfs_previous == index) && room[edge->room]->end == OFF)
 			edge = edge->next;
-		i = 0;
+		if (!edge)
+			break ;
 		in_list = OFF;
-		while (queue[i] != -1)
+		i = search_int_in_int_array(edge->room, queue);
+		if (!i)
+			in_list = ON;
+		if ((in_list == OFF && room[edge->room]->bfs_previous == -1
+			&& edge->on_off == ON) || (in_list == OFF && room[edge->room]->end == ON))
 		{
-			if (search_int_in_int_array(edge->room, queue))
-				in_list = ON;
-			i++;
-		}
-		if (in_list == OFF)
+			printf("\tedge to: %s\t", room[edge->room]->name);
 			add_to_queue(room, edge, &queue[i], index);
+		}
 		edge = edge->next;
+		if (!edge)
+			break ;
 	}
-	// free (edge);
 }
 
 t_path	*bfs(t_data *data, t_room **room)
 {
 	t_path	*path;
-	int		*queue;
 	int		i;
 
-	queue = init_queue(data);
+	printf("_________________________________BFS START__________________________________");
+	init_queue(data);
 	i = 0;
-	while (queue && queue[i] != -1)
+	while (data->queue[i] != -1)
 	{
-		if (data->vertex == OFF)
-			set_queue(room, queue, queue[i]);
-		else if (data->vertex == ON)
-			set_vertex_queue(room, queue, queue[i]);
-		if (room[queue[i]]->end == ON)
+		printf("\nbfs loop[%i] ", i);
+		if (room[data->queue[i]]->end == ON)
 			break ;
+		if (data->vertex == OFF)
+			set_queue(room, data->queue, data->queue[i]);
+		else if (data->vertex == ON)
+			set_vertex_queue(room, data->queue, data->queue[i]);
 		i++;
+		if (i == data->nb_rooms * 2)
+			break ;
 	}
-	if (room[queue[i]]->end == OFF)
+	if (data->queue[i] == -1)
+		i--;
+	printf("\nbfs after!");
+//	printf("\t\t\troom->queue: %s\n\n", room[data->queue[i]]->name);
+	if (room[data->queue[i]]->end == OFF)
 		path = NULL;
 	else
-		path = make_path(data, room, queue[i]);
-	clean_bfs(data, room, queue);
+		path = make_path(data, room, data->queue[i]);
+	clean_bfs(data, room);
+	printf("_______________________________BFS END_________________________________");
 	return (path);
 }
 

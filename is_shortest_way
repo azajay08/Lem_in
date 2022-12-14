@@ -1,0 +1,41 @@
+100
+##start
+s 1 10
+##end
+end 15 10
+a 3 15
+b 3 10
+c 3 5
+d 5 15
+e 7 15
+f 5 10
+g 5 7
+h 7 5
+i 8 13
+j 7 10
+k 9 5
+l 11 13
+m 9 10
+n 11 5
+o 13 5
+s-a
+s-b
+s-c
+a-d
+b-f
+c-g
+c-h
+d-e
+e-i
+f-i
+f-j
+g-j
+g-h
+h-k
+i-l
+j-m
+k-n
+l-end
+m-end
+n-o
+o-end

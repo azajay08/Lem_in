@@ -20,6 +20,8 @@ void	free_edge(t_edge *head)
 	{
 		temp = head;
 		head = head->next;
+		temp->next = NULL;
+		temp->head = NULL;
 		free(temp);
 	}
 }
@@ -53,7 +55,7 @@ void	free_vert(t_data *data)
 		temp = data->source;
 		data->source = data->source->next;
 		if (temp->edge)
-			temp->edge = NULL;
+			free_edge(temp->edge);
 		free(temp->name);
 		temp->name = NULL;
 		free(temp);
@@ -68,6 +70,7 @@ void	free_all(t_data *data, int condition)
 	if (data->q_mode == OFF)
 		free(data->line);
 	data->line = NULL;
+	free(data->queue);
 	while (data->source != NULL)
 	{
 		temp = data->source;

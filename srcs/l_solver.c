@@ -29,33 +29,65 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 	return (new_option);
 }
 
+t_option	*cut_paths(t_data *data, t_option *option)
+{
+	t_option	*temp;
+	int			used;
+	int			i;
+
+	i = 0;
+	used = calculate_paths_used(data, option);
+	printf("cut_paths: used: %i\n\n", used);
+	temp = option;
+	while (i++ < used && temp->next)
+		temp = temp->next;
+	printf("cut_paths: i: %i\n\n", i);
+	if (temp && i > 1)
+	{
+		printf("\n\t\t\t\t\t\t\t\t\t\t CUTTING NOW \n\n");
+		temp->previous->next = NULL;
+		free_path(temp->path);
+		free (temp);
+	}
+
+	calculate_ants_in_paths(data, option);
+	return (option);
+}
+
 t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 {
 	t_path		*cur_path;
-	t_option	*option;
+	t_option	*all_paths;
+	int			count;
 
-	option = NULL;
+	count = 1;
+	printf("\n\n\nfind all disjoint paths\n");
+	printf("**********************************\n");
+	all_paths = NULL;
 	while (1)
 	{
 		cur_path = bfs(data, room);
 		if (cur_path == NULL)
 			break ;
-		if (option == NULL)
-			option = make_t_option(data, cur_path);
+		if (all_paths == NULL)
+			all_paths = make_t_option(data, cur_path);
 		else
 		{
-			option->next = make_t_option(data, cur_path);
-			option->next->previous = option;
-			option = option->next;
+			all_paths->next = make_t_option(data, cur_path);
+			all_paths->next->previous = all_paths;
+			all_paths = all_paths->next;
 		}
-		make_residual_path(option, room);
-		free (cur_path);
+		if (data->nb_ants < calculate_min_for_path(all_paths, count))
+			break ;
+		make_residual_path(all_paths, room, OFF);
+		count++;
 	}
-	if (option == NULL)
+	printf("\nfind_disjoint loop done!\n");
+	if (all_paths == NULL)
 		(error_exit1("no paths found\n", data));
-	while (option->previous != NULL)
-		option = option->previous;
-	return (option);
+	while (all_paths->previous != NULL)
+		all_paths = all_paths->previous;
+	return (all_paths);
 }
 
 t_option	*solver(t_data *data)
@@ -64,24 +96,35 @@ t_option	*solver(t_data *data)
 	t_option	*next_added;
 	t_room		**room;
 
+	data->queue = (int *)malloc(sizeof(int) * (data->nb_rooms * 2) + 1);
+	if (!data->queue)
+		error_exit1("malloc error", data); // Not final
+	printf("\n\n|data->queue: %p|\n", &data->queue);
+	printf("\tin solver\n\n");
 	room = make_room_array(data);
 	data->room = room;
 	free_vert(data);
 	orig_option = find_all_disjoint_paths(data, room);
+	printf("\nFIRST finding disjoint paths done\n");
+	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
+		orig_option = cut_paths(data, orig_option);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option)
-		|| calculate_paths(orig_option) <= data->nb_ants)
-		return (orig_option);
+		|| calculate_paths(orig_option) >= data->nb_ants)
+	{
+		printf("\n\nDON'T GO HERE\n");
+		return (cut_paths(data, orig_option));
+	}
+	printf("\ncomparison done\n");
 	next_added = vertex_disjoint(data, room, orig_option);
-	while (calculate_paths(orig_option) < calculate_paths_used(data, next_added))
+	while (calculate_paths(orig_option) <= calculate_paths_used(data, next_added))
 	{
 		free_option(orig_option);
 		orig_option = next_added;
-		//free_option(next_added);
 		next_added = vertex_disjoint(data, room, orig_option);
 	}
-	free_option(next_added);
+	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
+		orig_option = cut_paths(data, orig_option);
 	calculate_ants_in_paths(data, orig_option);
-	// all freeing are uncertain still!
 	return (orig_option);
 }
 
