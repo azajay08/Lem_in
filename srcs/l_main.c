@@ -37,6 +37,8 @@ void	activate_modes(t_data *data, char flag)
 		data->p_mode = ON;
 	else if (flag == 't')
 		data->t_mode = ON;
+	else
+		print_usage(data);
 }
 
 void	read_flags(t_data *data, int ac, char **argv)
@@ -48,7 +50,7 @@ void	read_flags(t_data *data, int ac, char **argv)
 	{
 		if (argv[1][i] && ft_strchr("qpht", argv[1][i]))
 		{
-			while (argv[1][i] && ft_strchr("qpht", argv[1][i]))
+			while (argv[1][i])
 			{
 				activate_modes(data, argv[1][i]);
 				i++;
