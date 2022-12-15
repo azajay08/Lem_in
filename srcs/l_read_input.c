@@ -22,6 +22,11 @@ void	verify_all(t_verify *verify, t_data *data)
 
 void	comment_found(char *line, t_verify *verify, t_data *data)
 {
+	if (verify->start == ON || verify->end == ON)
+	{
+		free(verify);
+		error_exit1(INVALID_COM, data);
+	}
 	if (ft_strequ(line, "##start"))
 	{
 		verify->start = ON;
@@ -75,6 +80,11 @@ void	read_input(t_data *data)
 	init_verify(verify);
 	line = NULL;
 	get_ant_info(line, data, verify);
+	if (data->nb_ants >= ANT_LIMIT)
+	{
+		free(verify);
+		error_exit1(TOO_MANY_ANTS, data);
+	}
 	read_room_and_link_info(line, verify, data);
 	verify_all(verify, data);
 	free(verify);

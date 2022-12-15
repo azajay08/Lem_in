@@ -44,6 +44,7 @@
 # define NO				0
 # define REACHED		-1
 # define END			-2
+# define ANT_LIMIT		30000
 
 # include "../libft/libft.h"
 # include <stdio.h>			//REMEMBER TO DELETE THIS AND stdint.h FROM PRINTF!!
