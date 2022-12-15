@@ -63,8 +63,8 @@ void	read_flags(t_data *data, int ac, char **argv)
 
 int	main(int ac, char **argv)
 {
-	t_data		*data;
-	t_option	*option;
+	t_data	*data;
+	t_opt	*option;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)

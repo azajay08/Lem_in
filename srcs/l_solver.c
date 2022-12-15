@@ -12,13 +12,13 @@
 
 #include "../includes/lem_in.h"
 
-t_option	*make_t_option(t_data *data, t_path *cur_path)
+t_opt	*make_t_opt(t_data *data, t_path *cur_path)
 {
-	t_option	*new_option;
+	t_opt	*new_option;
 
-	new_option = (t_option *)malloc(sizeof(t_option));
+	new_option = (t_opt *)malloc(sizeof(t_opt));
 	if (!new_option)
-		error_exit1("malloc failed in t_option", data);
+		error_exit1("malloc failed in t_opt", data);
 	new_option->next = NULL;
 	new_option->previous = NULL;
 	new_option->path = cur_path;
@@ -29,7 +29,7 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 	return (new_option);
 }
 
-int	calculate_paths(t_option *option)
+int	calculate_paths(t_opt *option)
 {
 	int	counter;
 
@@ -46,9 +46,9 @@ int	calculate_paths(t_option *option)
 	return (counter);
 }
 
-t_option	*cut_paths(t_data *data, t_option *option)
+t_opt	*cut_paths(t_data *data, t_opt *option)
 {
-	t_option	*temp;
+	t_opt		*temp;
 	int			used;
 	int			i;
 
@@ -67,10 +67,10 @@ t_option	*cut_paths(t_data *data, t_option *option)
 	return (option);
 }
 
-t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
+t_opt	*find_all_disjoint_paths(t_data *data, t_room **room)
 {
 	t_path		*cur_path;
-	t_option	*option;
+	t_opt		*option;
 
 	option = NULL;
 	while (1)
@@ -79,10 +79,10 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 		if (cur_path == NULL)
 			break ;
 		if (option == NULL)
-			option = make_t_option(data, cur_path);
+			option = make_t_opt(data, cur_path);
 		else
 		{
-			option->next = make_t_option(data, cur_path);
+			option->next = make_t_opt(data, cur_path);
 			option->next->previous = option;
 			option = option->next;
 		}
@@ -92,14 +92,14 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 	}
 	if (option == NULL)
 		(error_exit1("no paths found\n", data));
-	option = get_option_head(option);
+	option = get_opt_head(option);
 	return (option);
 }
 
-t_option	*solver(t_data *data)
+t_opt	*solver(t_data *data)
 {
-	t_option	*orig_option;
-	t_option	*next_opt;
+	t_opt		*orig_option;
+	t_opt		*next_opt;
 	t_room		**room;
 
 	room = make_room_array(data);

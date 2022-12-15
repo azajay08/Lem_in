@@ -45,11 +45,11 @@ void	free_ants(t_data *data)
 	}
 }
 
-void	free_option(t_option *option)
+void	free_option(t_opt *option)
 {
-	t_option	*temp;
+	t_opt	*temp;
 
-	option = get_option_head(option);
+	option = get_opt_head(option);
 	while (option)
 	{
 		temp = option;

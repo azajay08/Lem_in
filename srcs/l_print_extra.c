@@ -12,7 +12,7 @@
 
 #include "../includes/lem_in.h"
 
-void	print_paths(t_data *data, t_option *option)
+void	print_paths(t_data *data, t_opt *option)
 {
 	t_path		*path;
 	int			i;
@@ -39,7 +39,7 @@ void	print_paths(t_data *data, t_option *option)
 	}
 }
 
-void	print_flag_modes(t_data *data, t_option *option)
+void	print_flag_modes(t_data *data, t_opt *option)
 {
 	if (data->t_mode == ON)
 		ft_printf("\nTurns: %i\n", data->turns);

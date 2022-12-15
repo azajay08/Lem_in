@@ -69,11 +69,11 @@ t_vert	*make_room(char *line, t_verify *verify, t_data *data)
 	return (new_room);
 }
 
-t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room)
+t_vert	*get_vert_info(char *line, t_verify *verif, t_data *data, t_vert *room)
 {
 	t_vert	*new_room;
 
-	new_room = make_room(line, verify, data);
+	new_room = make_room(line, verif, data);
 	if (!room)
 	{
 		data->source = new_room;
@@ -84,8 +84,8 @@ t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room)
 		room->next = new_room;
 		room = room->next;
 	}
-	verify->start = OFF;
-	verify->end = OFF;
+	verif->start = OFF;
+	verif->end = OFF;
 	data->nb_rooms++;
 	return (room);
 }

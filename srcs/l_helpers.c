@@ -50,9 +50,9 @@ t_path	*get_path_head(t_path *path)
 	return (head);
 }
 
-t_option	*get_option_head(t_option *option)
+t_opt	*get_opt_head(t_opt *option)
 {
-	t_option	*head;
+	t_opt	*head;
 
 	head = option;
 	while (head->previous != NULL)
@@ -60,9 +60,9 @@ t_option	*get_option_head(t_option *option)
 	return (head);
 }
 
-t_option	*get_option_tail(t_option *option)
+t_opt	*get_opt_tail(t_opt *option)
 {
-	t_option	*tail;
+	t_opt	*tail;
 
 	tail = option;
 	while (tail->next != NULL)

@@ -12,10 +12,10 @@
 
 #include "../includes/lem_in.h"
 
-int	calculate_diff(t_option *option)
+int	calculate_diff(t_opt *option)
 {
-	int			diff;
-	t_option	*temp;
+	int		diff;
+	t_opt	*temp;
 
 	temp = NULL;
 	while (option->next)
@@ -30,11 +30,11 @@ int	calculate_diff(t_option *option)
 	return (diff);
 }
 
-int	calculate_min_for_path(t_option *option)
+int	calculate_min_for_path(t_opt *option)
 {
-	t_option	*temp;
-	int			big_edge;
-	int			res;
+	t_opt	*temp;
+	int		big_edge;
+	int		res;
 
 	res = 1;
 	temp = option;
@@ -49,7 +49,7 @@ int	calculate_min_for_path(t_option *option)
 	return (res);
 }
 
-int	calculate_paths_used(t_data *data, t_option *option)
+int	calculate_paths_used(t_data *data, t_opt *option)
 {
 	int	nb_of_paths;
 
@@ -66,10 +66,10 @@ int	calculate_paths_used(t_data *data, t_option *option)
 	return (0);
 }
 
-void	deploy_first_round(t_option *option, int nb_paths)
+void	deploy_first_round(t_opt *option, int nb_paths)
 {
-	t_option	*opt;
-	int			big_edge;
+	t_opt	*opt;
+	int		big_edge;
 
 	opt = option;
 	while (opt->next)
@@ -87,13 +87,13 @@ void	deploy_first_round(t_option *option, int nb_paths)
 	opt = NULL;
 }
 
-void	calculate_ants_in_paths(t_data *data, t_option *option)
+void	calculate_ants_in_paths(t_data *data, t_opt *option)
 {
-	t_option	*opt;
-	int			remain;
+	t_opt	*opt;
+	int		remain;
 
 	data->nb_paths = calculate_paths(option);
-	opt = get_option_tail(option);
+	opt = get_opt_tail(option);
 	if (data->nb_paths > 1)
 	{
 		deploy_first_round(option, data->nb_paths);

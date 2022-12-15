@@ -12,7 +12,7 @@
 
 #include "../includes/lem_in.h"
 
-t_ant	*make_ant(t_data *data, t_option *opt)
+t_ant	*make_ant(t_data *data, t_opt *opt)
 {
 	t_ant	*new_ant;
 	t_path	*temp;
@@ -33,7 +33,7 @@ t_ant	*make_ant(t_data *data, t_option *opt)
 	return (new_ant);
 }
 
-void	reduce_paths(t_data *data, t_option *opt)
+void	reduce_paths(t_data *data, t_opt *opt)
 {
 	opt->limit--;
 	opt->used++;
@@ -45,9 +45,9 @@ void	reduce_paths(t_data *data, t_option *opt)
 	}
 }
 
-t_ant	*crown_queen(t_data *data, t_option *opt, t_ant *ant)
+t_ant	*crown_queen(t_data *data, t_opt *opt, t_ant *ant)
 {
-	t_ant		*new_ant;
+	t_ant	*new_ant;
 
 	new_ant = make_ant(data, opt);
 	if (!data->queen)
@@ -63,10 +63,10 @@ t_ant	*crown_queen(t_data *data, t_option *opt, t_ant *ant)
 	return (ant);
 }
 
-void	make_ant_army(t_data *data, t_option *option)
+void	make_ant_army(t_data *data, t_opt *option)
 {
-	t_ant		*ant;
-	t_option	*head;
+	t_ant	*ant;
+	t_opt	*head;
 
 	ant = NULL;
 	head = option;

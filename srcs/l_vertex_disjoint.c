@@ -43,13 +43,13 @@ void	room_switch(t_room **room, int index, t_edge *link, int vertex)
 		room[index]->bfs_folo = OFF;
 }
 
-void	make_residual_path(t_option *option, t_room **room, int vertex)
+void	make_residual_path(t_opt *option, t_room **room, int vertex)
 {
-	t_path		*pathh;
-	t_option	*opt;
-	t_edge		*link;
+	t_path	*pathh;
+	t_opt	*opt;
+	t_edge	*link;
 
-	opt = get_option_head(option);
+	opt = get_opt_head(option);
 	while (opt)
 	{
 		pathh = opt->path;
@@ -72,10 +72,10 @@ void	make_residual_path(t_option *option, t_room **room, int vertex)
 	}
 }
 
-t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option)
+t_opt	*vertex_disjoint(t_data *data, t_room **room, t_opt *option)
 {
-	t_option	*new_option;
-	t_path		*temp_path;
+	t_opt	*new_option;
+	t_path	*temp_path;
 
 	data->vertex = ON;
 	make_residual_path(option, room, ON);

@@ -35,7 +35,7 @@ void	move_ants(t_data *data, t_ant *ant)
 	}
 }
 
-void	launch_ants(int i, t_data *data, t_ant *ant, t_option *opt)
+void	launch_ants(int i, t_data *data, t_ant *ant, t_opt *opt)
 {
 	int	reduce;
 
@@ -62,7 +62,7 @@ void	launch_ants(int i, t_data *data, t_ant *ant, t_option *opt)
 	}
 }
 
-void	print_moves(t_data *data, t_option *opt, t_option *head, t_ant *ant)
+void	print_moves(t_data *data, t_opt *opt, t_opt *head, t_ant *ant)
 {
 	int	i;
 
@@ -88,14 +88,14 @@ void	print_moves(t_data *data, t_option *opt, t_option *head, t_ant *ant)
 	write(1, "\n", 1);
 }
 
-void	print_output(t_data *data, t_option *option)
+void	print_output(t_data *data, t_opt *option)
 {
-	t_option	*head;
-	t_ant		*ant;
-	int			p_tmp;
+	t_opt	*head;
+	t_ant	*ant;
+	int		p_tmp;
 
 	p_tmp = data->nb_paths;
-	option = get_option_head(option);
+	option = get_opt_head(option);
 	head = option;
 	make_ant_army(data, option);
 	ant = data->queen;
@@ -106,7 +106,7 @@ void	print_output(t_data *data, t_option *option)
 		write(1, "\n", 1);
 	}
 	print_moves(data, option, head, ant);
-	option = get_option_head(option);
+	option = get_opt_head(option);
 	if (data->t_mode == ON || data->p_mode == ON)
 		print_flag_modes(data, option);
 	free_option(option);

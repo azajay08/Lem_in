@@ -104,16 +104,16 @@ typedef struct s_path
 	struct s_path	*next;
 }					t_path;
 
-typedef struct s_option
+typedef struct s_opt
 {
 	struct s_path	*path;
 	int				p_len;
 	int				used;
 	int				limit;
 	int				ants;
-	struct s_option	*previous;
-	struct s_option	*next;
-}					t_option;
+	struct s_opt	*previous;
+	struct s_opt	*next;
+}					t_opt;
 
 typedef struct s_data
 {
@@ -148,7 +148,7 @@ void	comment_found(char *line, t_verify *verify, t_data *data);
 void	get_link_info(char *line, t_verify *verify, t_data *data);
 int		comment_start_end(char *line);
 int		check_line_is_digits(char *line);
-t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room);
+t_vert	*get_vert_info(char *line, t_verify *verif, t_data *data, t_vert *room);
 t_room	**make_room_array(t_data *data);
 t_room	*make_index_room(t_vert *head, t_room *new_room, int index);
 
@@ -180,7 +180,7 @@ void	free_edge(t_edge *head);
 void	free_room_arr(t_data *data);
 void	free_vert(t_data *data);
 
-void	free_option(t_option *option);
+void	free_option(t_opt *option);
 void	free_path(t_path *path);
 void	free_ants(t_data *data);
 
@@ -188,9 +188,9 @@ void	free_ants(t_data *data);
 	Solving functions
 */
 
-t_option	*solver(t_data *data);
-t_option	*find_all_disjoint_paths(t_data *data, t_room **room);
-t_option	*make_t_option(t_data *data, t_path *cur_path);
+t_opt	*solver(t_data *data);
+t_opt	*find_all_disjoint_paths(t_data *data, t_room **room);
+t_opt	*make_t_opt(t_data *data, t_path *cur_path);
 
 t_path	*bfs(t_data *data, t_room **room);
 void	set_queue(t_room **room, int *queue, int index);
@@ -202,8 +202,8 @@ int		search_int_from_path(t_room **room, int index, int x, int *queue);
 void	clean_bfs(t_data *data, t_room **room);
 void	init_queue(t_data *data);
 
-t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option);
-void	make_residual_path(t_option *option, t_room **room, int vertex);
+t_opt	*vertex_disjoint(t_data *data, t_room **room, t_opt *option);
+void	make_residual_path(t_opt *option, t_room **room, int vertex);
 
 void	find_edge_to_delete(t_room **room, t_path *path);
 void	set_vertex_queue(t_room **room, int *queue, int index);
@@ -212,26 +212,24 @@ void	set_vertex_queue(t_room **room, int *queue, int index);
 	Functions that calculate data
 */
 
-int		calculate_min_for_path(t_option *option);
-int		calculate_paths_used(t_data *data, t_option *option);
-int		calculate_paths(t_option *option);
-void	calculate_ants_in_paths(t_data *data, t_option *option);
-
+int		calculate_min_for_path(t_opt *option);
+int		calculate_paths_used(t_data *data, t_opt *option);
+int		calculate_paths(t_opt *option);
+void	calculate_ants_in_paths(t_data *data, t_opt *option);
 
 /*
 	Functions that locate data
 */
 
-t_vert		*find_room_index(t_vert *head, int target);
-t_vert		*find_room_name(t_vert *head, char *target);
-t_path		*get_path_head(t_path *path);
-t_option	*get_option_head(t_option *option);
-t_option	*get_option_tail(t_option *option);
+t_vert	*find_room_index(t_vert *head, int target);
+t_vert	*find_room_name(t_vert *head, char *target);
+t_path	*get_path_head(t_path *path);
+t_opt	*get_opt_head(t_opt *option);
+t_opt	*get_opt_tail(t_opt *option);
 
-
-void		print_output(t_data *data, t_option *option);
-void		make_ant_army(t_data *data, t_option *option);
-void		print_paths(t_data *data, t_option *option);
-void		print_flag_modes(t_data *data, t_option *option);
+void	print_output(t_data *data, t_opt *option);
+void	make_ant_army(t_data *data, t_opt *option);
+void	print_paths(t_data *data, t_opt *option);
+void	print_flag_modes(t_data *data, t_opt *option);
 
 #endif
