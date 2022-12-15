@@ -39,22 +39,19 @@ void	clean_bfs(t_data *data, t_room **room)
 		room[i]->bfs_folo = OFF;
 		room[i]->to_folo = -1;
 		room[i]->hop_off_switch = OFF;
-		printf("  %i", data->queue[i]);
 		i++;
 	}
-	printf("\nclean bfs done\n");
 }
 
-int	search_int_in_int_array(int index, int *queue) // better name?
+int	search_int_in_int_array(int index, int *queue)
 {
 	int	i;
 
 	i = 0;
-	printf("\nsearch int array\n");
 	while (queue[i] != END)
 	{
 		if (queue[i] == -1)
-			break;
+			break ;
 		if (index == queue[i] || index == -1)
 			return (0);
 		i++;
@@ -68,10 +65,8 @@ int	search_int_from_path(t_room **room, int index, int x, int *queue)
 	int	i;
 
 	prev = room[x]->bfs_previous;
-	printf("\nsearch int from path\n");
 	while (prev != -1 && room[prev]->start == OFF)
 	{
-		printf("prev: %i", prev);
 		if (room[prev]->bfs_previous == index)
 			return (0);
 		prev = room[prev]->bfs_previous;
@@ -80,7 +75,7 @@ int	search_int_from_path(t_room **room, int index, int x, int *queue)
 	while (queue[i] != END)
 	{
 		if (queue[i] == -1)
-			break;
+			break ;
 		i++;
 	}
 	return (i);
@@ -90,7 +85,6 @@ void	follow_backwards(t_room **room, int *queue, int index)
 {
 	int	i;
 
-	printf("\tto_follow/edge to: %i\n", room[index]->to_folo);
 	i = 0;
 	while (queue[i] != -1)
 	{

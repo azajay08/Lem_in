@@ -33,7 +33,6 @@ void	free_path(t_path *path)
 	}
 }
 
-
 void	free_ants(t_data *data)
 {
 	t_ant	*temp;

@@ -224,6 +224,7 @@ t_vert		*find_room_index(t_vert *head, int target);
 t_vert		*find_room_name(t_vert *head, char *target);
 t_path		*get_path_head(t_path *path);
 t_option	*get_option_head(t_option *option);
+t_option	*get_option_tail(t_option *option);
 
 
 void		print_output(t_data *data, t_option *option);

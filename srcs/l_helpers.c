@@ -14,7 +14,7 @@
 
 t_vert	*find_room_name(t_vert *head, char *target)
 {
-	t_vert *temp;
+	t_vert	*temp;
 
 	temp = head;
 	while (temp != NULL)
@@ -28,7 +28,7 @@ t_vert	*find_room_name(t_vert *head, char *target)
 
 t_vert	*find_room_index(t_vert *head, int target)
 {
-	t_vert *temp;
+	t_vert	*temp;
 
 	temp = head;
 	while (temp != NULL)
@@ -43,7 +43,7 @@ t_vert	*find_room_index(t_vert *head, int target)
 t_path	*get_path_head(t_path *path)
 {
 	t_path	*head;
-	
+
 	head = path;
 	while (head->previous != NULL)
 		head = head->previous;
@@ -58,4 +58,14 @@ t_option	*get_option_head(t_option *option)
 	while (head->previous != NULL)
 		head = head->previous;
 	return (head);
+}
+
+t_option	*get_option_tail(t_option *option)
+{
+	t_option	*tail;
+
+	tail = option;
+	while (tail->next != NULL)
+		tail = tail->next;
+	return (tail);
 }
