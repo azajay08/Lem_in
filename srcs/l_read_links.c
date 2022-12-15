@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 14:35:50 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/15 15:27:12 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	assign_link(char *link_to, t_vert *curr_room, t_vert *head)
 			curr_room->edge = curr_room->edge->next;
 		curr_room->edge->next = append_edge(room);
 		curr_room->edge->next->head = curr_room->edge->head;
-		curr_room->edge = curr_room->edge->next;
 	}
 	curr_room->edge = curr_room->edge->head;
 	return (1);

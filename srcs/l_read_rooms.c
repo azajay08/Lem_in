@@ -6,23 +6,11 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 03:45:31 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/15 15:23:17 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
-
-void	arrange_source(t_vert *new_room, t_data *data, t_verify *verify)
-{
-	t_vert	*temp;
-
-	temp = data->source;
-	if (verify->start == ON)
-	{
-		new_room->next = temp;
-		data->source = new_room;
-	}
-}
 
 int	check_dups(t_vert *head, t_vert *curr_room)
 {
@@ -93,13 +81,8 @@ t_vert	*get_vert_info(char *line, t_verify *verify, t_data *data, t_vert *room)
 	}
 	else
 	{
-		if (verify->start == ON)
-			arrange_source(new_room, data, verify);
-		else
-		{
-			room->next = new_room;
-			room = room->next;
-		}
+		room->next = new_room;
+		room = room->next;
 	}
 	verify->start = OFF;
 	verify->end = OFF;
