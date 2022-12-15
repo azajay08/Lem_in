@@ -46,19 +46,21 @@ void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 	{
 		ret = get_next_line(0, &line);
 		if (ret < 1)
-			error_exit2(GNL_FAIL, data, verify);
+			error_exit2(MAP_ERROR, data, verify);
 		if (line[0] == '#')
 			comment_found(line, verify, data);
 		else if (line[0] == 'L')
 			error_exit2(ROOM_FAIL, data, verify);
 		else if (!ft_strchr(line, ' '))
 			break ;
-		else if (verify->all_rooms_read == NOT_READ)
+		else
 			room = get_vert_info(line, verify, data, room);
 		if (data->q_mode == OFF)
 			data->line = ft_strjoin_line(data->line, line);
 		ft_strdel(&line);
 	}
+	if (data->nb_rooms == 0)
+		error_exit1(NO_ROOMS, data);
 	get_link_info(line, verify, data);
 }
 
@@ -78,5 +80,5 @@ void	read_input(t_data *data)
 	free(verify);
 	data->queue = (int *)malloc(sizeof(int) * ((data->nb_rooms * 2) + 1));
 	if (!data->queue)
-		error_exit1("malloc error", data); // is error message ok?
+		error_exit1(QUEUE_FAIL, data);
 }

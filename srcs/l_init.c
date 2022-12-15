@@ -51,7 +51,6 @@ void	init_verify(t_verify *verify)
 	verify->nb_of_ends = 0;
 	verify->start = 0;
 	verify->end = 0;
-	verify->all_rooms_read = NOT_READ;
 }
 
 void	init_vert(t_vert *room)

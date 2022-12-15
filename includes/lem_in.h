@@ -15,13 +15,20 @@
 
 # define GNL_FAIL		"ERROR! File input\n"
 # define ANT_ERROR		"ERROR! Not a valid number of ants\n"
+# define TOO_MANY_ANTS	"ERROR! Too many ants, limit is 30 000\n"
 # define MAP_ERROR		"ERROR! Not a valid map\n"
 # define DATA_FAIL		"ERROR! Memory allocation of t_data failed!\n"
 # define VERIFY_FAIL	"ERROR! Memory allocation of t_verify failed!\n"
 # define VERT_FAIL		"ERROR! Memory allocation of t_vert failed\n"
 # define T_ROOM_FAIL	"ERROR! Memory allocation of t_room failed\n"
+# define QUEUE_FAIL		"ERROR! Memory allocation of data->queue failed\n"
+# define OPT_FAIL		"ERROR! Memory allocation of t_opt failed\n"
+# define PATH_FAIL		"ERROR! Memory allocation of t_path failed\n"
+# define NO_PATHS		"ERROR! No paths found\n"
 # define ANTS_FAIL		"ERROR! Memory allocation of t_ants failed\n"
 # define ROOM_FAIL		"ERROR! Invalid room\n"
+# define SPACES			"ERROR! Invalid room, too many spaces\n"
+# define NO_ROOMS		"ERROR! No rooms\n"
 # define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
 # define INVALID_COM	"ERROR! Invalid start or end\n"
@@ -31,7 +38,6 @@
 # define ON				1
 # define COMMENT		1
 # define START_END		2
-# define NOT_READ		0
 # define ERROR			0
 # define SUCCESS		1
 # define YES			1
@@ -68,7 +74,6 @@ typedef struct s_verify
 	int				index;
 	int8_t			start;
 	int8_t			end;
-	int8_t			all_rooms_read;
 }					t_verify;
 
 typedef struct s_vert

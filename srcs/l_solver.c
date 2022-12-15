@@ -18,7 +18,7 @@ t_opt	*make_t_opt(t_data *data, t_path *cur_path)
 
 	new_option = (t_opt *)malloc(sizeof(t_opt));
 	if (!new_option)
-		error_exit1("malloc failed in t_opt", data);
+		error_exit1(OPT_FAIL, data);
 	new_option->next = NULL;
 	new_option->previous = NULL;
 	new_option->path = cur_path;
@@ -91,7 +91,7 @@ t_opt	*find_all_disjoint_paths(t_data *data, t_room **room)
 		make_residual_path(option, room, OFF);
 	}
 	if (option == NULL)
-		(error_exit1("no paths found\n", data));
+		(error_exit1(NO_PATHS, data));
 	option = get_opt_head(option);
 	return (option);
 }

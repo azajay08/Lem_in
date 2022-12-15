@@ -22,7 +22,6 @@ void	free_path(t_path *path)
 		temp = path;
 		path = path->next;
 		// if (temp->previous != NULL)
-		// 	printf("\nyep\n");
 		// if (path->next == NULL)
 		// {
 		// 	free (path);

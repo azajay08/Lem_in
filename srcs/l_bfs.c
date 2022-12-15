@@ -18,7 +18,7 @@ t_path	*init_path(t_data *data, int index)
 
 	new_path = (t_path *)malloc(sizeof(t_path));
 	if (!new_path)
-		error_exit1("malloc failed in t_path", data);
+		error_exit1(PATH_FAIL, data);
 	new_path->index = index;
 	new_path->edges = -1;
 	new_path->previous = NULL;
