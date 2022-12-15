@@ -32,80 +32,6 @@ void	reset_map(t_room **room, int nb)
 	}
 }
 
-void	delete_the_edge(t_room **room, int index)
-{
-	t_edge	*temp;
-	t_edge	*prev;
-
-	temp = room[index]->edge;
-	prev = room[index]->edge;
-	while (temp)
-	{
-		if (temp->on_off == OFF)
-		{
-			if (temp == room[index]->edge)
-				room[index]->edge = temp->next;
-			else
-				prev->next = temp->next;
-			temp->next = NULL;
-			free(temp);
-			break ;
-		}
-		prev = temp;
-		temp = temp->next;
-	}
-}
-
-int	find_from_path(t_path *path, int room)
-{
-	t_path	*temp;
-
-	temp = path;
-	while (path)
-	{
-		if (room == path->index)
-		{
-			if (!path->next || !path->previous)
-				return (1);
-			else
-				return (0);
-		}
-		path = path->next;
-	}
-	path = temp;
-	return (1);
-}
-
-void	find_edge_to_delete(t_room **room, t_path *path)
-{
-	t_edge	*temp_edge;
-	t_path	*path_head;
-
-	path_head = path;
-	path = path->next;
-	while (path)
-	{
-		if (room[path->previous->index]->start == ON
-			|| room[path->previous->index]->end == ON)
-			path = path->next;
-		if (!path)
-			break ;
-		temp_edge = room[path->previous->index]->edge;
-		while (temp_edge)
-		{
-			if (temp_edge->on_off == OFF
-				&& !find_from_path(path_head, temp_edge->room))
-			{
-				delete_the_edge(room, path->previous->index);
-				break ;
-			}
-			temp_edge = temp_edge->next;
-		}
-		path = path->next;
-	}
-	path = path_head;
-}
-
 void	room_switch(t_room **room, int index, t_edge *link, int vertex)
 {
 	link->on_off = OFF;
@@ -159,6 +85,7 @@ t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option)
 	reset_map(room, data->nb_rooms - 1);
 	make_residual_path(option, room, OFF);
 	find_edge_to_delete(room, temp_path);
+	free_path (temp_path);
 	data->vertex = OFF;
 	reset_map(room, data->nb_rooms - 1);
 	new_option = find_all_disjoint_paths(data, room);

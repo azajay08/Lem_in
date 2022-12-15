@@ -29,6 +29,23 @@ t_option	*make_t_option(t_data *data, t_path *cur_path)
 	return (new_option);
 }
 
+int	calculate_paths(t_option *option)
+{
+	int	counter;
+
+	if (!option)
+		return (0);
+	counter = 1;
+	while (option->next)
+		option = option->next;
+	while (option->previous)
+	{
+		option = option->previous;
+		counter++;
+	}
+	return (counter);
+}
+
 t_option	*cut_paths(t_data *data, t_option *option)
 {
 	t_option	*temp;
@@ -54,9 +71,7 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 {
 	t_path		*cur_path;
 	t_option	*option;
-	int			count;
 
-	count = 1;
 	option = NULL;
 	while (1)
 	{
@@ -71,10 +86,9 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 			option->next->previous = option;
 			option = option->next;
 		}
-		if (data->nb_ants < calculate_min_for_path(option, count))
+		if (data->nb_ants < calculate_min_for_path(option))
 			break ;
 		make_residual_path(option, room, OFF);
-		count++;
 	}
 	if (option == NULL)
 		(error_exit1("no paths found\n", data));
@@ -85,27 +99,23 @@ t_option	*find_all_disjoint_paths(t_data *data, t_room **room)
 t_option	*solver(t_data *data)
 {
 	t_option	*orig_option;
-	t_option	*next_added;
+	t_option	*next_opt;
 	t_room		**room;
 
-	data->queue = (int *)malloc(sizeof(int) * (data->nb_rooms * 2) + 1);
-	if (!data->queue)
-		error_exit1("malloc error", data); // Not final
 	room = make_room_array(data);
 	data->room = room;
-	free_vert(data);
 	orig_option = find_all_disjoint_paths(data, room);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		orig_option = cut_paths(data, orig_option);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option)
 		|| calculate_paths(orig_option) >= data->nb_ants)
 		return (cut_paths(data, orig_option));
-	next_added = vertex_disjoint(data, room, orig_option);
-	while (calculate_paths(orig_option) <= calculate_paths_used(data, next_added))
+	next_opt = vertex_disjoint(data, room, orig_option);
+	while (calculate_paths(orig_option) <= calculate_paths_used(data, next_opt))
 	{
 		free_option(orig_option);
-		orig_option = next_added;
-		next_added = vertex_disjoint(data, room, orig_option);
+		orig_option = next_opt;
+		next_opt = vertex_disjoint(data, room, orig_option);
 	}
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		orig_option = cut_paths(data, orig_option);

@@ -76,4 +76,7 @@ void	read_input(t_data *data)
 	read_room_and_link_info(line, verify, data);
 	verify_all(verify, data);
 	free(verify);
+	data->queue = (int *)malloc(sizeof(int) * ((data->nb_rooms * 2) + 1));
+	if (!data->queue)
+		error_exit1("malloc error", data); // is error message ok?
 }

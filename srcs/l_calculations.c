@@ -12,23 +12,6 @@
 
 #include "../includes/lem_in.h"
 
-int	calculate_paths(t_option *option)
-{
-	int	counter;
-
-	if (!option)
-		return (0);
-	counter = 1;
-	while (option->next)
-		option = option->next;
-	while (option->previous)
-	{
-		option = option->previous;
-		counter++;
-	}
-	return (counter);
-}
-
 int	calculate_diff(t_option *option)
 {
 	int			diff;
@@ -47,7 +30,7 @@ int	calculate_diff(t_option *option)
 	return (diff);
 }
 
-int	calculate_min_for_path(t_option *option, int nb_paths)
+int	calculate_min_for_path(t_option *option)
 {
 	t_option	*temp;
 	int			big_edge;
@@ -55,7 +38,7 @@ int	calculate_min_for_path(t_option *option, int nb_paths)
 
 	res = 1;
 	temp = option;
-	while (temp->next && --nb_paths)
+	while (temp->next)
 		temp = temp->next;
 	big_edge = temp->p_len + 1;
 	while (temp->previous)
@@ -76,7 +59,7 @@ int	calculate_paths_used(t_data *data, t_option *option)
 	if ((nb_of_paths == 2 && data->nb_ants < calculate_diff(option))
 		|| data->nb_ants < nb_of_paths)
 		return (1);
-	if (data->nb_ants >= calculate_min_for_path(option, nb_of_paths))
+	if (data->nb_ants >= calculate_min_for_path(option))
 		return (nb_of_paths);
 	else
 		return (nb_of_paths - 1);
@@ -110,13 +93,11 @@ void	calculate_ants_in_paths(t_data *data, t_option *option)
 	int			remain;
 
 	data->nb_paths = calculate_paths(option);
-	opt = option;
+	opt = get_option_tail(option);
 	if (data->nb_paths > 1)
 	{
-		while (opt->next)
-			opt = opt->next;
 		deploy_first_round(option, data->nb_paths);
-		remain = data->nb_ants - calculate_min_for_path(opt, data->nb_paths);
+		remain = data->nb_ants - calculate_min_for_path(opt);
 		opt = option;
 		while (opt)
 		{

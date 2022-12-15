@@ -109,6 +109,6 @@ void	print_output(t_data *data, t_option *option)
 	option = get_option_head(option);
 	if (data->t_mode == ON || data->p_mode == ON)
 		print_flag_modes(data, option);
-	// free_option(option);
-	// free_ants(data);
+	free_option(option);
+	free_ants(data);
 }

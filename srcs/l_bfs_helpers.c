@@ -59,42 +59,6 @@ int	search_int_in_int_array(int index, int *queue)
 	return (i);
 }
 
-int	search_int_from_path(t_room **room, int index, int x, int *queue)
-{
-	int	prev;
-	int	i;
-
-	prev = room[x]->bfs_previous;
-	while (prev != -1 && room[prev]->start == OFF)
-	{
-		if (room[prev]->bfs_previous == index)
-			return (0);
-		prev = room[prev]->bfs_previous;
-	}
-	i = 0;
-	while (queue[i] != END)
-	{
-		if (queue[i] == -1)
-			break ;
-		i++;
-	}
-	return (i);
-}
-
-void	follow_backwards(t_room **room, int *queue, int index)
-{
-	int	i;
-
-	i = 0;
-	while (queue[i] != -1)
-	{
-		i++;
-	}
-	queue[i] = room[index]->to_folo;
-	room[queue[i]]->bfs_previous = index;
-	room[queue[i]]->hop_off_switch = ON;
-}
-
 void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index)
 {
 	int		i;

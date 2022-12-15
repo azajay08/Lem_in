@@ -205,11 +205,14 @@ void	init_queue(t_data *data);
 t_option	*vertex_disjoint(t_data *data, t_room **room, t_option *option);
 void	make_residual_path(t_option *option, t_room **room, int vertex);
 
+void	find_edge_to_delete(t_room **room, t_path *path);
+void	set_vertex_queue(t_room **room, int *queue, int index);
+
 /*
 	Functions that calculate data
 */
 
-int		calculate_min_for_path(t_option *option, int nb_paths);
+int		calculate_min_for_path(t_option *option);
 int		calculate_paths_used(t_data *data, t_option *option);
 int		calculate_paths(t_option *option);
 void	calculate_ants_in_paths(t_data *data, t_option *option);

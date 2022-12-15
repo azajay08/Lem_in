@@ -116,5 +116,6 @@ t_room	**make_room_array(t_data *data)
 	}
 	else
 		fill_room_array(data, room, head, i);
+	free_vert(data);
 	return (room);
 }
