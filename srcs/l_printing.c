@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/15 15:40:05 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/15 19:41:03 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	print_ant_move(t_data *data, int num, int index)
 
 void	move_ants(t_data *data, t_ant *ant)
 {
-	print_ant_move(data, ant->ant_num, ant->head->index);
 	ant->head = ant->head->next;
 	if (!ant->head)
 	{
@@ -39,7 +38,7 @@ void	launch_ants(int i, t_data *data, t_ant *ant, t_opt *opt)
 {
 	int	reduce;
 
-	reduce = 0;
+	reduce = OFF;
 	while (i < data->nb_paths)
 	{
 		print_ant_move(data, ant->ant_num, ant->head->index);
@@ -50,7 +49,7 @@ void	launch_ants(int i, t_data *data, t_ant *ant, t_opt *opt)
 				reduce++;
 		}
 		opt = opt->next;
-		ant->head = ant->head->next;
+		move_ants(data, ant);
 		ant->launched = YES;
 		ant = ant->next;
 		i++;
@@ -68,8 +67,8 @@ void	print_moves(t_data *data, t_opt *opt, t_opt *head, t_ant *ant)
 
 	while (data->ants_in_sink < data->nb_ants)
 	{
-		data->turns++;
 		write(1, "\n", 1);
+		data->turns++;
 		ant = data->queen;
 		while (ant != NULL)
 		{
@@ -81,7 +80,10 @@ void	print_moves(t_data *data, t_opt *opt, t_opt *head, t_ant *ant)
 				break ;
 			}
 			if (ant->finished == NO && ant->launched == YES)
+			{
+				print_ant_move(data, ant->ant_num, ant->head->index);
 				move_ants(data, ant);
+			}
 			ant = ant->next;
 		}
 	}
