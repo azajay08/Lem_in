@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_solver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/09 03:21:19 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/16 19:11:37 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ t_opt	*solver(t_data *data)
 	}
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		orig_option = cut_paths(data, orig_option);
-	calculate_ants_in_paths(data, orig_option);
+	if (orig_option->limit == 0)
+		calculate_ants_in_paths(data, orig_option);
 	return (orig_option);
 }
 

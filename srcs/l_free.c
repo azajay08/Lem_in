@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_free.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 00:41:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/05 23:43:31 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:43:31 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	free_path(t_path *path)
 	{
 		temp = path;
 		path = path->next;
+		temp->previous = NULL;
+		temp->next = NULL;
 		// if (temp->previous != NULL)
 		// if (path->next == NULL)
 		// {
@@ -40,6 +42,8 @@ void	free_ants(t_data *data)
 	{
 		temp = data->queen;
 		data->queen = data->queen->next;
+		temp->next = NULL;
+		temp->head = NULL;
 		free(temp);
 	}
 }
@@ -53,6 +57,9 @@ void	free_option(t_opt *option)
 	{
 		temp = option;
 		free_path(option->path);
+		option = option->next;
+		temp->previous = NULL;
+		temp->next = NULL;
 		// if (option->previous)
 		// 	free(option->previous);
 		// if (option->next == NULL)
@@ -60,7 +67,6 @@ void	free_option(t_opt *option)
 		// 	free (option);
 		// 	break ;
 		// }
-		option = option->next;
 		free(temp);
 	}
 	free(option);

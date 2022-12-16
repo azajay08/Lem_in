@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:54:33 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/16 16:54:35 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:27:28 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,19 @@ void	delete_the_edge(t_room **room, int index)
 	{
 		if (temp->on_off == OFF)
 		{
+			printf("edge to delete address: %p\n", temp);
 			if (temp == room[index]->edge)
 				room[index]->edge = temp->next;
 			else
 				prev->next = temp->next;
 			temp->next = NULL;
+			if (temp->head)	//probs will delete
+			{
+				free (temp->head);
+				temp->head = NULL;
+			}
 			free(temp);
+			temp = NULL;
 			break ;
 		}
 		prev = temp;

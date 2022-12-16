@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_free_all.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:42:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 03:55:54 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:37:15 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_room_arr(t_data *data)
 		free(temp[i]->name);
 		temp[i]->name = NULL;
 		if (temp[i]->edge)
-			free_edge(temp[i]->edge->head);
+			free_edge(temp[i]->edge);
 		free(temp[i]);
 		i++;
 	}

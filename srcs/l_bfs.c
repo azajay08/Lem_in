@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:39:49 by mtissari          #+#    #+#             */
-/*   Updated: 2022/11/22 16:01:00 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:28:19 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	set_queue(t_room **room, int *queue, int index)
 			add_to_queue(room, edge, &queue[i], index);
 		edge = edge->next;
 	}
+	edge = NULL;
 }
 
 t_path	*bfs(t_data *data, t_room **room)

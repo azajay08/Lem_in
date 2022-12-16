@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:54:38 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/16 16:54:39 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:28:28 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	set_vert_queue(t_room **room, int *queue, int index)
 			add_to_queue(room, edge, &queue[i], index);
 		edge = edge->next;
 	}
+	edge = NULL;
 }
 
 void	set_vertex_queue(t_room **room, int *queue, int index)

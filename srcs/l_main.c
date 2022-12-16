@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_main.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/13 03:19:05 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/16 17:47:27 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,12 @@ int	main(int ac, char **argv)
 	if (ac > 1)
 		read_flags(data, ac, argv);
 	read_input(data);
+	//system("leaks lem-in");
 	option = solver(data);
+	system("leaks lem-in");
 	print_output(data, option);
+	//system("leaks lem-in");
 	free_all(data, SUCCESS);
+	//system("leaks lem-in");
 	return (0);
 }
