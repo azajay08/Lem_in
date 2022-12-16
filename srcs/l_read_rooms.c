@@ -6,11 +6,30 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/15 15:23:17 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/16 15:59:26 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+int	space_count(char *line)
+{
+	int	i;
+	int	spaces;
+
+	i = 0;
+	spaces = 0;
+	while (line[i])
+	{
+		if (ft_isspace(line[i]))
+			spaces++;
+		i++;
+	}
+	if (spaces == 2)
+		return (0);
+	else
+		return (1);
+}
 
 int	check_dups(t_vert *head, t_vert *curr_room)
 {
@@ -73,6 +92,8 @@ t_vert	*get_vert_info(char *line, t_verify *verif, t_data *data, t_vert *room)
 {
 	t_vert	*new_room;
 
+	if (space_count(line))
+		error_exit2(ROOM_FAIL, data, verif);
 	new_room = make_room(line, verif, data);
 	if (!room)
 	{
