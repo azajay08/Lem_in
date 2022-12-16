@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 14:20:19 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/16 16:08:00 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	verify_all(t_verify *verify, t_data *data)
 void	comment_found(char *line, t_verify *verify, t_data *data)
 {
 	if (verify->start == ON || verify->end == ON)
-	{
-		free(verify);
-		error_exit1(INVALID_COM, data);
-	}
+		error_exit2(INVALID_COM, data, verify);
 	if (ft_strequ(line, "##start"))
 	{
 		verify->start = ON;
@@ -65,7 +62,7 @@ void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 		ft_strdel(&line);
 	}
 	if (data->nb_rooms == 0)
-		error_exit1(NO_ROOMS, data);
+		error_exit2(NO_ROOMS, data, verify);
 	get_link_info(line, verify, data);
 }
 
@@ -81,14 +78,11 @@ void	read_input(t_data *data)
 	line = NULL;
 	get_ant_info(line, data, verify);
 	if (data->nb_ants >= ANT_LIMIT)
-	{
-		free(verify);
-		error_exit1(TOO_MANY_ANTS, data);
-	}
+		error_exit2(TOO_MANY_ANTS, data, verify);
 	read_room_and_link_info(line, verify, data);
 	verify_all(verify, data);
 	free(verify);
 	data->queue = (int *)malloc(sizeof(int) * ((data->nb_rooms * 2) + 1));
 	if (!data->queue)
-		error_exit1(QUEUE_FAIL, data);
+		error_exit2(QUEUE_FAIL, data, verify);
 }

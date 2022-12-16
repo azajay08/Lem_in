@@ -57,7 +57,7 @@ void	set_vert_queue(t_room **room, int *queue, int index)
 			in_list = ON;
 		if (in_list == OFF && ((room[edge->room]->bfs_previous == -1
 					&& edge->on_off == ON) || (room[edge->room]->bfs_folo == ON
-					&& room[index]->start == OFF
+					&& room[index]->start == OFF && edge->on_off == ON
 					&& room[index]->bfs_previous != edge->room)))
 			add_to_queue(room, edge, &queue[i], index);
 		edge = edge->next;
