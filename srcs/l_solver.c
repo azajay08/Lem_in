@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/16 19:11:37 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:50:34 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_opt	*cut_paths(t_data *data, t_opt *option)
 	{
 		temp->previous->next = NULL;
 		free_path(temp->path);
-		free (temp);
+		free(temp);
 	}
 	calculate_ants_in_paths(data, option);
 	return (option);

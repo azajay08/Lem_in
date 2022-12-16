@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 00:41:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 17:43:31 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:47:37 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_path(t_path *path)
 {
 	t_path	*temp;
-	
+
 	path = get_path_head(path);
 	while (path)
 	{

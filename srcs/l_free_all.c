@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:42:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 17:37:15 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/16 19:46:00 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	free_all(t_data *data, int condition)
 		temp = data->source;
 		data->source = data->source->next;
 		if (temp->edge)
-			free_edge(temp->edge->head);
+			free_edge(temp->edge);
 		free(temp->name);
 		temp->name = NULL;
 		free(temp);
