@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/15 15:23:47 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/16 16:14:30 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define ANTS_FAIL		"ERROR! Memory allocation of t_ants failed\n"
 # define ROOM_FAIL		"ERROR! Invalid room\n"
 # define SPACES			"ERROR! Invalid room, too many spaces\n"
-# define NO_ROOMS		"ERROR! No rooms\n"
+# define NO_ROOMS		"ERROR! No rooms or invalid room\n"
 # define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
 # define INVALID_COM	"ERROR! Invalid start or end\n"
