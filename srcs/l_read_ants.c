@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/28 03:44:32 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/16 15:46:55 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 			if (!check_line_is_digits(line))
 				error_exit2(ANT_ERROR, data, verify);
 			verify->ants = ft_atoi(line);
-			if (verify->ants == 0)
+			if (verify->ants <= 0)
 				error_exit2(ANT_ERROR, data, verify);
 		}
 		else if (com_ret == START_END)
