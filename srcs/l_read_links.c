@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/15 15:27:12 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 16:35:25 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,14 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 		if (data->q_mode == OFF)
 			data->line = ft_strjoin_line(data->line, line);
 		if (ft_strequ(line, ""))
-			error_exit2(LINK_FAIL, data, verify);
+			error_exit2(LINK_ROOM, data, verify);
 		if (ret == -1)
 			error_exit2(GNL_FAIL, data, verify);
 		start = data->source;
 		if (line[0] == '#')
 			comment_found(line, verify, data);
 		else if (ft_strchr(line, ' '))
-			error_exit2(LINK_FAIL, data, verify);
+			error_exit2(LINK_ROOM, data, verify);
 		else if (!save_link_info(line, start))
 			error_exit2(LINK_FAIL, data, verify);
 		ft_strdel(&line);

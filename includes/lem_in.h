@@ -6,17 +6,14 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 16:11:00 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 16:29:59 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 
-# define GNL_FAIL		"ERROR! File input\n"
-# define ANT_ERROR		"ERROR! Not a valid number of ants\n"
-# define TOO_MANY_ANTS	"ERROR! Too many ants, limit is 30 000\n"
-# define MAP_ERROR		"ERROR! Not a valid map\n"
+# define GNL_FAIL		"ERROR! Reading input failed\n"
 # define DATA_FAIL		"ERROR! Memory allocation of t_data failed!\n"
 # define VERIFY_FAIL	"ERROR! Memory allocation of t_verify failed!\n"
 # define VERT_FAIL		"ERROR! Memory allocation of t_vert failed\n"
@@ -24,15 +21,19 @@
 # define QUEUE_FAIL		"ERROR! Memory allocation of data->queue failed\n"
 # define OPT_FAIL		"ERROR! Memory allocation of t_opt failed\n"
 # define PATH_FAIL		"ERROR! Memory allocation of t_path failed\n"
-# define NO_PATHS		"ERROR! No paths found\n"
 # define ANTS_FAIL		"ERROR! Memory allocation of t_ants failed\n"
+# define MAP_ERROR		"ERROR! Invalid map\n"
+# define ANT_ERROR		"ERROR! Invalid number of ants\n"
 # define ROOM_FAIL		"ERROR! Invalid room\n"
 # define SPACES			"ERROR! Invalid room, too many spaces\n"
-# define NO_ROOMS		"ERROR! No rooms or invalid room\n"
+# define NO_ROOMS		"ERROR! Invalid room or no rooms\n"
 # define COORD_FAIL		"ERROR! Invalid coordinates\n"
 # define LINK_FAIL		"ERROR! Invalid link\n"
+# define LINK_ROOM		"ERROR! Invalid link or room\n"
 # define INVALID_COM	"ERROR! Invalid start or end\n"
 # define DUPLICATE		"ERROR! Duplicate room name or coordinates\n"
+# define NO_PATHS		"ERROR! No paths found\n"
+# define TOO_MANY_ANTS	"ERROR! Too many ants, limit is 30 000\n"
 
 # define OFF			0
 # define ON				1
