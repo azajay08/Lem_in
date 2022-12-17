@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_print_extra.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 03:23:35 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 19:53:12 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/17 02:43:14 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_paths(t_data *data, t_opt *option)
 		while (path)
 		{
 			if (path->next == NULL)
-				ft_printf(" %s - %i ants \n p_len: %i\n\n", data->room[path->index]->name, ants, option->p_len);
+				ft_printf(" %s - %i ants", data->room[path->index]->name);
 			else
 				ft_printf(" %s >", data->room[path->index]->name);
 			path = path->next;
