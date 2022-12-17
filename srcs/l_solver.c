@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/17 03:08:32 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 16:11:57 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,11 @@ t_opt	*find_all_disjoint_paths(t_data *data, t_room **room)
 	return (option);
 }
 
-t_opt	*solver(t_data *data)
+t_opt	*solver(t_data *data, t_room **room)
 {
 	t_opt		*orig_option;
 	t_opt		*next_opt;
-	t_room		**room;
 
-	room = make_room_array(data);
-	data->room = room;
 	orig_option = find_all_disjoint_paths(data, room);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		orig_option = cut_paths(data, orig_option);
@@ -117,10 +114,8 @@ t_opt	*solver(t_data *data)
 		orig_option = next_opt;
 		next_opt = vertex_disjoint(data, room, orig_option);
 	}
-	/* VVVVV This fixed it but doesnt fit VVVVVVV*/
 	if (next_opt)
 		free_option(next_opt);
-	/* ^^^^^ It NEEDS the if statemnt otherwise SEG FAULT ^^^^^^*/
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		orig_option = cut_paths(data, orig_option);
 	if (orig_option->limit == 0)

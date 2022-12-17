@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 03:09:36 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 16:20:17 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int ac, char **argv)
 {
 	t_data	*data;
 	t_opt	*option;
+	t_room	**room;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
@@ -74,9 +75,11 @@ int	main(int ac, char **argv)
 	if (ac > 1)
 		read_flags(data, ac, argv);
 	read_input(data);
-	option = solver(data);
+	room = make_room_array(data);
+	data->room = room;
+	option = solver(data, room);
 	print_output(data, option);
 	free_all(data, SUCCESS);
-	system("leaks lem-in");
+	system ("leaks lem-in");
 	return (0);
 }
