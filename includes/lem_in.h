@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 16:29:59 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:37:12 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,6 @@ void	free_ants(t_data *data);
 */
 
 t_opt	*solver(t_data *data, t_room **room);
-// t_opt	*solver(t_data *data);
 t_opt	*find_all_disjoint_paths(t_data *data, t_room **room);
 t_opt	*make_t_opt(t_data *data, t_path *cur_path);
 

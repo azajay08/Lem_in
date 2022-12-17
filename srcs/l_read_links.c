@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 16:35:25 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:24:12 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,13 @@ int	verify_and_assign_names(char *line, t_vert *start)
 	return (1);
 }
 
-int	save_link_info(char *line, t_vert *start)
+int	save_link_info(char *line, t_vert *start, t_verify *verify, t_data *data)
 {
+	if (verify->start == ON || verify->end == ON)
+	{
+		ft_strdel(&line);
+		error_exit2(INVALID_COM, data, verify);
+	}
 	if (ft_strchr(line, '-') != ft_strrchr(line, '-'))
 	{
 		ft_strdel(&line);
@@ -109,7 +114,7 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 			comment_found(line, verify, data);
 		else if (ft_strchr(line, ' '))
 			error_exit2(LINK_ROOM, data, verify);
-		else if (!save_link_info(line, start))
+		else if (!save_link_info(line, start, verify, data))
 			error_exit2(LINK_FAIL, data, verify);
 		ft_strdel(&line);
 		ret = get_next_line(0, &line);

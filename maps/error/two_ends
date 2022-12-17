@@ -4,11 +4,11 @@ start 0 0
 a 1 1
 b 2 1
 ##end
-end 0 0
+end 8 0
 d 1 0
 c 2 0
 ##end
-sink 3 0
+sink 5 0
 start-a
 start-d
 a-d

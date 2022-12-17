@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:19:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 16:20:17 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:36:01 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ int	main(int ac, char **argv)
 	option = solver(data, room);
 	print_output(data, option);
 	free_all(data, SUCCESS);
-	system ("leaks lem-in");
 	return (0);
 }

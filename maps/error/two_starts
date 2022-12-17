@@ -8,7 +8,7 @@ c 2 0
 ##end
 sink 3 0
 ##start
-anotherstart 0 0
+anotherstart 8 0
 start-a
 start-d
 a-d
