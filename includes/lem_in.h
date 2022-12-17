@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 16:14:30 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 03:16:34 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,6 @@ void	error_exit2(char *error_str, t_data *data, t_verify *verify);
 	Freeing functions
 */
 
-void	free_data(t_data *data);
 void	free_all(t_data *data, int condition);
 void	free_edge(t_edge *head);
 void	free_room_arr(t_data *data);
@@ -236,6 +235,6 @@ t_opt	*get_opt_tail(t_opt *option);
 void	print_output(t_data *data, t_opt *option);
 void	make_ant_army(t_data *data, t_opt *option);
 void	print_paths(t_data *data, t_opt *option);
-void	print_flag_modes(t_data *data, t_opt *option);
+void	print_flag_modes(t_data *data, t_opt *option, int paths);
 
 #endif

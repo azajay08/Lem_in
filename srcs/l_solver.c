@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_solver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/16 19:50:34 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/17 03:08:32 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,10 @@ t_opt	*solver(t_data *data)
 		orig_option = next_opt;
 		next_opt = vertex_disjoint(data, room, orig_option);
 	}
+	/* VVVVV This fixed it but doesnt fit VVVVVVV*/
+	if (next_opt)
+		free_option(next_opt);
+	/* ^^^^^ It NEEDS the if statemnt otherwise SEG FAULT ^^^^^^*/
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 		orig_option = cut_paths(data, orig_option);
 	if (orig_option->limit == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_delete_edge.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:54:33 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/16 19:27:28 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/17 03:18:50 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	delete_the_edge(t_room **room, int index)
 			else
 				prev->next = temp->next;
 			temp->next = NULL;
-			if (temp->head)	//probs will delete
-			{
-				free (temp->head);
-				temp->head = NULL;
-			}
+			// if (temp->head)	//probs will delete
+			// {
+			// 	free (temp->head);
+			// 	temp->head = NULL;
+			// }
 			free(temp);
 			temp = NULL;
 			break ;

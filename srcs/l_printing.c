@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_printing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 17:43:10 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/17 03:15:23 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	print_output(t_data *data, t_opt *option)
 	print_moves(data, option, head, ant);
 	option = get_opt_head(option);
 	if (data->t_mode == ON || data->p_mode == ON)
-		print_flag_modes(data, option);
+		print_flag_modes(data, option, p_tmp);
 	free_option(option);
 	free_ants(data);
 }

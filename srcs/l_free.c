@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_free.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 00:41:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 19:47:37 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/17 03:16:20 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,7 @@ void	free_path(t_path *path)
 		path = path->next;
 		temp->previous = NULL;
 		temp->next = NULL;
-		// if (temp->previous != NULL)
-		// if (path->next == NULL)
-		// {
-		// 	free (path);
-		// 	break ;
-		// }
 		free(temp);
-		// path = path->next;
 	}
 }
 
@@ -60,36 +53,7 @@ void	free_option(t_opt *option)
 		option = option->next;
 		temp->previous = NULL;
 		temp->next = NULL;
-		// if (option->previous)
-		// 	free(option->previous);
-		// if (option->next == NULL)
-		// {
-		// 	free (option);
-		// 	break ;
-		// }
 		free(temp);
 	}
 	free(option);
 }
-
-void	free_data(t_data *data)
-{
-	t_vert	*temp;
-
-	while (data->source != NULL)
-	{
-		temp = data->source;
-		data->source = data->source->next;
-		free(temp->name);
-		// free(temp->edges);
-		// free(temp->next);
-		free(temp);
-	}
-	// if (data->sink)
-	// 	free (data->sink);
-	if (data)
-		free (data);
-}
-
-/*MIGHT NOT NEED FREE DATA, I HAVE MADE THE FREE ALL FUNCTION
-THE OTHERS COULD BE ADDED TO THAT*/

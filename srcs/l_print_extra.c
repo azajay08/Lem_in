@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 03:23:35 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 02:43:14 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/17 03:15:28 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_paths(t_data *data, t_opt *option)
 		while (path)
 		{
 			if (path->next == NULL)
-				ft_printf(" %s - %i ants", data->room[path->index]->name);
+				ft_printf(" %s | %i ants", data->room[path->index]->name, ants);
 			else
 				ft_printf(" %s >", data->room[path->index]->name);
 			path = path->next;
@@ -39,13 +39,13 @@ void	print_paths(t_data *data, t_opt *option)
 	}
 }
 
-void	print_flag_modes(t_data *data, t_opt *option)
+void	print_flag_modes(t_data *data, t_opt *option, int paths)
 {
 	if (data->t_mode == ON)
 		ft_printf("\nTurns: %i\n", data->turns);
 	if (data->p_mode == ON)
 	{
-		ft_printf("\nPaths used:\n");
+		ft_printf("\nPaths used: %i\n", paths);
 		print_paths(data, option);
 		write(1, "\n", 1);
 	}
