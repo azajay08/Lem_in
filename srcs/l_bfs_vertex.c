@@ -12,17 +12,28 @@
 
 #include "../includes/lem_in.h"
 
-int	search_int_from_path(t_room **room, int index, int x, int *queue)
+int	search_int_from_path(t_room **room, int room_index, int x, int *queue)
 {
+	//int	temp[10000];
 	int	prev;
 	int	i;
 
 	prev = room[x]->bfs_previous;
+	//x = 0;
 	while (prev != -1 && room[prev]->start == OFF)
 	{
-		if (room[prev]->bfs_previous == index)
+	//	i = 0;
+	//	temp[x] = prev;
+		if (room[prev]->bfs_previous == room_index)
 			return (0);
+	//	while (i++ < x)
+	//	{
+	//		if (prev == temp[i])
+	//			return (0);
+	//	}
 		prev = room[prev]->bfs_previous;
+	//	x++;
+		printf("i:%i", prev);
 	}
 	i = 0;
 	while (queue[i] != END)
