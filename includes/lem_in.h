@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 18:37:12 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/18 03:20:19 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,7 @@ t_opt	*get_opt_tail(t_opt *option);
 
 void	print_output(t_data *data, t_opt *option);
 void	make_ant_army(t_data *data, t_opt *option);
-void	print_paths(t_data *data, t_opt *option);
-void	print_flag_modes(t_data *data, t_opt *option, int paths);
+void	print_paths(t_data *data, t_opt *opt);
+void	print_flag_modes(t_data *data, t_opt *opt, int paths);
 
 #endif
