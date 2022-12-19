@@ -12,27 +12,19 @@
 
 #include "../includes/lem_in.h"
 
-int	search_int_from_path(t_room **room, int room_index, int x, int *queue)
+int	search_int_from_path(t_data *data, int room_index, int x, int *queue)
 {
-	//int	temp[10000];
 	int	prev;
 	int	i;
 
-	prev = room[x]->bfs_previous;
-	//x = 0;
-	while (prev != -1 && room[prev]->start == OFF)
+	prev = data->room[x]->bfs_previous;
+	i = 0;
+	while (prev != -1 && data->room[prev]->start == OFF)
 	{
-	//	i = 0;
-	//	temp[x] = prev;
-		if (room[prev]->bfs_previous == room_index)
+		if (data->room[prev]->bfs_previous == room_index || i == data->nb_rooms)
 			return (0);
-	//	while (i++ < x)
-	//	{
-	//		if (prev == temp[i])
-	//			return (0);
-	//	}
-		prev = room[prev]->bfs_previous;
-	//	x++;
+		prev = data->room[prev]->bfs_previous;
+		i++;
 		printf("i:%i", prev);
 	}
 	i = 0;
@@ -59,7 +51,7 @@ void	follow_backwards(t_room **room, int *queue, int index)
 	room[queue[i]]->hop_off_switch = ON;
 }
 
-void	set_vert_queue(t_room **room, int *queue, int index)
+void	set_vert_queue(t_data *data, t_room **room, int *queue, int index)
 {
 	int		i;
 	int		in_list;
@@ -75,7 +67,7 @@ void	set_vert_queue(t_room **room, int *queue, int index)
 		if (!edge)
 			break ;
 		in_list = OFF;
-		i = search_int_from_path(room, edge->room, index, queue);
+		i = search_int_from_path(data, edge->room, index, queue);
 		if (!i)
 			in_list = ON;
 		if (in_list == OFF && ((room[edge->room]->bfs_previous == -1
@@ -88,12 +80,12 @@ void	set_vert_queue(t_room **room, int *queue, int index)
 	edge = NULL;
 }
 
-void	set_vertex_queue(t_room **room, int *queue, int index)
+void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index)
 {
 	if (room[index]->bfs_previous != -1 && room[index]->hop_off_switch == OFF
 		&& room[index]->bfs_folo == ON && room[index]->start == OFF
 		&& room[index]->end == OFF)
 		follow_backwards(room, queue, index);
 	else
-		set_vert_queue(room, queue, index);
+		set_vert_queue(data, room, queue, index);
 }

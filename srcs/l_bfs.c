@@ -93,11 +93,12 @@ t_path	*bfs(t_data *data, t_room **room)
 		if (data->vertex == OFF)
 			set_queue(room, data->queue, data->queue[i]);
 		else if (data->vertex == ON)
-			set_vertex_queue(room, data->queue, data->queue[i]);
+			set_vertex_queue(data, room, data->queue, data->queue[i]);
 		i++;
 		if (i == data->nb_rooms * 2)
 			break ;
 	}
+	printf("bfs\n");
 	if (data->queue[i] == -1)
 		i--;
 	if (room[data->queue[i]]->end == OFF)

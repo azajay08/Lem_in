@@ -204,7 +204,7 @@ void	set_queue(t_room **room, int *queue, int index);
 void	follow_backwards(t_room **room, int *queue, int index);
 void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index);
 int		search_int_in_int_array(int index, int *queue);
-int		search_int_from_path(t_room **room, int index, int x, int *queue);
+int		search_int_from_path(t_data *data, int index, int x, int *queue);
 void	clean_bfs(t_data *data, t_room **room);
 void	init_queue(t_data *data);
 
@@ -212,7 +212,7 @@ t_opt	*vertex_disjoint(t_data *data, t_room **room, t_opt *option);
 void	make_residual_path(t_opt *option, t_room **room, int vertex);
 
 void	find_edge_to_delete(t_room **room, t_path *path);
-void	set_vertex_queue(t_room **room, int *queue, int index);
+void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index);
 
 /*
 	Functions that calculate data
