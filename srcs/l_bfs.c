@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:39:49 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/18 03:09:06 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/20 14:02:39 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ t_path	*bfs(t_data *data, t_room **room)
 		if (i == data->nb_rooms * 2)
 			break ;
 	}
-	printf("bfs\n");
+	// printf("bfs\n");
 	if (data->queue[i] == -1)
 		i--;
 	if (room[data->queue[i]]->end == OFF)
