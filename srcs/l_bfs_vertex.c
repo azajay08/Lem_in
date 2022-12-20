@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_bfs_vertex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:54:38 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/20 14:02:32 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/20 16:57:05 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	search_int_from_path(t_data *data, int room_index, int x, int *queue)
 			return (0);
 		prev = data->room[prev]->bfs_previous;
 		i++;
-		// printf("i:%i", prev);
 	}
 	i = 0;
 	while (queue[i] != END)
