@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 18:24:12 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/20 15:12:14 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	assign_link(char *link_to, t_vert *curr_room, t_vert *head)
 	room = head;
 	room = find_room_name(room, link_to);
 	if (!room)
+		return (0);
+	if (curr_room->edge && check_dup_links(curr_room->edge, room->index))
 		return (0);
 	if (!curr_room->edge)
 	{

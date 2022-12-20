@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/18 03:20:19 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/20 15:13:16 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ void	comment_found(char *line, t_verify *verify, t_data *data);
 void	get_link_info(char *line, t_verify *verify, t_data *data);
 int		comment_start_end(char *line);
 int		check_line_is_digits(char *line);
+int		check_dup_links(t_edge *edge, int index);
 t_vert	*get_vert_info(char *line, t_verify *verif, t_data *data, t_vert *room);
 t_room	**make_room_array(t_data *data);
 t_room	*make_index_room(t_vert *head, t_room *new_room, int index);
@@ -227,7 +228,6 @@ void	calculate_ants_in_paths(t_data *data, t_opt *option);
 	Functions that locate data
 */
 
-t_vert	*find_room_index(t_vert *head, int target);
 t_vert	*find_room_name(t_vert *head, char *target);
 t_path	*get_path_head(t_path *path);
 t_opt	*get_opt_head(t_opt *option);

@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:05:46 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/05 15:47:57 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/20 15:13:57 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,18 @@ t_vert	*find_room_name(t_vert *head, char *target)
 	return (NULL);
 }
 
-t_vert	*find_room_index(t_vert *head, int target)
+int	check_dup_links(t_edge *edge, int index)
 {
-	t_vert	*temp;
+	t_edge	*head;
 
-	temp = head;
-	while (temp != NULL)
+	head = edge->head;
+	while (head)
 	{
-		if (temp->index == target)
-			return (temp);
-		temp = temp->next;
+		if (head->room == index)
+			return (1);
+		head = head->next;
 	}
-	return (NULL);
+	return (0);
 }
 
 t_path	*get_path_head(t_path *path)

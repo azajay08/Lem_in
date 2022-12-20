@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/15 15:25:28 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/20 15:09:35 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ t_room	*make_index_room(t_vert *head, t_room *new_room, int index)
 	}
 	return (new_room);
 }
-
-/* Will keep an eye on this incase the malloc of edge fails */
 
 void	fill_room_array(t_data *data, t_room **room, t_vert *head, int i)
 {
