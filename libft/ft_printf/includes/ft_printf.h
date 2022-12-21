@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:10:35 by ajones            #+#    #+#             */
-/*   Updated: 2022/09/16 16:30:09 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 14:32:15 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "../../libft.h"
 # include <stdarg.h>
-# include <stdint.h>
 
 typedef struct s_spec
 {

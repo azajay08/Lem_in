@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/20 15:13:16 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 14:32:06 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 # define ANT_LIMIT		30000
 
 # include "../libft/libft.h"
-# include <stdio.h>			//REMEMBER TO DELETE THIS AND stdint.h FROM PRINTF!!
 
 typedef struct s_ant
 {
