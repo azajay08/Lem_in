@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/20 14:02:51 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 03:59:00 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,14 @@ t_opt	*solver(t_data *data, t_room **room)
 	orig_option = find_all_disjoint_paths(data, room);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
 	{
-		// printf("check 1\n");
 		orig_option = cut_paths(data, orig_option);
 	}
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option)
 		|| calculate_paths(orig_option) >= data->nb_ants)
 		return (cut_paths(data, orig_option));
-	// printf("check 2\n");
 	next_opt = vertex_disjoint(data, room, orig_option);
 	while (calculate_paths(orig_option) <= calculate_paths_used(data, next_opt))
 	{
-		// printf("check 3\n");
 		free_option(orig_option);
 		orig_option = next_opt;
 		next_opt = vertex_disjoint(data, room, orig_option);
