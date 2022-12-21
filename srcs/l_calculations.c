@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:46:31 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/16 19:44:53 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:56:47 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ int	calculate_min_for_path(t_opt *option)
 	}
 	return (res);
 }
+
+/*
+	calculate_min_for_path uses a pattern we found to find out which is the
+	right number of ants to use the latest path.
+*/
 
 int	calculate_paths_used(t_data *data, t_opt *option)
 {

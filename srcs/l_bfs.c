@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 14:39:49 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/20 16:58:26 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:58:20 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	set_queue(t_room **room, int *queue, int index)
 		if (!edge)
 			break ;
 		in_list = OFF;
-		i = search_int_in_int_array(edge->room, queue);
+		i = search_int_array(edge->room, queue);
 		if (!i)
 			in_list = ON;
 		if ((in_list == OFF && room[edge->room]->bfs_previous == -1
@@ -78,6 +78,12 @@ void	set_queue(t_room **room, int *queue, int index)
 	}
 	edge = NULL;
 }
+
+/*
+	set_queue checks if a room has been used already, then adds it to the queue.
+	The queue is using the index's of the rooms instead of the names,
+	making it faster.
+*/
 
 t_path	*bfs(t_data *data, t_room **room)
 {
@@ -93,7 +99,7 @@ t_path	*bfs(t_data *data, t_room **room)
 		if (data->vertex == OFF)
 			set_queue(room, data->queue, data->queue[i]);
 		else if (data->vertex == ON)
-			set_vertex_queue(data, room, data->queue, data->queue[i]);
+			vertex_separator(data, room, data->queue, data->queue[i]);
 		i++;
 		if (i == data->nb_rooms * 2)
 			break ;

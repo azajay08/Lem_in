@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 15:45:54 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/16 18:32:04 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:14:36 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ void	room_switch(t_room **room, int index, t_edge *link, int vertex)
 		room[index]->bfs_folo = ON;
 	}
 	else
+	{
 		room[index]->bfs_folo = OFF;
+	}
 }
 
-void	make_residual_path(t_opt *option, t_room **room, int vertex)
+void	make_residual_map(t_opt *option, t_room **room, int vertex)
 {
 	t_path	*pathh;
 	t_opt	*opt;
@@ -72,18 +74,24 @@ void	make_residual_path(t_opt *option, t_room **room, int vertex)
 	}
 }
 
+/*
+	A residual map is basically a map of leftovers.
+	The function turns off all the edges that have been used, which leaves
+	only edges(links) that haven't been used - the leftovers.
+*/
+
 t_opt	*vertex_disjoint(t_data *data, t_room **room, t_opt *option)
 {
 	t_opt	*new_option;
 	t_path	*temp_path;
 
 	data->vertex = ON;
-	make_residual_path(option, room, ON);
+	make_residual_map(option, room, ON);
 	temp_path = bfs(data, room);
 	if (temp_path == NULL)
 		return (NULL);
 	reset_map(room, data->nb_rooms - 1);
-	make_residual_path(option, room, OFF);
+	make_residual_map(option, room, OFF);
 	find_edge_to_delete(room, temp_path);
 	free_path (temp_path);
 	data->vertex = OFF;
@@ -91,3 +99,14 @@ t_opt	*vertex_disjoint(t_data *data, t_room **room, t_opt *option)
 	new_option = find_all_disjoint_paths(data, room);
 	return (new_option);
 }
+
+/*
+	vertex_disjoint is another solver,
+	that makes new paths if they can be found.
+
+	First it finds an alternative path by using a residual map,
+	then the path is used to delete an edge which prevents us from finding
+	more paths.
+	After deleting the edge, this solver makes another option for the real
+	solver to calculate whether to use it or not.
+*/

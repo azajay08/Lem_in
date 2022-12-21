@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_solver.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/21 03:59:00 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 15:10:02 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,19 @@ t_opt	*find_all_disjoint_paths(t_data *data, t_room **room)
 		}
 		if (data->nb_ants < calculate_min_for_path(option))
 			break ;
-		make_residual_path(option, room, OFF);
+		make_residual_map(option, room, OFF);
 	}
 	if (option == NULL)
 		(error_exit1(NO_PATHS, data));
 	option = get_opt_head(option);
 	return (option);
 }
+
+/*
+	find_all_disjoint_paths is used to get all available paths that can be found
+	with using breadth first search.
+	Meaning it finds the shortest path first, then the second shortest, etc.
+*/
 
 t_opt	*solver(t_data *data, t_room **room)
 {
@@ -126,10 +132,8 @@ t_opt	*solver(t_data *data, t_room **room)
 }
 
 /*
-	solver takes care of everything that happens between parsing and printing.
-	
-	The first if is to check if there's just one ant - in which case we don't
-	need to do all the algorithms.
-	The second if is a similiar check - it checks whether we have already found
-	more paths than we even need.
+	Solver takes care of everything that happens between parsing and printing.
+
+	It uses bfs to find paths, deletes edges to find more paths, and uses
+	calculations to decide which paths are used.
 */

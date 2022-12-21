@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/21 14:32:06 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:18:08 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_ant
 	int				finished;
 	struct s_ant	*next;
 	struct s_path	*head;
-}				t_ant;
+}					t_ant;
 
 typedef struct s_edge
 {
@@ -132,7 +132,6 @@ typedef struct s_data
 	int				q_mode;
 	int				p_mode;
 	int				t_mode;
-	int				sink_index;
 	int				src_index;
 	int				rooms_malloced;
 	int				*queue;
@@ -155,6 +154,7 @@ void	get_link_info(char *line, t_verify *verify, t_data *data);
 int		comment_start_end(char *line);
 int		check_line_is_digits(char *line);
 int		check_dup_links(t_edge *edge, int index);
+
 t_vert	*get_vert_info(char *line, t_verify *verif, t_data *data, t_vert *room);
 t_room	**make_room_array(t_data *data);
 t_room	*make_index_room(t_vert *head, t_room *new_room, int index);
@@ -197,22 +197,19 @@ void	free_ants(t_data *data);
 t_opt	*solver(t_data *data, t_room **room);
 t_opt	*find_all_disjoint_paths(t_data *data, t_room **room);
 t_opt	*make_t_opt(t_data *data, t_path *cur_path);
-
+t_opt	*vertex_disjoint(t_data *data, t_room **room, t_opt *option);
 t_path	*bfs(t_data *data, t_room **room);
-void	set_queue(t_room **room, int *queue, int index);
 
+void	set_queue(t_room **room, int *queue, int index);
 void	follow_backwards(t_room **room, int *queue, int index);
 void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index);
-int		search_int_in_int_array(int index, int *queue);
-int		search_int_from_path(t_data *data, int index, int x, int *queue);
 void	clean_bfs(t_data *data, t_room **room);
 void	init_queue(t_data *data);
-
-t_opt	*vertex_disjoint(t_data *data, t_room **room, t_opt *option);
-void	make_residual_path(t_opt *option, t_room **room, int vertex);
-
+void	make_residual_map(t_opt *option, t_room **room, int vertex);
 void	find_edge_to_delete(t_room **room, t_path *path);
-void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index);
+void	vertex_separator(t_data *data, t_room **room, int *queue, int index);
+int		search_int_array(int index, int *queue);
+int		search_int_from_path(t_data *data, int index, int x, int *queue);
 
 /*
 	Functions that calculate data

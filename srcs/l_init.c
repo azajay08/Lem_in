@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/13 02:34:37 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 14:43:50 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	init_data(t_data *data)
 	data->q_mode = OFF;
 	data->p_mode = OFF;
 	data->t_mode = OFF;
-	data->sink_index = -1;
 	data->src_index = -1;
 	data->vertex = OFF;
 	data->line = NULL;

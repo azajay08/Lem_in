@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_printing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/17 03:15:23 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 15:40:15 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,3 +114,10 @@ void	print_output(t_data *data, t_opt *option)
 	free_option(option);
 	free_ants(data);
 }
+
+/*
+	In the printing, using the data we get from the solver, we make a list of
+	ants. After the ant army has been made, we check what flag modes have been 
+	activated, so we can decide what needs to be printed. Then we will loop
+	through the ants printing their moves at which ever point they are at.
+*/

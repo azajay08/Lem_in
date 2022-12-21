@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_room_array.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 20:14:04 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/20 15:09:35 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 15:35:41 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,3 +117,10 @@ t_room	**make_room_array(t_data *data)
 	free_vert(data);
 	return (room);
 }
+
+/*
+	Here we store the room info in the form of an array of structs. It works 
+	in a similar way to a hash table but is allocated up to the amount of rooms,
+	therefore every part is filled. It makes it easier in the later stages to
+	jump straight to a certain room via index.
+*/

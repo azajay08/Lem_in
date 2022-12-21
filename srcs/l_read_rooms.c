@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_rooms.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:04:45 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 15:59:26 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 14:43:59 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	set_start_end(t_data *data, t_vert *new_room, t_verify *verify)
 	else if (verify->end == ON)
 	{
 		new_room->end = ON;
-		data->sink_index = new_room->index;
 	}
 }
 

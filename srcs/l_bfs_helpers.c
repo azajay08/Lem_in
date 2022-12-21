@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:00:15 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/20 16:57:10 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:21:41 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	clean_bfs(t_data *data, t_room **room)
 	}
 }
 
-int	search_int_in_int_array(int index, int *queue)
+int	search_int_array(int index, int *queue)
 {
 	int	i;
 
@@ -72,3 +72,10 @@ void	add_to_queue(t_room **room, t_edge *temp, int *queue, int index)
 	if (room[index]->end == OFF)
 		room[temp->room]->bfs_previous = index;
 }
+
+/*
+	add_to_queue adds the room to the queue as the name suggests,
+	but it also does some checks when we are making an alternative path
+	from bfs_vertex.
+	It also sets the bfs_previous, which is used to make the path.
+*/

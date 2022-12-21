@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_ants.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 23:39:24 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/09 22:02:24 by ajones           ###   ########.fr       */
+/*   Updated: 2022/12/21 15:41:57 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,3 +82,8 @@ void	make_ant_army(t_data *data, t_opt *option)
 			option = head;
 	}
 }
+
+/* 
+	Here we make our ant army. We allocated the paths in a loop to the ants
+	depending on how many times the respective paths need to be used. 
+*/

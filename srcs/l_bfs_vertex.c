@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:54:38 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/20 16:57:05 by mtissari         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:26:15 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	follow_backwards(t_room **room, int *queue, int index)
 	room[queue[i]]->hop_off_switch = ON;
 }
 
-void	set_vert_queue(t_data *data, t_room **room, int *queue, int index)
+void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index)
 {
 	int		i;
 	int		in_list;
@@ -79,12 +79,23 @@ void	set_vert_queue(t_data *data, t_room **room, int *queue, int index)
 	edge = NULL;
 }
 
-void	set_vertex_queue(t_data *data, t_room **room, int *queue, int index)
+/*
+	set_vertex_queue is almost the same as set_queue, but here the room to be
+	added to the queue can be used before. Therefore search_int_from_path is
+	used instead of search_int_array.
+*/
+
+void	vertex_separator(t_data *data, t_room **room, int *queue, int index)
 {
 	if (room[index]->bfs_previous != -1 && room[index]->hop_off_switch == OFF
 		&& room[index]->bfs_folo == ON && room[index]->start == OFF
 		&& room[index]->end == OFF)
 		follow_backwards(room, queue, index);
 	else
-		set_vert_queue(data, room, queue, index);
+		set_vertex_queue(data, room, queue, index);
 }
+
+/*
+	vertex_separator's only purpose is to see when the path MUST follow
+	backwards.
+*/
