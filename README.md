@@ -4,6 +4,8 @@ Lem_in is the second to last project in the algorithm branch at Hive(42). The ai
 
 * 25 lines maximum per function
 * 5 functions maximum per file
+* For loops are forbidden
+* No printf allowed - But we can use our own version made in a previous project `ft_printf`
 * Functions allowed:
   * write
   * malloc
@@ -12,7 +14,6 @@ Lem_in is the second to last project in the algorithm branch at Hive(42). The ai
   * read
   * sterror
   * perror
-* No printf allowed - But we can use our own version made in a previous project `ft_printf`
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
 
