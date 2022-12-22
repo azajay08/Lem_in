@@ -1,5 +1,7 @@
 # Lem_in - Hive (42)
 
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
+
 <details>
 <summary><h2><strong>What is Lem-in?</strong></h2></summary>
 <p>
