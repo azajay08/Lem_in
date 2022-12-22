@@ -44,8 +44,7 @@ Flags:
 Visualizer usage: ./lem-in < [map] | python3 visualizer/lem_in_vis.py
 ```
 For multiple modes, group flags together, for example `./lem-in -qtp < [map]`
-
-</p>      
+</p>
 </details>
 
 <details>
