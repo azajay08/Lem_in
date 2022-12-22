@@ -1,5 +1,7 @@
 # Lem_in - Hive (42)
 
+Lem_in is the second to last project in the algorithm branch at Hive(42). The aim of the project is to come up with an algorithm that will give us the fewest possible turns at sending ants through a map made up of one or multiple path options.
+
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
 
 <details>
