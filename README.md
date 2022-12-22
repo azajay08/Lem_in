@@ -1,12 +1,8 @@
 # Lem_in - Hive (42)
-
-Lem_in is the second to last project in the algorithm branch at Hive(42). The aim of the project is to come up with an algorithm that will give us the fewest possible turns at sending ants through a map made up of one or multiple path options.
-
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
 
-<details>
-<summary><h3><strong>What is Lem-in?</strong></h3></summary>
-<p>
+
+## What is Lem_in?
 Do you remember the game Lemmings? Well that is what I instantly thought of when seeing this project for the first time. If you don't remember the game. It was a game made in the early 90s where you have an amount of little lemmings that follow eachother along a path filled with obstacles, and you have to make sure that they get to the end of the path. Well this project shares some aspects of the game. We are given a file(map) that must be parsed. Instead of the little Lemmings from the game, we are using ants. These maps contain the information:
 
 * Number of ants
@@ -22,8 +18,7 @@ This is an example of valid map:
 Like the game Lemmings, we must find a path to the `end(sink)`. But for us, we must do it in as few turns as possible, which might require the `ants` to take different paths so that they all get to the `sink` quicker. `Ants` can only move one at a time and fill a `room` one at a time. There can be no collisions meaninng there can be no ants in the same room at one time, with the exception of the `source` room and the `sink` room. A turn is considered as a movement from every `ant` in play, and that makes a movement. The turn will be dispalyed on one line, and a new turn is shown on a new line. Therefore, we try to get our ants to the `sink` in as few lines as possible. The output would have the map given to it printed on the `STDOUT` along with the moves like so:
 
 <img width="290" alt="Screen Shot 2022-12-22 at 6 07 44 PM" src="https://user-images.githubusercontent.com/86073849/209177557-30e6d65c-89fe-46fd-8bdb-9fdefc25f66a.png">
-</p>      
-</details>
+
 <details>
 <summary><h3><strong>Usage</strong></h3></summary>
 <p>
