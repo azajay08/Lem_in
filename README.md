@@ -92,7 +92,7 @@ Some calculations here and there and **puff** - it's solved.
   
 Now this is the Real size of the gif:
   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![lemin_solver gif](https://user-images.githubusercontent.com/90178358/209240702-1e378c68-8ce3-465e-b7fb-0c89292aa777.gif)
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![lemin_solver gif](https://user-images.githubusercontent.com/90178358/209240702-1e378c68-8ce3-465e-b7fb-0c89292aa777.gif)
   
   
   
