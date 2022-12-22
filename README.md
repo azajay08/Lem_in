@@ -3,7 +3,7 @@
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
 
 <details>
-<summary><h2><strong>What is Lem-in?</strong></h2></summary>
+<summary><h3><strong>What is Lem-in?</strong></h3></summary>
 <p>
 Do you remember the game Lemmings? Well that is what I instantly thought of when seeing this project for the first time. If you don't remember the game. It was a game made in the early 90s where you have an amount of little lemmings that follow eachother along a path filled with obstacles, and you have to make sure that they get to the end of the path. Well this project shares some aspects of the game. We are given a file(map) that must be parsed. Instead of the little Lemmings from the game, we are using ants. These maps contain the information:
 * Number of ants
@@ -22,7 +22,7 @@ Like the game Lemmings, we must find a path to the `end(sink)`. But for us, we m
 </p>      
 </details>
 <details>
-<summary><h2><strong>Usage</strong></h2></summary>
+<summary><h3><strong>Usage</strong></h3></summary>
 <p>
 You can clone the repo with ..
         
@@ -49,14 +49,14 @@ For multiple modes, group flags together, for example `./lem-in -qtp < [map]`
 </details>
 
 <details>
-<summary><h2><strong>Method</strong></h2></summary>
+<summary><h3><strong>Method</strong></h3></summary>
 <p>
 
 </p>      
 </details>
 
 <details>
-<summary><h2><strong>Visualizer</strong></h2></summary>
+<summary><h3><strong>Visualizer</strong></h3></summary>
 <p>
 For the visualizer, we decided to use Pygame. Being reletively new to python at the the time, Pygame was a good option that was familiar, as I had done a visualizer for the previous project with it. To be able to use the visualizer, you would need to have python3 and pygame installed. If you have python3, installed, depending on your system, you can easily install pygame for example with `pip3 install pygame`.
 
