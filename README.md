@@ -48,13 +48,16 @@ For multiple modes, group flags together, for example `./lem-in -qtp < [map]`
 </p>      
 </details>
 
-## Method
+<details>
+<summary><h2><strong>Method</strong></h2></summary>
+<p>
 
+</p>      
+</details>
 
-
-
-
-## Visualizer
+<details>
+<summary><h2><strong>Visualizer</strong></h2></summary>
+<p>
 For the visualizer, we decided to use Pygame. Being reletively new to python at the the time, Pygame was a good option that was familiar, as I had done a visualizer for the previous project with it. To be able to use the visualizer, you would need to have python3 and pygame installed. If you have python3, installed, depending on your system, you can easily install pygame for example with `pip3 install pygame`.
 
 It is in a 2D format, so it would require the coordinates of the rooms to be spread out for it to be visualized properly. So maps with with just ascending coordiantes, may not be the best visual representation. If you have some nice maps with nice coordinates to test, you can use it like this ...
@@ -62,3 +65,6 @@ It is in a 2D format, so it would require the coordinates of the rooms to be spr
 `./lem-in < [map] | python3 visualizer/lem_in_vis.py`
 
 https://user-images.githubusercontent.com/86073849/205643151-ca0e3334-fcfb-4ab2-bc26-01aeb49a574e.mov
+
+</p>      
+</details>
