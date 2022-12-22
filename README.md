@@ -3,6 +3,11 @@
 ## What is Lem-in?
 
 ## Usage
+You can clone the repo with ..
+```
+git clone https://github.com/azajay08/Lem_in.git
+```
+Once the repository has been cloned, you can move into the root of the repository and `make`. This will then create the executable `lem-in` in the root of the repository
 
 ```
 Usage: ./lem-in -[flag] < [map]
