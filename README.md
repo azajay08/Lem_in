@@ -7,7 +7,7 @@ Do you remember the game Lemmings? Well that is what I instantly thought of when
 * Links - which rooms are connected to eachother.
 * #Comments - comments can contain any bits of information just for the user, but do not effect the output
 * ##Commands - like comments but these effect to output. They will be `##Start` and `##End`, symbalising the starting room(source) and the ending room (sink)
-
+<img width="273" alt="Screen Shot 2022-12-22 at 5 49 32 PM" src="https://user-images.githubusercontent.com/86073849/209171802-d16163a5-4a18-45bb-964c-b59ae300ce7d.png">
 
 ## Usage
 You can clone the repo with ..
