@@ -1,4 +1,19 @@
 # Lem_in - Hive (42)
+
+Lem_in is the second to last project in the algorithm branch at Hive(42). The aim of the project is to come up with an algorithm that will give us the fewest possible turns at sending ants through a map made up of one or multiple path options. As with all Hive projects, they come with restraints and limitations. Here are some of the rules we must follow:
+
+* 25 lines maximum per function
+* 5 functions maximum per file
+* Functions allowed:
+  * write
+  * malloc
+  * free
+  * exit
+  * read
+  * sterror
+  * perror
+* No printf allowed - Can use our own made version `ft_printf`
+
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
 
 
