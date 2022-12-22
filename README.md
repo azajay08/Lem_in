@@ -18,7 +18,7 @@ Lem_in is the second to last project in the algorithm branch at Hive(42). The ai
 
 
 ## What is Lem_in?
-Do you remember the game Lemmings? Well that is what I instantly thought of when seeing this project for the first time. If you don't remember the game. It was a game made in the early 90s where you have an amount of little lemmings that follow eachother along a path filled with obstacles, and you have to make sure that they get to the end of the path. Well this project shares some aspects of the game. We are given a file(map) that must be parsed. Instead of the little Lemmings from the game, we are using ants. These maps contain the information:
+Do you remember the game Lemmings? Well that is what I instantly thought of when seeing this project for the first time. If you don't remember the game, it was a game made in the early 90s where you have an amount of little lemmings that follow eachother along a path filled with obstacles, and you have to make sure that they get to the end of the path. Well this project shares some aspects of the game. We are given a file(map) that must be parsed. Instead of the little Lemmings from the game, we are using ants. These maps contain the information:
 
 * Number of ants
 * Room names and coordinates
