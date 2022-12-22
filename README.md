@@ -65,7 +65,13 @@ For multiple modes, group flags together, for example `./lem-in -qtp < [map]`
 <details>
 <summary><h3><strong>Method</strong></h3></summary>
 <p>
-
+  
+We used bfs and shit, check it out:
+  
+![lem-in solver gif](https://user-images.githubusercontent.com/90178358/209239950-8d2bc554-f9ba-426d-9116-caeb46720122.gif)
+  
+  
+Some calculations here and there and **puff** - it's solved.
 </p>      
 </details>
 
