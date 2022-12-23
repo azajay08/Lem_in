@@ -2,6 +2,7 @@
 
 Lem_in is the second to last project in the algorithm branch at Hive(42). It is a paired group project. The aim of the project is to come up with an algorithm that will give us the fewest possible turns at sending ants through a map made up of one or multiple path options. As with all Hive projects, they come with restraints and limitations. We have to abide by the rules of `Norminette`. Here are some of the rules we must follow:
 
+```
 * The mandatory part must be written in C
 * 25 lines maximum per function
 * 5 functions maximum per file
@@ -19,7 +20,7 @@ Lem_in is the second to last project in the algorithm branch at Hive(42). It is 
   * read
   * sterror
   * perror
-
+```
 For the bonus of the project, we made a visualizer. The visualizer doesn't have to follow the same `Norminette` rules as the mandatory part, and can be done in a language of our choosing, so we decided to do it in Python.
 <details>
 <summary><h3><strong>What is Lem_in?</strong></h3></summary>
@@ -28,13 +29,13 @@ For the bonus of the project, we made a visualizer. The visualizer doesn't have 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
 
 Do you remember the game Lemmings? Well that is what I instantly thought of when seeing this project for the first time. If you don't remember the game, it was a game made in the early 90s where you have an amount of little lemmings that follow eachother along a path filled with obstacles, and you have to make sure that they get to the end of the path. Well this project shares some aspects of the game. We are given a file(map) that must be parsed. Instead of the little Lemmings from the game, we are using ants. These maps contain the following information:
-
+```
 * Number of ants
 * Room names and coordinates
 * Links - which rooms are connected to eachother.
 * #Comments - comments can contain any bits of information just for the user, but do not effect the output
-* ##Commands - like comments but these effect to output. They will be `##Start` and `##End`, symbalising the starting room(source) and the ending room (sink)
-
+* ##Commands - `##Start` and `##End`, symbalising the starting room(source) and the ending room (sink)
+```
 This is an example of valid map:
 
 <img width="273" alt="Screen Shot 2022-12-22 at 5 49 32 PM" src="https://user-images.githubusercontent.com/86073849/209171802-d16163a5-4a18-45bb-964c-b59ae300ce7d.png">
@@ -56,7 +57,11 @@ You can clone the repo with ..
 git clone https://github.com/azajay08/Lem_in.git
 ```
         
-Once the repository has been cloned, you can move into the root of the repository and `make`. This will then create the executable `lem-in` in the root of the repository
+Once the repository has been cloned, you can move into the root of the repository.
+```
+make
+```` 
+This will then create the executable `lem-in` in the root of the repository
 
 ```
 Usage: ./lem-in -[flag] < [map]
