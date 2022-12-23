@@ -1,4 +1,4 @@
-# Lem_in - Hive (42)
+# Lem_in - Hive (42) :ant: :ant: :ant:
 
 Lem_in is the second to last project in the algorithm branch at Hive(42). It is a paired group project. The aim of the project is to come up with an algorithm that will give us the fewest possible turns at sending ants through a map made up of one or multiple path options. As with all Hive projects, they come with restraints and limitations. We have to abide by the rules of `Norminette`. Here are some of the rules we must follow:
 
