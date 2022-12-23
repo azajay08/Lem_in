@@ -11,7 +11,7 @@ Lem_in is the second to last project in the algorithm branch at Hive(42). It is 
 * For loops are forbidden
 * Declaration and an initialisation cannot be on the same line
 * A function can take 4 named parameters maximum
-* Printf is forbidden - But we can use our own version made in a previous project `ft_printf`
+* Printf is forbidden - But we can use our own version made in a previous project (ft_printf)
 * Functions allowed:
   * write
   * malloc
