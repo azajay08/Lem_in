@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_printing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/21 15:40:15 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:57:23 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,15 @@ void	launch_ants(int i, t_data *data, t_ant *ant, t_opt *opt)
 			if (opt->used == 0)
 				reduce++;
 		}
-		opt = opt->next;
+		if (opt->p_len > 1)
+			i++;
+		if (opt->next)
+			opt = opt->next;
 		move_ants(data, ant);
 		ant->launched = YES;
 		ant = ant->next;
-		i++;
+		if (!ant)
+			break ;
 	}
 	if (reduce)
 	{
