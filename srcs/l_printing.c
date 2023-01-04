@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/04 18:57:23 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 01:09:57 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ void	launch_ants(int i, t_data *data, t_ant *ant, t_opt *opt)
 			break ;
 	}
 	if (reduce)
-	{
 		data->nb_paths -= reduce;
-		reduce = OFF;
-	}
 }
 
 void	print_moves(t_data *data, t_opt *opt, t_opt *head, t_ant *ant)
