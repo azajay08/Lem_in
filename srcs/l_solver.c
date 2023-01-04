@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2023/01/04 18:46:17 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:08:37 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,16 @@ t_opt	*find_all_disjoint_paths(t_data *data, t_room **room)
 	while (1)
 	{
 		cur_path = bfs(data, room);
-		if (cur_path == NULL)
-			break ;
-		if (option == NULL)
+		if (option == NULL && cur_path)
 			option = make_t_opt(data, cur_path);
-		else
+		else if (cur_path)
 		{
 			option->next = make_t_opt(data, cur_path);
 			option->next->previous = option;
 			option = option->next;
 		}
-		if (data->nb_ants < calculate_min_for_path(option)
-			|| cur_path->edges == 1)
+		if (!cur_path || data->nb_ants < calculate_min_for_path(option)
+			|| option->p_len == 1)
 			break ;
 		make_residual_map(option, room, OFF);
 	}
