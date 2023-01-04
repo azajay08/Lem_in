@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:13:06 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/21 15:10:02 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:46:17 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ t_opt	*find_all_disjoint_paths(t_data *data, t_room **room)
 			option->next->previous = option;
 			option = option->next;
 		}
-		if (data->nb_ants < calculate_min_for_path(option))
+		if (data->nb_ants < calculate_min_for_path(option)
+			|| cur_path->edges == 1)
 			break ;
 		make_residual_map(option, room, OFF);
 	}
@@ -109,11 +110,10 @@ t_opt	*solver(t_data *data, t_room **room)
 
 	orig_option = find_all_disjoint_paths(data, room);
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option))
-	{
 		orig_option = cut_paths(data, orig_option);
-	}
 	if (calculate_paths(orig_option) > calculate_paths_used(data, orig_option)
-		|| calculate_paths(orig_option) >= data->nb_ants)
+		|| calculate_paths(orig_option) >= data->nb_ants
+		|| orig_option->p_len == 1)
 		return (cut_paths(data, orig_option));
 	next_opt = vertex_disjoint(data, room, orig_option);
 	while (calculate_paths(orig_option) <= calculate_paths_used(data, next_opt))

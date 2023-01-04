@@ -1,0 +1,17 @@
+7
+##start
+start 3 1
+#2 6 5
+3 5 7
+##end
+end 0 2
+end-start
+start-3
+3-end
+#start-2
+#2-end
+#   o
+#  /|
+# o |
+#  \|
+#   o
