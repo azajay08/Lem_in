@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:42:09 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 19:46:00 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:51:22 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	free_all(t_data *data, int condition)
 	if (data->q_mode == OFF)
 		free(data->line);
 	data->line = NULL;
-	free(data->queue);
+	if (data->queue)
+		free(data->queue);
 	while (data->source != NULL)
 	{
 		temp = data->source;

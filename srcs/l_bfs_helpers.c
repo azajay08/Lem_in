@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:00:15 by mtissari          #+#    #+#             */
-/*   Updated: 2022/12/21 15:21:41 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:58:49 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_queue(t_data *data)
 		data->queue[i] = -1;
 		i++;
 	}
-	i = 0;
 	data->queue[0] = data->src_index;
 	data->queue[data->nb_rooms * 2] = END;
 }

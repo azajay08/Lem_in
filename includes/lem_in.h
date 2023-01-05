@@ -6,7 +6,7 @@
 /*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/21 15:18:08 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:53:32 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,69 +60,70 @@ typedef struct s_ant
 
 typedef struct s_edge
 {
-	int				room;
 	int8_t			on_off;
+	int				room;
 	struct s_edge	*next;
 	struct s_edge	*head;
 }					t_edge;
 
 typedef struct s_verify
 {
+	int8_t			start;
+	int8_t			end;
 	int				valid_map;
 	int				ants;
 	int				nb_of_starts;
 	int				nb_of_ends;
 	int				index;
-	int8_t			start;
-	int8_t			end;
 }					t_verify;
 
 typedef struct s_vert
 {
-	char			*name;
+	int8_t			start;
+	int8_t			end;
 	int				coord_y;
 	int				coord_x;
 	int				index;
-	int8_t			start;
-	int8_t			end;
+	char			*name;
 	struct s_vert	*next;
 	struct s_edge	*edge;
 }					t_vert;
 
 typedef struct s_room
 {
-	char			*name;
-	int				index;
 	int8_t			start;
 	int8_t			end;
 	int8_t			hop_off_switch;
 	int8_t			bfs_folo;
+	int				index;
 	int				to_folo;
 	int				bfs_previous;
+	char			*name;
 	struct s_edge	*edge;
 }					t_room;
 
 typedef struct s_path
 {
-	struct s_path	*previous;
 	int				index;
 	int				edges;
+	struct s_path	*previous;
 	struct s_path	*next;
 }					t_path;
 
 typedef struct s_opt
 {
-	struct s_path	*path;
 	int				p_len;
 	int				used;
 	int				limit;
 	int				ants;
+	struct s_path	*path;
 	struct s_opt	*previous;
 	struct s_opt	*next;
 }					t_opt;
 
 typedef struct s_data
 {
+	int8_t			vertex;
 	int				turns;
 	int				ants_in_sink;
 	int				ant_num;
@@ -136,7 +137,6 @@ typedef struct s_data
 	int				rooms_malloced;
 	int				*queue;
 	char			*line;
-	int8_t			vertex;
 	t_vert			*source;
 	t_room			**room;
 	t_ant			*queen;

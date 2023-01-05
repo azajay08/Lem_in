@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_errors.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:09:53 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/20 15:02:35 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 14:51:38 by mtissari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	error_exit(char *error_str)
 
 void	error_exit1(char *error_str, t_data *data)
 {
-	free(data);
+	free_all(data, ERROR);
 	ft_putstr(error_str);
 	exit(1);
 }
