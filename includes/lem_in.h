@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/05 14:53:32 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:35:00 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEM_IN_H
 
 # define GNL_FAIL		"ERROR! Reading input failed\n"
+# define LINE_FAIL		"ERROR! Memory allocation of t_line failed!\n"
 # define DATA_FAIL		"ERROR! Memory allocation of t_data failed!\n"
 # define VERIFY_FAIL	"ERROR! Memory allocation of t_verify failed!\n"
 # define VERT_FAIL		"ERROR! Memory allocation of t_vert failed\n"
@@ -140,6 +141,7 @@ typedef struct s_data
 	t_vert			*source;
 	t_room			**room;
 	t_ant			*queen;
+	t_line			*first;
 }					t_data;
 
 /*
@@ -151,6 +153,8 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify);
 void	read_room_and_link_info(char *line, t_verify *verify, t_data *data);
 void	comment_found(char *line, t_verify *verify, t_data *data);
 void	get_link_info(char *line, t_verify *verify, t_data *data);
+void	append_line(t_data *data, t_line *line);
+void	line_join(t_data *data, char *line);
 int		comment_start_end(char *line);
 int		check_line_is_digits(char *line);
 int		check_dup_links(t_edge *edge, int index);
@@ -158,6 +162,7 @@ int		check_dup_links(t_edge *edge, int index);
 t_vert	*get_vert_info(char *line, t_verify *verif, t_data *data, t_vert *room);
 t_room	**make_room_array(t_data *data);
 t_room	*make_index_room(t_vert *head, t_room *new_room, int index);
+t_line	*make_line(t_data *data, char *line);
 
 /*
 	Initialize structs
@@ -185,7 +190,7 @@ void	free_all(t_data *data, int condition);
 void	free_edge(t_edge *head);
 void	free_room_arr(t_data *data);
 void	free_vert(t_data *data);
-
+void	free_line(t_line *head);
 void	free_option(t_opt *option);
 void	free_path(t_path *path);
 void	free_ants(t_data *data);
@@ -229,6 +234,11 @@ t_path	*get_path_head(t_path *path);
 t_opt	*get_opt_head(t_opt *option);
 t_opt	*get_opt_tail(t_opt *option);
 
+/*
+	Functions for printing
+*/
+
+void	print_map(t_data *data);
 void	print_output(t_data *data, t_opt *option);
 void	make_ant_army(t_data *data, t_opt *option);
 void	print_paths(t_data *data, t_opt *opt);

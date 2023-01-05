@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 15:15:15 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 15:46:55 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:36:14 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ int	check_line_is_digits(char *line)
 	return (1);
 }
 
-void	dup_or_join(t_data *data, char *line)
-{
-	if (!data->line)
-		data->line = ft_strdup(line);
-	else
-		data->line = ft_strjoin_line(data->line, line);
-}
-
 void	get_ant_info(char *line, t_data *data, t_verify *verify)
 {
 	int	com_ret;
@@ -57,7 +49,7 @@ void	get_ant_info(char *line, t_data *data, t_verify *verify)
 		if (get_next_line(0, &line) != 1)
 			error_exit2(MAP_ERROR, data, verify);
 		if (data->q_mode == OFF)
-			dup_or_join(data, line);
+			line_join(data, line);
 		com_ret = comment_start_end(line);
 		if (!com_ret)
 		{

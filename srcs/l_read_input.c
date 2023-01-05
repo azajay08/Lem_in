@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_read_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:48:59 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/16 16:08:00 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:36:45 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	read_room_and_link_info(char *line, t_verify *verify, t_data *data)
 		else
 			room = get_vert_info(line, verify, data, room);
 		if (data->q_mode == OFF)
-			data->line = ft_strjoin_line(data->line, line);
+			line_join(data, line);
 		ft_strdel(&line);
 	}
 	if (data->nb_rooms == 0)

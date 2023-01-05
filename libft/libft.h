@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 10:56:31 by ajones            #+#    #+#             */
-/*   Updated: 2022/11/22 02:44:31 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:31:52 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef struct s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct s_line
+{
+	char			*line;
+	struct s_line	*next;
+}					t_line;
 
 int			ft_isdigit(int c);
 int			ft_toupper(int c);

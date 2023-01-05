@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_init.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/21 14:43:50 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:39:52 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	init_data(t_data *data)
 	data->t_mode = OFF;
 	data->src_index = -1;
 	data->vertex = OFF;
-	data->line = NULL;
 	data->source = NULL;
 	data->queen = NULL;
+	data->first = NULL;
 }
 
 void	init_verify(t_verify *verify)

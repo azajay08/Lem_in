@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 21:22:20 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/05 01:09:57 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:35:46 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ void	print_output(t_data *data, t_opt *option)
 	ant = data->queen;
 	data->nb_paths = p_tmp;
 	if (data->q_mode == OFF)
-	{
-		ft_putstr(data->line);
-		write(1, "\n", 1);
-	}
+		print_map(data);
 	print_moves(data, option, head, ant);
 	option = get_opt_head(option);
 	if (data->t_mode == ON || data->p_mode == ON)

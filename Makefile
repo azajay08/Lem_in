@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+         #
+#    By: ajones <ajones@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 00:15:54 by ajones            #+#    #+#              #
-#    Updated: 2022/12/21 14:49:17 by mtissari         ###   ########.fr        #
+#    Updated: 2023/01/05 20:33:24 by ajones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRCS := l_main.c l_init.c l_errors.c l_read_input.c l_free.c l_read_ants.c \
 		l_read_rooms.c l_read_links.c l_bfs.c l_solver.c l_helpers.c \
 		l_room_array.c l_bfs_helpers.c l_calculations.c l_free_all.c \
 		l_vertex_disjoint.c l_printing.c l_print_extra.c l_ants.c \
-		l_bfs_vertex.c l_delete_edge.c
+		l_bfs_vertex.c l_delete_edge.c l_line_helpers.c
 SRCS_PATH := ./srcs/
 SRCS_DIR := $(addprefix $(SRCS_PATH), $(SRCS))
 

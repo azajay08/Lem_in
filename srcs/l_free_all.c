@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   l_free_all.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtissari <mtissari@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 19:42:09 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/05 14:51:22 by mtissari         ###   ########.fr       */
+/*   Updated: 2023/01/05 20:32:49 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ void	free_all(t_data *data, int condition)
 	t_vert	*temp;
 
 	if (data->q_mode == OFF)
-		free(data->line);
-	data->line = NULL;
+		free_line(data->first);
 	if (data->queue)
 		free(data->queue);
 	while (data->source != NULL)

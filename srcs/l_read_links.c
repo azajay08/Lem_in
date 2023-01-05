@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 16:06:41 by ajones            #+#    #+#             */
-/*   Updated: 2022/12/20 15:12:14 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:37:23 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	get_link_info(char *line, t_verify *verify, t_data *data)
 	while (ret == 1)
 	{
 		if (data->q_mode == OFF)
-			data->line = ft_strjoin_line(data->line, line);
+			line_join(data, line);
 		if (ft_strequ(line, ""))
 			error_exit2(LINK_ROOM, data, verify);
 		if (ret == -1)
