@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:38:24 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/05 20:38:29 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:56:38 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_map(t_data *data)
 {
 	t_line	*tmp;
 
-	tmp = data->first;
+	tmp = data->line;
 	while (tmp)
 	{
 		ft_putstr(tmp->line);
@@ -54,11 +54,11 @@ void	append_line(t_data *data, t_line *line)
 {
 	t_line	*tmp;
 
-	tmp = data->first;
-	while (data->first->next)
-		data->first = data->first->next;
-	data->first->next = line;
-	data->first = tmp;
+	tmp = data->line;
+	while (data->line->next)
+		data->line = data->line->next;
+	data->line->next = line;
+	data->line = tmp;
 }
 
 void	line_join(t_data *data, char *line)
@@ -66,8 +66,8 @@ void	line_join(t_data *data, char *line)
 	t_line	*l_str;
 
 	l_str = make_line(data, line);
-	if (!data->first)
-		data->first = l_str;
+	if (!data->line)
+		data->line = l_str;
 	else
 		append_line(data, l_str);
 }

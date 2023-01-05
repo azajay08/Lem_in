@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 00:17:36 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/05 20:35:00 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:54:57 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,11 +137,10 @@ typedef struct s_data
 	int				src_index;
 	int				rooms_malloced;
 	int				*queue;
-	char			*line;
 	t_vert			*source;
 	t_room			**room;
 	t_ant			*queen;
-	t_line			*first;
+	t_line			*line;
 }					t_data;
 
 /*

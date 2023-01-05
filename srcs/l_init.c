@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 14:04:41 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/05 20:39:52 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:55:13 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_data(t_data *data)
 	data->vertex = OFF;
 	data->source = NULL;
 	data->queen = NULL;
-	data->first = NULL;
+	data->line = NULL;
 }
 
 void	init_verify(t_verify *verify)
