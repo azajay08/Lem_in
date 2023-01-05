@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:38:24 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/05 20:56:38 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 22:52:58 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	append_line(t_data *data, t_line *line)
 
 void	line_join(t_data *data, char *line)
 {
-	t_line	*l_str;
+	t_line	*line_str;
 
-	l_str = make_line(data, line);
+	line_str = make_line(data, line);
 	if (!data->line)
-		data->line = l_str;
+		data->line = line_str;
 	else
-		append_line(data, l_str);
+		append_line(data, line_str);
 }
