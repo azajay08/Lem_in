@@ -6,7 +6,7 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 10:56:31 by ajones            #+#    #+#             */
-/*   Updated: 2023/01/05 20:31:52 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:52:27 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_strequ(char const *s1, char const *s2);
 int			ft_strnequ(char const *s1, char const *s2, size_t n);
 void		ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void		ft_lstadd_toend(t_list **alst, t_list *new);
+void		ft_lstadd_toend(t_list **alst, t_list *lst);
 void		ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void		ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-void		ft_lstadd(t_list **alst, t_list *new);
+void		ft_lstadd(t_list **alst, t_list *lst);
 void		ft_bzero(void *s, size_t n);
 void		ft_putchar(char c);
 void		ft_putnbr(int n);

@@ -6,14 +6,14 @@
 /*   By: ajones <ajones@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 10:55:23 by ajones            #+#    #+#             */
-/*   Updated: 2022/09/05 10:55:26 by ajones           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:52:54 by ajones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_lstadd(t_list **alst, t_list *lst)
 {
-	new->next = *alst;
-	*alst = new;
+	lst->next = *alst;
+	*alst = lst;
 }
