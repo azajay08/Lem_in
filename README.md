@@ -82,7 +82,15 @@ For multiple modes, group flags together, for example `./lem-in -qtp < [map]`
 <summary><h3><strong>Method</strong></h3></summary>
 <p>
   
-We used bfs and shit, check it out:
+
+There was a lot of research to be done before we could even start coding. First we studied Ford-Fulkerson algorithm (https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm) <<Will add hyperlink later>>, and then Edmonds-Karp algorithm (https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm) <<-----------..----------->>, which is "an implementation of the Ford–Fulkerson method" <<in quote!!>>. By understanding these algorithms we had set the base on how we solve the problems.  
+  
+We start solving the paths with BFS(Breadth-First Search(https://en.wikipedia.org/wiki/Breadth-first_search)<<hyperlink>>), which is a tool for finding the shortest path.  
+Our solver finds the shortest paths one by one while updating the map between the searchs. This way some better paths can be left undetected.
+However, by finding Vertex Disjoint Paths(https://matthewdaws.github.io/blog/2015-06-08-Paths.html)<<hyperlink>>, we found the solution to this dilemma.
+  
+
+
   
 ![lem-in solver gif](https://user-images.githubusercontent.com/90178358/209239950-8d2bc554-f9ba-426d-9116-caeb46720122.gif)
   
