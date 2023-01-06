@@ -44,7 +44,7 @@ Like the game Lemmings, we must find a path to the `end(sink)`. But for us, we m
 
 <img width="290" alt="Screen Shot 2022-12-22 at 6 07 44 PM" src="https://user-images.githubusercontent.com/86073849/209177557-30e6d65c-89fe-46fd-8bdb-9fdefc25f66a.png">
 
-As you can see at the bottom of the image above, they are the moves and turns. Let's take the first turn for example `L1-1 L2-3`. The `L` represents that it is an ant. The number next the the `L` is the ant number, therefore `L1` is ant number 1, in our case the `Ant Queen`. Then the `-1` is the name of the room that the ant has moved to. So on here we can see that the first ant has moved to `room 1` and ant number 2 has moved to `room 3`. An ant will stop making moves once it has reached the `sink`, in our case the room called `end`.
+As you can see at the bottom of the image above, they are the moves and turns. Let's take the first turn for example `L1-1 L2-3`. The `L` represents that it is an ant. The number next the the `L` is the ant number, therefore `L1` is ant number 1, in our case the `Ant Queen`. Then the `-` separates the ant and the room it is moving to. `1` is the name of the room that the ant has moved to(in this example). So on here we can see that the first ant has moved to `room 1` and ant 2 has moved to `room 3`. An ant will stop making moves once it has reached the `sink`, in our case the room called `end`.
 
 </p>
 </details>
