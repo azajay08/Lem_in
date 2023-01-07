@@ -23,7 +23,7 @@ Lem_in is the second to last project in the algorithm branch at Hive(42). It is 
 ```
 For the bonus of the project, we made a visualizer. The visualizer doesn't have to follow the same `Norminette` rules as the mandatory part, and can be done in a language of our choosing, so we decided to do it in Python.
 <details>
-<summary><h3><strong>What is Lem_in?</strong></h3></summary>
+<summary><h4><strong>What is Lem_in?</strong></h4></summary>
 <p>
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
@@ -49,7 +49,7 @@ As you can see at the bottom of the image above, they are the moves and turns. L
 </p>
 </details>
 <details>
-<summary><h3><strong>Usage</strong></h3></summary>
+<summary><h4><strong>Usage</strong></h4></summary>
 <p>
 You can clone the repo with ..
         
@@ -79,7 +79,7 @@ For multiple modes, group flags together, for example `./lem-in -qtp < [map]`
 </details>
 
 <details>
-<summary><h3><strong>Method</strong></h3></summary>
+<summary><h4><strong>Method</strong></h4></summary>
 <p>
   
 
@@ -124,7 +124,7 @@ Now this is the Real size of the gif:
 </details>
 
 <details>
-<summary><h3><strong>Visualizer</strong></h3></summary>
+<summary><h4><strong>Visualizer</strong></h4></summary>
 <p>
 For the visualizer, we decided to use Pygame. Being reletively new to python at the the time, Pygame was a good option that was familiar, as I had done a visualizer for the previous project with it. To be able to use the visualizer, you would need to have python3 and pygame installed. If you have python3, installed, depending on your system, you can easily install pygame for example with `pip3 install pygame`.
 
