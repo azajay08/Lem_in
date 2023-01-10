@@ -21,7 +21,7 @@ Lem_in is the second to last project in the algorithm branch at Hive(42). It is 
   * sterror
   * perror
 ```
-For the bonus of the project, we made a visualizer. The visualizer doesn't have to follow the same `Norminette` rules as the mandatory part, and can be done in a language of our choosing, so we decided to do it in Python.
+For the bonus of the project, we made a visualizer. The visualizer doesn't have to follow the same `Norminette` rules as the mandatory part, and can be done in a language of our choosing, so we decided to do it in Python using Pygame.
 <details>
 <summary><h4><strong>What is Lem_in?</strong></h4></summary>
 <p>
