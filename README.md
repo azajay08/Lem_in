@@ -83,41 +83,26 @@ For multiple modes, group flags together, for example `./lem-in -qtp < [map]`
 <p>
   
 
-There was a lot of research to be done before we could even start coding. First we studied Ford-Fulkerson algorithm (https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm) <<Will add hyperlink later>>, and then Edmonds-Karp algorithm (https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm) <<-----------..----------->>, which is "an implementation of the Ford–Fulkerson method" <<in quote!!>>. By understanding these algorithms we had set the base on how we solve the problems.  
+There was a lot of research to be done before we could even start coding. First we studied [Ford-Fulkerson algorithm](https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm), and then [Edmonds-Karp algorithm](https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm), which is *"an implementation of the Ford–Fulkerson method"*. By understanding these algorithms we had set the base on how we solve the problems.  
   
-We start solving the paths with BFS(Breadth-First Search(https://en.wikipedia.org/wiki/Breadth-first_search)<<hyperlink>>), which is a tool for finding the shortest path.  
+We start solving the paths with [BFS(Breadth-First Search)](https://en.wikipedia.org/wiki/Breadth-first_search), which is a tool for finding the shortest path.  
 Our solver finds the shortest paths one by one while updating the map between the searchs. This way some better paths can be left undetected.
-However, by finding Vertex Disjoint Paths(https://matthewdaws.github.io/blog/2015-06-08-Paths.html)<<hyperlink>>, we found the solution to this dilemma.
+However, by finding [Vertex Disjoint Paths](https://matthewdaws.github.io/blog/2015-06-08-Paths.html), we found the solution to this dilemma.
   
-
-
-  
-![lem-in solver gif](https://user-images.githubusercontent.com/90178358/209239950-8d2bc554-f9ba-426d-9116-caeb46720122.gif)
-  
-  
-Some calculations here and there and **puff** - it's solved.
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-Now this is the Real size of the gif:
+As we can see in the gif below, the BFS finds the shortest path first, which blocks other paths from being found. 
+By using the Vertex Disjoint Paths -method, we can find more paths by following few rules:
+- if we encounter a vertex(room) that is already used by a path:
+   - Must follow the path backwards
+   - When followed, can hop off to a vertex when found one  
+   
+If a path is found from source(start) to sink(end) with these rules, we delete the edge(s)(links) that have been followed.  
+Then BFS will find more paths.
   
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![lemin_solver gif](https://user-images.githubusercontent.com/90178358/209240702-1e378c68-8ce3-465e-b7fb-0c89292aa777.gif)
   
+  
+We use some calculations to know when we have found the number of paths we will use with the amount of ants we have.  
+With the number of ants, paths, and edges in each path, we calculate how many ants we send through each path.
   
   
 </p>      
