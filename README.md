@@ -109,13 +109,20 @@ With the number of ants, paths, and edges in each path, we calculate how many an
 </details>
 
 <details>
-<summary><h4><strong>Visualizer</strong></h4></summary>
+<summary><h4><strong>Visualiser</strong></h4></summary>
 <p>
-For the visualizer, we decided to use Pygame. Being reletively new to python at the the time, Pygame was a good option that was familiar, as I had done a visualizer for the previous project with it. To be able to use the visualizer, you would need to have python3 and pygame installed. If you have python3, installed, depending on your system, you can easily install pygame for example with `pip3 install pygame`.
+For the visualiser, we decided to use Pygame. Being relatively new to python at the the time, Pygame was a good option that was familiar, as I had done a visualiser for the previous project with it. To be able to use the visualiser, you would need to have python3 and pygame installed. If you have python3, installed, depending on your system, you can easily install pygame for example with ...
+ 
+```
+pip3 install pygame
+```
 
-It is in a 2D format, so it would require the coordinates of the rooms to be spread out for it to be visualized properly. So maps with with just ascending coordiantes, may not be the best visual representation. If you have some nice maps with nice coordinates to test, you can use it like this ...
+It is in a 2D format, so it would require the coordinates of the rooms to be spread out for it to be visualised properly. So maps with with just ascending coordinates, may not be the best visual representation. If you have some nice maps with nice coordinates to test, you can use it like this ...
 
-`./lem-in < [map] | python3 visualizer/lem_in_vis.py`
+```
+./lem-in < [map] | python3 visualizer/lem_in_vis.py
+```
+                
 
 https://user-images.githubusercontent.com/86073849/205643151-ca0e3334-fcfb-4ab2-bc26-01aeb49a574e.mov
 
