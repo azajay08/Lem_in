@@ -22,9 +22,10 @@ Lem_in is the second to last project in the algorithm branch at Hive(42). It is 
   * perror
 ```
 For the bonus of the project, we made a visualizer. The visualizer doesn't have to follow the same `Norminette` rules as the mandatory part, and can be done in a language of our choosing, so we decided to do it in Python using Pygame.
-<details>
-<summary><h4><strong>What is Lem_in?</strong></h4></summary>
-<p>
+
+
+## What is Lem_in?
+
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
 
@@ -46,8 +47,6 @@ Like the game Lemmings, we must find a path to the `end(sink)`. But for us, we m
 
 As you can see at the bottom of the image above, they are the moves and turns. Let's take the first turn for example `L1-1 L2-3`. The `L` represents that it is an ant. The number next the the `L` is the ant number, therefore `L1` is ant number 1, in our case the `Ant Queen`. Then the `-` separates the ant and the room it is moving to. `1` is the name of the room that the ant has moved to(in this example). So on here we can see that the first ant has moved to `room 1` and ant 2 has moved to `room 3`. An ant will stop making moves once it has reached the `sink`, in our case the room called `end`.
 
-</p>
-</details>
 <details>
 <summary><h4><strong>Usage</strong></h4></summary>
 <p>
