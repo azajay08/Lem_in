@@ -28,7 +28,7 @@ For the bonus of the project, we made a visualizer. The visualizer doesn't have 
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/86073849/209192867-549939b7-319c-4147-a758-f6669efab447.gif)
 
-Do you remember the game Lemmings? Well that is what I instantly thought of when seeing this project for the first time. If you don't remember the game, it was a game made in the early 90s where you have an amount of little lemmings that follow eachother along a path filled with obstacles, and you have to make sure that they get to the end of the path. Well this project shares some aspects of the game. We are given a file(map) that must be parsed. Instead of the little Lemmings from the game, we are using ants. These maps contain the following information:
+Do you remember the game Lemmings? Well that is what I instantly thought of when seeing this project for the first time. If you don't remember the game, it was a game made in the early 90s where you have an amount of little lemmings that follow each other along a path filled with obstacles, and you have to make sure that they get to the end of the path. Well this project shares some aspects of the game. We are given a file(map) that must be parsed. Instead of the little Lemmings from the game, we are using ants. These maps contain the following information:
 ```
 * Number of ants
 * Room names and coordinates
