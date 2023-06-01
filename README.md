@@ -116,7 +116,7 @@ For the visualiser, we decided to use Pygame. Being relatively new to python at 
 pip3 install pygame
 ```
 
-It is in a 2D format, so it would require the coordinates of the rooms to be spread out for it to be visualised properly. So maps with with just ascending coordinates, may not be the best visual representation. If you have some nice maps with nice coordinates to test, you can use it like this ...
+It is in a 2D format, so it would require the coordinates of the rooms to be spread out for it to be visualised properly. So maps with just ascending coordinates, may not be the best visual representation. If you have some nice maps with nice coordinates to test, you can use it like this ...
 
 ```
 ./lem-in < [map] | python3 visualizer/lem_in_vis.py
